@@ -1,0 +1,74 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Go
+/vendor/
+*.test
+*.out
+
+# TypeScript / JavaScript
+node_modules/
+dist/
+build/
+.npm/
+.yarn/cache/
+*.tsbuildinfo
+coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+htmlcov/
+
+# PostgreSQL and local database files
+*.sql.gz
+*.dump
+*.backup
+*.sqlite
+*.sqlite3
+*.db
+pgdata/
+
+# LLM, model, and dataset artifacts
+*.gguf
+*.ggml
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.parquet
+*.arrow
+wandb/
+mlruns/
+checkpoints/
+
+# Logs, caches, and temporary files
+*.log
+logs/
+.cache/
+tmp/
+temp/
+
+# Plan, notes, etc
+PLAN.md
