@@ -60,6 +60,10 @@ var (
 	totalRe    = regexp.MustCompile(`(?i)^total\s+cards\s*:`)
 )
 
+// maxQty bounds a line's quantity. No deck holds more than 60 cards, and
+// the bound keeps sums of quantities from overflowing.
+const maxQty = 60
+
 // ParseTCGLive reads a TCG Live (or PTCGO-style) decklist. Lines it cannot
 // read are returned as Unparsed, never silently dropped.
 func ParseTCGLive(r io.Reader) (Deck, []Unparsed, error) {
@@ -72,7 +76,11 @@ func ParseTCGLive(r io.Reader) (Deck, []Unparsed, error) {
 	sc := bufio.NewScanner(r)
 	for sc.Scan() {
 		lineNo++
-		text := strings.TrimSpace(sc.Text())
+		text := sc.Text()
+		if lineNo == 1 {
+			text = strings.TrimPrefix(text, "\uFEFF") // BOM from Windows editors
+		}
+		text = strings.TrimSpace(text)
 		text = strings.TrimPrefix(text, "* ")
 		if text == "" || totalRe.MatchString(text) {
 			continue
@@ -82,21 +90,24 @@ func ParseTCGLive(r io.Reader) (Deck, []Unparsed, error) {
 			continue
 		}
 
-		var l Line
+		var (
+			l   Line
+			qty string
+		)
 		if m := withSetRe.FindStringSubmatch(text); m != nil {
-			l = Line{Name: m[2], SetCode: m[3], Number: m[4]}
-			l.Qty, _ = strconv.Atoi(m[1])
+			l, qty = Line{Name: m[2], SetCode: m[3], Number: m[4]}, m[1]
 		} else if m := nameOnlyRe.FindStringSubmatch(text); m != nil {
-			l = Line{Name: strings.TrimSpace(m[2])}
-			l.Qty, _ = strconv.Atoi(m[1])
+			l, qty = Line{Name: strings.TrimSpace(m[2])}, m[1]
 		} else {
 			bad = append(bad, Unparsed{LineNo: lineNo, Text: text, Reason: "expected \"<qty> <name> [<set code> <number>]\""})
 			continue
 		}
-		if l.Qty <= 0 {
-			bad = append(bad, Unparsed{LineNo: lineNo, Text: text, Reason: "quantity must be positive"})
+		n, err := strconv.Atoi(qty)
+		if err != nil || n < 1 || n > maxQty {
+			bad = append(bad, Unparsed{LineNo: lineNo, Text: text, Reason: fmt.Sprintf("quantity must be 1 to %d", maxQty)})
 			continue
 		}
+		l.Qty = n
 		l.Section, l.LineNo = section, lineNo
 		d.Lines = append(d.Lines, l)
 	}

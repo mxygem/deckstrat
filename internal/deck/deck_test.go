@@ -57,6 +57,8 @@ Energy - 1
 1 Psychic Energy Energy 5
 this is not a card
 0 Iono PAL 185
+99999999999999999999 Iono PAL 185
+61 Iono PAL 185
 `
 	d, bad, err := ParseTCGLive(strings.NewReader(in))
 	if err != nil {
@@ -71,7 +73,7 @@ this is not a card
 	if !reflect.DeepEqual(d.Lines, want) {
 		t.Errorf("lines:\n got %+v\nwant %+v", d.Lines, want)
 	}
-	if len(bad) != 2 || bad[0].LineNo != 7 || bad[1].LineNo != 8 {
+	if len(bad) != 4 || bad[0].LineNo != 7 || bad[1].LineNo != 8 || bad[2].LineNo != 9 || bad[3].LineNo != 10 {
 		t.Errorf("unparsed = %+v", bad)
 	}
 }
@@ -126,7 +128,7 @@ Trainer: 5
 1 Prime Catcher TEF 157
 
 Energy: 4
-4 Fighting Energy SVE 6
+4 Basic {F} Energy SVE 6
 
 Total Cards: 12
 `
@@ -200,5 +202,56 @@ func TestNamesAgree(t *testing.T) {
 	}
 	if namesAgree("Iono", "Arven") {
 		t.Error("different names agreed")
+	}
+}
+
+func TestParseStripsBOM(t *testing.T) {
+	d, bad, err := ParseTCGLive(strings.NewReader("\uFEFFPokémon: 1\n1 Riolu MEG 76\n"))
+	if err != nil || len(bad) != 0 || len(d.Lines) != 1 || d.Lines[0].Section != "Pokémon" {
+		t.Errorf("d = %+v, bad = %+v, err = %v", d, bad, err)
+	}
+}
+
+func TestResolveNameOnlyPicksExactNewest(t *testing.T) {
+	cat := &catalogtest.Fake{Cards: []catalog.Card{
+		{ID: "base1-71", Name: "Computer Search", Category: catalog.Trainer, Series: "base"},
+		{ID: "bw7-137", Name: "Computer Search", Category: catalog.Trainer, Series: "bw", AceSpec: true},
+		{ID: "xy2-11", Name: "Charizard EX", Category: catalog.Pokemon, Series: "xy"},
+		{ID: "sv03-125", Name: "Charizard ex", Category: catalog.Pokemon, Series: "sv", RegulationMark: "G"},
+		{ID: "sv03.5-006", Name: "Charizard ex", Category: catalog.Pokemon, Series: "sv", RegulationMark: "H"},
+	}}
+	tests := map[string]string{
+		"Computer Search": "bw7-137",    // newest series, not Base Set
+		"Charizard EX":    "xy2-11",     // case matters: not Charizard ex
+		"Charizard ex":    "sv03.5-006", // newest mark within the series
+	}
+	for name, want := range tests {
+		entries, missing, err := Resolve(context.Background(), cat, Deck{Lines: []Line{{Qty: 1, Name: name}}})
+		if err != nil || len(missing) != 0 {
+			t.Fatalf("%s: %v %+v", name, err, missing)
+		}
+		if got := entries[0].Card.ID; got != want {
+			t.Errorf("%s resolved to %s, want %s", name, got, want)
+		}
+	}
+}
+
+func TestExportTCGLiveSpellings(t *testing.T) {
+	entries := []Entry{
+		{Line: Line{Qty: 2}, Card: &catalog.Card{Name: "Boss's Orders (Ghetsis)", Category: catalog.Trainer, SetCode: "PAL", Number: "172"}},
+		{Line: Line{Qty: 1}, Card: &catalog.Card{Name: "Flareon", Category: catalog.Pokemon, SetCode: "BRS", Number: "TG01"}},
+		{Line: Line{Qty: 1}, Card: &catalog.Card{Name: "Pikachu", Category: catalog.Pokemon, Number: "5"}},
+		{Line: Line{Qty: 3}, Card: &catalog.Card{Name: "Fire Energy", Category: catalog.Energy, EnergyType: "Normal", SetCode: "SVE", Number: "002"}},
+	}
+	out := ExportTCGLive(entries)
+	for _, want := range []string{"2 Boss's Orders PAL 172\n", "1 Flareon BRS TG01\n", "1 Pikachu\n", "3 Basic {R} Energy SVE 2\n"} {
+		if !strings.Contains(out, want) {
+			t.Errorf("missing %q in:\n%s", want, out)
+		}
+	}
+	// Every exported line parses back.
+	d, bad, err := ParseTCGLive(strings.NewReader(out))
+	if err != nil || len(bad) != 0 || d.Count() != 7 {
+		t.Errorf("reparse: %v %+v count %d", err, bad, d.Count())
 	}
 }

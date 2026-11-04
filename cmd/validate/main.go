@@ -36,7 +36,7 @@ func run(args []string, stdin io.Reader, stdout, stderr io.Writer, cat catalog.C
 	fs := flag.NewFlagSet("validate", flag.ContinueOnError)
 	fs.SetOutput(stderr)
 	formatID := fs.StringP("format", "f", "standard", fmt.Sprintf("format to check against %v", format.IDs()))
-	export := fs.Bool("export", false, "also print the deck in TCG Live format, normalized to catalog names")
+	export := fs.Bool("export", false, "also print the deck in TCG Live format (as the \"export\" field with --json)")
 	asJSON := fs.Bool("json", false, "print the result as JSON")
 	fs.Usage = func() {
 		fmt.Fprintln(stderr, "usage: validate [flags] <decklist file | ->")
@@ -94,14 +94,18 @@ func run(args []string, stdin io.Reader, stdout, stderr io.Writer, cat catalog.C
 	}
 
 	legal := res.Legal() && len(unparsed) == 0 && len(unmatched) == 0
+	exported := ""
+	if *export {
+		exported = deck.ExportTCGLive(entries)
+	}
 	if *asJSON {
-		printJSON(stdout, f, res, unparsed, unmatched, legal)
+		printJSON(stdout, f, res, unparsed, unmatched, legal, exported)
 	} else {
 		printText(stdout, f, d, res, unparsed, unmatched, legal)
-	}
-	if *export {
-		fmt.Fprintln(stdout)
-		fmt.Fprint(stdout, deck.ExportTCGLive(entries))
+		if *export {
+			fmt.Fprintln(stdout)
+			fmt.Fprint(stdout, exported)
+		}
 	}
 	if !legal {
 		return 1
@@ -136,7 +140,7 @@ func printText(w io.Writer, f *format.Format, d deck.Deck, res format.Result, un
 	}
 }
 
-func printJSON(w io.Writer, f *format.Format, res format.Result, unparsed []deck.Unparsed, unmatched []deck.Unmatched, legal bool) {
+func printJSON(w io.Writer, f *format.Format, res format.Result, unparsed []deck.Unparsed, unmatched []deck.Unmatched, legal bool, exported string) {
 	type line struct {
 		LineNo int    `json:"line_no"`
 		Text   string `json:"text"`
@@ -157,7 +161,8 @@ func printJSON(w io.Writer, f *format.Format, res format.Result, unparsed []deck
 		Unmatched       []line             `json:"unmatched"`
 		Violations      []format.Violation `json:"violations"`
 		Notes           []format.Note      `json:"notes"`
-	}{f.ID, f.Version, legal, f.BanListVerified, problems, res.Violations, res.Notes}
+		Export          string             `json:"export,omitempty"`
+	}{f.ID, f.Version, legal, f.BanListVerified, problems, res.Violations, res.Notes, exported}
 	enc := json.NewEncoder(w)
 	enc.SetIndent("", "  ")
 	_ = enc.Encode(out)

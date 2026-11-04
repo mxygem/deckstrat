@@ -241,3 +241,35 @@ func TestCopyLimitUsesRuleName(t *testing.T) {
 		t.Errorf("EX and ex should count separately: %+v", res.Violations)
 	}
 }
+
+func TestRadiantAndPrismStar(t *testing.T) {
+	exp, _ := Get("expanded")
+	radA := catalog.Card{ID: "r-1", Name: "Radiant Greninja", Category: catalog.Pokemon, Stage: "Basic", Series: "swsh"}
+	radB := catalog.Card{ID: "r-2", Name: "Radiant Charizard", Category: catalog.Pokemon, Stage: "Basic", Series: "swsh"}
+	lys := catalog.Card{ID: "p-1", Name: "Lysandre ◇", Category: catalog.Trainer, Series: "sm"}
+	e := base()
+	e[4].Line.Qty = 44
+	e = append(e, entry(1, radA), entry(1, radB), entry(2, lys))
+	res, err := (&Validator{Format: exp}).Validate(context.Background(), e)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := strings.Join(rules(res.Violations), ","); got != "radiant,prism-star" {
+		t.Fatalf("rules = %s: %+v", got, res.Violations)
+	}
+	if res.Violations[0].Message != "deck has 2 Radiant Pokémon (1 × Radiant Greninja, 1 × Radiant Charizard); the limit is 1" {
+		t.Errorf("message = %q", res.Violations[0].Message)
+	}
+}
+
+func TestLegacyAceSpecCounts(t *testing.T) {
+	exp, _ := Get("expanded")
+	cs := catalog.Card{ID: "bw7-137", Name: "Computer Search", Category: catalog.Trainer, Rarity: "Rare", AceSpec: true, Series: "bw"}
+	e := base()
+	e[4].Line.Qty = 47
+	e = append(e, entry(1, cs))
+	res, _ := (&Validator{Format: exp}).Validate(context.Background(), e)
+	if got := rules(res.Violations); len(got) != 1 || got[0] != "ace-spec" {
+		t.Errorf("violations = %+v", res.Violations)
+	}
+}

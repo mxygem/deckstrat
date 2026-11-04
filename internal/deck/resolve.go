@@ -24,7 +24,7 @@ type Unmatched struct {
 
 // Resolve matches each line to a printing. Lines with a set code and
 // number are looked up directly; the printing's name must agree with the
-// line. Name-only lines take the newest printing by regulation mark.
+// line. Name-only lines take the newest printing of exactly that name.
 // Catalog errors other than not-found abort resolution.
 func Resolve(ctx context.Context, cat catalog.Catalog, d Deck) ([]Entry, []Unmatched, error) {
 	var (
@@ -60,15 +60,32 @@ func resolveLine(ctx context.Context, cat catalog.Catalog, l Line) (*catalog.Car
 		return card, "", nil
 	}
 
-	refs, err := cat.Search(ctx, catalog.Query{Name: name, Exact: true, Limit: 20})
+	// Exact search may ignore case (TCGdex does), but "Charizard EX" and
+	// "Charizard ex" are different cards, so filter with case.
+	all, err := cat.Search(ctx, catalog.Query{Name: name, Exact: true})
 	if err != nil {
 		return nil, "", err
+	}
+	var refs []catalog.Ref
+	for _, r := range all {
+		if catalog.RuleName(r.Name) == name {
+			refs = append(refs, r)
+		}
 	}
 	if len(refs) == 0 {
 		return nil, fmt.Sprintf("no card named %q in the catalog", name), nil
 	}
-	var cards []*catalog.Card
+
+	// Take the newest series, then the newest regulation mark within it,
+	// so old printings like Base Set are not picked over modern ones.
+	sort.SliceStable(refs, func(i, j int) bool {
+		return catalog.SeriesRank(refs[i].Series) > catalog.SeriesRank(refs[j].Series)
+	})
+	var best *catalog.Card
 	for _, r := range refs {
+		if best != nil && r.Series != refs[0].Series {
+			break
+		}
 		c, err := cat.Get(ctx, r.ID)
 		if errors.Is(err, catalog.ErrNotFound) {
 			continue
@@ -76,13 +93,14 @@ func resolveLine(ctx context.Context, cat catalog.Catalog, l Line) (*catalog.Car
 		if err != nil {
 			return nil, "", err
 		}
-		cards = append(cards, c)
+		if best == nil || c.RegulationMark > best.RegulationMark {
+			best = c
+		}
 	}
-	if len(cards) == 0 {
+	if best == nil {
 		return nil, fmt.Sprintf("no card named %q in the catalog", name), nil
 	}
-	sort.SliceStable(cards, func(i, j int) bool { return cards[i].RegulationMark > cards[j].RegulationMark })
-	return cards[0], "", nil
+	return best, "", nil
 }
 
 // namesAgree tolerates suffixes the catalog adds, e.g. a line "Professor's

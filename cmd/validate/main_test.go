@@ -50,7 +50,7 @@ func TestRun(t *testing.T) {
 			args:     []string{"--export", "-"},
 			deck:     "4 Riolu MEG 76\n56 Basic {F} Energy SVE 6\n",
 			wantCode: 0,
-			wantOut:  []string{"Pokémon: 4\n4 Riolu MEG 76\n", "56 Fighting Energy SVE 6", "Total Cards: 60"},
+			wantOut:  []string{"Pokémon: 4\n4 Riolu MEG 76\n", "56 Basic {F} Energy SVE 6", "Total Cards: 60"},
 		},
 		{name: "no file", args: nil, wantCode: 2},
 		{name: "bad format", args: []string{"-f", "nope", "-"}, wantCode: 2},
@@ -88,5 +88,22 @@ func TestRunJSON(t *testing.T) {
 	}
 	if got.Format != "standard" || !got.Legal || got.Violations == nil || got.Unmatched == nil {
 		t.Errorf("got %+v from %s", got, out.String())
+	}
+}
+
+func TestRunJSONExport(t *testing.T) {
+	var out bytes.Buffer
+	code := run([]string{"--json", "--export", "-"}, strings.NewReader("4 Riolu MEG 76\n56 Fighting Energy SVE 6\n"), &out, &bytes.Buffer{}, fake)
+	if code != 0 {
+		t.Fatalf("code = %d", code)
+	}
+	var got struct {
+		Export string `json:"export"`
+	}
+	if err := json.Unmarshal(out.Bytes(), &got); err != nil {
+		t.Fatalf("stdout is not one JSON document: %v\n%s", err, out.String())
+	}
+	if !strings.Contains(got.Export, "4 Riolu MEG 76") {
+		t.Errorf("export = %q", got.Export)
 	}
 }

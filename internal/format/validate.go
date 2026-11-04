@@ -121,6 +121,34 @@ func (v *Validator) Validate(ctx context.Context, entries []deck.Entry) (Result,
 		add("basic-pokemon", "deck has no Basic Pokémon")
 	}
 
+	// Printed card rules, the same in every format: at most 1 Radiant
+	// Pokémon per deck and 1 copy of each Prism Star card.
+	var radiants []string
+	radiantCount := 0
+	prism := map[string]int{}
+	var prismOrder []string
+	for _, e := range entries {
+		if e.Card.IsRadiant() {
+			radiantCount += e.Line.Qty
+			radiants = append(radiants, fmt.Sprintf("%d × %s", e.Line.Qty, e.Card.Name))
+		}
+		if e.Card.IsPrismStar() {
+			name := catalog.RuleName(e.Card.Name)
+			if _, ok := prism[name]; !ok {
+				prismOrder = append(prismOrder, name)
+			}
+			prism[name] += e.Line.Qty
+		}
+	}
+	if radiantCount > 1 {
+		add("radiant", "deck has %d Radiant Pokémon (%s); the limit is 1", radiantCount, strings.Join(radiants, ", "))
+	}
+	for _, name := range prismOrder {
+		if prism[name] > 1 {
+			add("prism-star", "%d copies of %s; the limit is 1 per Prism Star card", prism[name], name)
+		}
+	}
+
 	if f.Rules.NoRuleBox {
 		for _, e := range entries {
 			if e.Card.IsRuleBox() {
