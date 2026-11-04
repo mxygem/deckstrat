@@ -1,0 +1,18 @@
+{
+  "id": "expanded",
+  "name": "Expanded",
+  "version": "2026-04-10",
+  "sources": ["https://www.pokemon.com/us/play-pokemon/about/pokemon-tcg-banned-card-list"],
+  "pool": {
+    "series": ["bw", "xy", "sm", "swsh", "sv", "me"],
+    "reprints_legal": true
+  },
+  "rules": {
+    "size": 60,
+    "copy_limit": 4,
+    "max_ace_spec": 1
+  },
+  "ban_list": [],
+  "ban_list_verified": false,
+  "notes": "Black & White series onward. The Expanded ban list still needs to be entered from the source."
+}

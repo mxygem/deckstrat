@@ -1,0 +1,20 @@
+{
+  "id": "glc",
+  "name": "Gym Leader Challenge",
+  "version": "2026-04-10",
+  "sources": ["https://gymleaderchallenge.com/rules"],
+  "pool": {
+    "series": ["bw", "xy", "sm", "swsh", "sv", "me"],
+    "reprints_legal": true
+  },
+  "rules": {
+    "size": 60,
+    "copy_limit": 1,
+    "max_ace_spec": 0,
+    "single_type": true,
+    "no_rule_box": true
+  },
+  "ban_list": [],
+  "ban_list_verified": false,
+  "notes": "Expanded pool, singleton except Basic Energy, one Pokémon type, no Rule Box Pokémon, no ACE SPEC. The community ban list still needs to be entered from the source."
+}
