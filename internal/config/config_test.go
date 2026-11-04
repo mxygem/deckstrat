@@ -1,6 +1,8 @@
 package config
 
 import (
+	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -82,9 +84,16 @@ func TestLoadBadJSON(t *testing.T) {
 }
 
 func TestStringRedactsKey(t *testing.T) {
-	cfg := &Config{Env: "development", JustTCGAPIKey: "tcg_secret"}
-	if s := cfg.String(); strings.Contains(s, "tcg_secret") {
-		t.Errorf("String leaked key: %s", s)
+	cfg := Config{Env: "development", JustTCGAPIKey: "tcg_secret"}
+	wrapped := struct{ C Config }{cfg}
+	js, _ := json.Marshal(cfg)
+	for _, s := range []string{
+		fmt.Sprint(cfg), fmt.Sprintf("%+v", cfg), fmt.Sprintf("%#v", cfg),
+		fmt.Sprint(&cfg), fmt.Sprintf("%+v", wrapped), string(js),
+	} {
+		if strings.Contains(s, "tcg_secret") {
+			t.Errorf("key leaked: %s", s)
+		}
 	}
 	if err := (&Config{}).RequireJustTCG(); err == nil {
 		t.Error("RequireJustTCG should fail without a key")

@@ -26,7 +26,7 @@ type Config struct {
 	// Env selects the section of the config file, e.g. "development".
 	Env string `koanf:"-"`
 	// JustTCGAPIKey authenticates JustTCG price requests.
-	JustTCGAPIKey string `koanf:"just_tcg_api_key"`
+	JustTCGAPIKey string `koanf:"just_tcg_api_key" json:"-"`
 	// CacheDir holds cached catalog responses.
 	CacheDir string `koanf:"cache_dir"`
 }
@@ -103,8 +103,8 @@ func (c *Config) RequireJustTCG() error {
 	return nil
 }
 
-// String redacts secrets so a Config is safe to log.
-func (c *Config) String() string {
+// String redacts secrets so a Config is safe to log with %v and %+v.
+func (c Config) String() string {
 	key := "<unset>"
 	if c.JustTCGAPIKey != "" {
 		key = "<redacted>"
@@ -130,3 +130,6 @@ func firstNonEmpty(vals ...string) string {
 	}
 	return ""
 }
+
+// GoString redacts secrets for %#v.
+func (c Config) GoString() string { return c.String() }

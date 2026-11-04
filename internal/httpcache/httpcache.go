@@ -47,13 +47,25 @@ func (t *Transport) RoundTrip(req *http.Request) (*http.Response, error) {
 		return nil, err
 	}
 	// Caching is best effort; a write failure must not fail the request.
-	if err := os.MkdirAll(t.Dir, 0o755); err == nil {
-		tmp := path + ".tmp"
-		if os.WriteFile(tmp, raw, 0o644) == nil {
-			_ = os.Rename(tmp, path)
-		}
-	}
+	t.write(path, raw)
 	return http.ReadResponse(bufio.NewReader(bytes.NewReader(raw)), req)
+}
+
+// write stores raw atomically: each writer uses its own temp file, so
+// concurrent writers of one URL never leave a partial entry behind.
+func (t *Transport) write(path string, raw []byte) {
+	if err := os.MkdirAll(t.Dir, 0o700); err != nil {
+		return
+	}
+	f, err := os.CreateTemp(t.Dir, ".tmp-*")
+	if err != nil {
+		return
+	}
+	_, werr := f.Write(raw)
+	cerr := f.Close()
+	if werr != nil || cerr != nil || os.Rename(f.Name(), path) != nil {
+		_ = os.Remove(f.Name())
+	}
 }
 
 func (t *Transport) read(path string, req *http.Request) *http.Response {

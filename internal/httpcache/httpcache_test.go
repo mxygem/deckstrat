@@ -4,6 +4,9 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"os"
+	"strings"
+	"sync"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -59,5 +62,39 @@ func TestTransport(t *testing.T) {
 	}
 	if n := hits.Load(); n != 4 {
 		t.Errorf("404s should not be cached; hits = %d, want 4", n)
+	}
+}
+
+func TestConcurrentWritesLeaveCompleteEntries(t *testing.T) {
+	body := strings.Repeat("x", 1<<16)
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		io.WriteString(w, body)
+	}))
+	defer srv.Close()
+
+	dir := t.TempDir()
+	client := &http.Client{Transport: New(dir, time.Hour)}
+	var wg sync.WaitGroup
+	for range 16 {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			resp, err := client.Get(srv.URL + "/same")
+			if err != nil {
+				t.Error(err)
+				return
+			}
+			b, _ := io.ReadAll(resp.Body)
+			resp.Body.Close()
+			if string(b) != body {
+				t.Errorf("got %d bytes, want %d", len(b), len(body))
+			}
+		}()
+	}
+	wg.Wait()
+
+	files, _ := os.ReadDir(dir)
+	if len(files) != 1 {
+		t.Errorf("want 1 cache entry and no temp files, got %d", len(files))
 	}
 }
