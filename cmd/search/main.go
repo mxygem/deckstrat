@@ -91,23 +91,27 @@ func newTCGdex(cfg *config.Config) *tcgdex.Client {
 func searchTCGdex(ctx context.Context, cfg *config.Config, name, set, number string, limit int) ([]*catalog.Card, error) {
 	cat := newTCGdex(cfg)
 	if set != "" && number != "" {
-		c, err := cat.GetByCode(ctx, set, number)
+		c, err := cat.GetByCode(ctx, set, number, name)
 		if err != nil {
 			return nil, err
 		}
 		return []*catalog.Card{c}, nil
 	}
-	q := catalog.Query{Name: name, Limit: limit}
+	setIDs := []string{""}
 	if set != "" {
-		id, err := cat.SetIDForCode(ctx, set)
+		ids, err := cat.SetIDsForCode(ctx, set)
 		if err != nil {
 			return nil, err
 		}
-		q.SetID = id
+		setIDs = ids
 	}
-	refs, err := cat.Search(ctx, q)
-	if err != nil {
-		return nil, err
+	var refs []catalog.Ref
+	for _, id := range setIDs {
+		found, err := cat.Search(ctx, catalog.Query{Name: name, SetID: id, Limit: limit})
+		if err != nil {
+			return nil, err
+		}
+		refs = append(refs, found...)
 	}
 	cards := make([]*catalog.Card, 0, len(refs))
 	for _, r := range refs {

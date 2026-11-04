@@ -3,6 +3,9 @@ package deck
 import (
 	"context"
 	"errors"
+	"fmt"
+	"os"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
@@ -129,8 +132,6 @@ Trainer: 5
 
 Energy: 4
 4 Basic {F} Energy SVE 6
-
-Total Cards: 12
 `
 	if out != want {
 		t.Errorf("export:\n%s\nwant:\n%s", out, want)
@@ -185,7 +186,7 @@ func TestResolveUnmatched(t *testing.T) {
 
 type failingCatalog struct{ catalogtest.Fake }
 
-func (failingCatalog) GetByCode(context.Context, string, string) (*catalog.Card, error) {
+func (failingCatalog) GetByCode(context.Context, string, string, string) (*catalog.Card, error) {
 	return nil, errors.New("network down")
 }
 
@@ -193,15 +194,6 @@ func TestResolveCatalogErrorAborts(t *testing.T) {
 	d := Deck{Lines: []Line{{Qty: 1, Name: "Arven", SetCode: "SVI", Number: "166"}}}
 	if _, _, err := Resolve(context.Background(), &failingCatalog{}, d); err == nil {
 		t.Fatal("want error")
-	}
-}
-
-func TestNamesAgree(t *testing.T) {
-	if !namesAgree("Professor's Research", "Professor's Research (Professor Turo)") {
-		t.Error("catalog suffix should be tolerated")
-	}
-	if namesAgree("Iono", "Arven") {
-		t.Error("different names agreed")
 	}
 }
 
@@ -244,7 +236,7 @@ func TestExportTCGLiveSpellings(t *testing.T) {
 		{Line: Line{Qty: 3}, Card: &catalog.Card{Name: "Fire Energy", Category: catalog.Energy, EnergyType: "Normal", SetCode: "SVE", Number: "002"}},
 	}
 	out := ExportTCGLive(entries)
-	for _, want := range []string{"2 Boss's Orders PAL 172\n", "1 Flareon BRS TG01\n", "1 Pikachu\n", "3 Basic {R} Energy SVE 2\n"} {
+	for _, want := range []string{"2 Boss's Orders PAL 172\n", "1 Flareon BRS TG01\n", "1 Pikachu\n", "3 Fire Energy SVE 2\n"} {
 		if !strings.Contains(out, want) {
 			t.Errorf("missing %q in:\n%s", want, out)
 		}
@@ -253,5 +245,79 @@ func TestExportTCGLiveSpellings(t *testing.T) {
 	d, bad, err := ParseTCGLive(strings.NewReader(out))
 	if err != nil || len(bad) != 0 || d.Count() != 7 {
 		t.Errorf("reparse: %v %+v count %d", err, bad, d.Count())
+	}
+}
+
+// Real exports from TCG Live, pasted by the user. Exporting them after a
+// resolve must give back exactly what TCG Live wrote.
+var realDecks = []string{"real_alakazam.txt", "real_dragapult.txt", "real_kangaskhan.txt"}
+
+func TestRealTCGLiveExportsRoundTrip(t *testing.T) {
+	for _, name := range realDecks {
+		t.Run(name, func(t *testing.T) {
+			raw, err := os.ReadFile(filepath.Join("..", "..", "testdata", "decks", name))
+			if err != nil {
+				t.Fatal(err)
+			}
+			d, bad, err := ParseTCGLive(strings.NewReader(string(raw)))
+			if err != nil || len(bad) != 0 {
+				t.Fatalf("parse: %v %+v", err, bad)
+			}
+			if d.Count() != 60 {
+				t.Errorf("count = %d", d.Count())
+			}
+
+			// A catalog holding each printing, numbered like TCGdex
+			// (zero-padded, MEE energy 1-8) to prove export keeps TCG
+			// Live's own text.
+			cat := &catalogtest.Fake{}
+			for i, l := range d.Lines {
+				cat.Cards = append(cat.Cards, catalog.Card{
+					ID: fmt.Sprintf("c%d", i), Name: CatalogName(l.Name), SetCode: l.SetCode,
+					Number: fmt.Sprintf("%03s", l.Number), Category: sectionCategory(l.Section),
+				})
+			}
+			entries, missing, err := Resolve(context.Background(), cat, d)
+			if err != nil || len(missing) != 0 {
+				t.Fatalf("resolve: %v %+v", err, missing)
+			}
+			if got, want := ExportTCGLive(entries), strings.TrimRight(string(raw), "\n")+"\n"; got != want {
+				t.Errorf("export differs from TCG Live's text:\n%s\nwant:\n%s", got, want)
+			}
+		})
+	}
+}
+
+func sectionCategory(section string) catalog.Category {
+	switch section {
+	case "Trainer":
+		return catalog.Trainer
+	case "Energy":
+		return catalog.Energy
+	}
+	return catalog.Pokemon
+}
+
+func TestParseLimitlessAverageList(t *testing.T) {
+	raw, err := os.ReadFile(filepath.Join("..", "..", "testdata", "decks", "limitless_dragapult_average.txt"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	d, bad, err := ParseTCGLive(strings.NewReader(string(raw)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(d.Lines) != 0 || len(bad) != 81 {
+		t.Fatalf("lines = %d, unparsed = %d", len(d.Lines), len(bad))
+	}
+	if !strings.Contains(bad[0].Reason, "average list") {
+		t.Errorf("reason = %q", bad[0].Reason)
+	}
+}
+
+func TestParseDigitLedSetCode(t *testing.T) {
+	d, bad, _ := ParseTCGLive(strings.NewReader("1 Mew ex 30C 66\n1 Pokégear 3.0 SVI 186\n"))
+	if len(bad) != 0 || d.Lines[0].SetCode != "30C" || d.Lines[0].Name != "Mew ex" || d.Lines[1].Name != "Pokégear 3.0" {
+		t.Errorf("lines = %+v, bad = %+v", d.Lines, bad)
 	}
 }

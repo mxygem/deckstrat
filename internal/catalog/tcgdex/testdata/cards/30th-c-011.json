@@ -1,0 +1,48 @@
+{
+ "category": "Pokemon",
+ "id": "30th-c-011",
+ "localId": "011",
+ "name": "Crobat G",
+ "rarity": "None",
+ "set": {
+  "cardCount": {
+   "official": 0,
+   "total": 30
+  },
+  "id": "30th-c",
+  "name": "30th Classic Collection"
+ },
+ "hp": 80,
+ "types": [
+  "Psychic"
+ ],
+ "stage": "Basic",
+ "suffix": "SP",
+ "attacks": [
+  {
+   "cost": [
+    "Psychic",
+    "Colorless"
+   ],
+   "name": "Toxic Fang",
+   "effect": "The Defending Pokémon is now Poisoned. Put 2 damage counters instead of 1 on the Defending Pokémon between turns."
+  }
+ ],
+ "weaknesses": [
+  {
+   "type": "Lightning",
+   "value": "×2"
+  }
+ ],
+ "resistances": [
+  {
+   "type": "Fighting",
+   "value": "-20"
+  }
+ ],
+ "retreat": 0,
+ "legal": {
+  "standard": false,
+  "expanded": true
+ }
+}

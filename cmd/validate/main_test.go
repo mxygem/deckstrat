@@ -50,7 +50,7 @@ func TestRun(t *testing.T) {
 			args:     []string{"--export", "-"},
 			deck:     "4 Riolu MEG 76\n56 Basic {F} Energy SVE 6\n",
 			wantCode: 0,
-			wantOut:  []string{"Pokémon: 4\n4 Riolu MEG 76\n", "56 Basic {F} Energy SVE 6", "Total Cards: 60"},
+			wantOut:  []string{"Pokémon: 4\n4 Riolu MEG 76\n", "56 Basic {F} Energy SVE 6"},
 		},
 		{name: "no file", args: nil, wantCode: 2},
 		{name: "bad format", args: []string{"-f", "nope", "-"}, wantCode: 2},

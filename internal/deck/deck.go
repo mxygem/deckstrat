@@ -51,13 +51,17 @@ type Unparsed struct {
 }
 
 var (
-	// "Pokémon: 13", "Trainer - 35", "##Energy - 12"
-	sectionRe = regexp.MustCompile(`(?i)^#*\s*(pok[eé]mon|trainer|energy)\s*[:\-]\s*\d+\s*$`)
-	// "4 Dreepy TWM 128", "1 Professor Sada's Vitality PAR 170"
-	withSetRe = regexp.MustCompile(`^(\d+)\s+(.+?)\s+([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)?)\s+([A-Za-z]*\d+[A-Za-z]*)$`)
+	// "Pokémon: 13", "Trainer - 35", "##Energy - 12", and Limitless
+	// average lists' "Pokémon (19.22)".
+	sectionRe = regexp.MustCompile(`(?i)^#*\s*(pok[eé]mon|trainer|energy)\s*(?:[:\-]\s*\d+|\(\s*[\d.]+\s*\))\s*$`)
+	// "4 Dreepy TWM 128", "1 Mew ex 30C 66", "1 Pikachu with Grey Felt Hat PR-SV 85".
+	// A set code has at least one capital letter.
+	withSetRe = regexp.MustCompile(`^(\d+)\s+(.+?)\s+([A-Z0-9]*[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)?)\s+([A-Za-z]*\d+[A-Za-z]*)$`)
 	// "4 Arven" with no printing
 	nameOnlyRe = regexp.MustCompile(`^(\d+)\s+(.+)$`)
-	totalRe    = regexp.MustCompile(`(?i)^total\s+cards\s*:`)
+	// "2.96 Dragapult ex TWM 130" in Limitless archetype averages
+	fractionalRe = regexp.MustCompile(`^\d+\.\d+\s`)
+	totalRe      = regexp.MustCompile(`(?i)^total\s+cards\s*:`)
 )
 
 // maxQty bounds a line's quantity. No deck holds more than 60 cards, and
@@ -94,6 +98,10 @@ func ParseTCGLive(r io.Reader) (Deck, []Unparsed, error) {
 			l   Line
 			qty string
 		)
+		if fractionalRe.MatchString(text) {
+			bad = append(bad, Unparsed{LineNo: lineNo, Text: text, Reason: "fractional quantity; this looks like an archetype average list, not a deck"})
+			continue
+		}
 		if m := withSetRe.FindStringSubmatch(text); m != nil {
 			l, qty = Line{Name: m[2], SetCode: m[3], Number: m[4]}, m[1]
 		} else if m := nameOnlyRe.FindStringSubmatch(text); m != nil {

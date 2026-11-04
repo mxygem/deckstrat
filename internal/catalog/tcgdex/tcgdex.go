@@ -56,8 +56,8 @@ type Client struct {
 	http    *http.Client
 
 	mu        sync.Mutex
-	sets      map[string]*apiSet // by set ID
-	codeToSet map[string]string  // TCG Live code -> set ID
+	sets      map[string]*apiSet  // by set ID
+	codeToSet map[string][]string // TCG Live code -> set IDs
 }
 
 type Option func(*Client)
@@ -73,7 +73,7 @@ func New(opts ...Option) *Client {
 		baseURL:   DefaultBaseURL,
 		http:      &http.Client{Timeout: 15 * time.Second},
 		sets:      map[string]*apiSet{},
-		codeToSet: map[string]string{},
+		codeToSet: map[string][]string{},
 	}
 	for _, o := range opts {
 		o(c)
@@ -93,12 +93,14 @@ func (c *Client) Get(ctx context.Context, id string) (*catalog.Card, error) {
 
 // GetByCode finds a printing by TCG Live set code and number. Subset
 // numbers like "TG01" or "GG44" are looked up in the matching subset set,
-// and short numbers are retried zero-padded ("SV49" -> "SV049").
-func (c *Client) GetByCode(ctx context.Context, setCode, number string) (*catalog.Card, error) {
+// and short numbers are retried zero-padded ("SV49" -> "SV049"). See
+// catalog.Catalog for how name is used.
+func (c *Client) GetByCode(ctx context.Context, setCode, number, name string) (*catalog.Card, error) {
 	setIDs, err := c.setIDsForCode(ctx, setCode, number)
 	if err != nil {
 		return nil, err
 	}
+	var first *catalog.Card
 	for _, setID := range setIDs {
 		for _, n := range numberCandidates(number) {
 			var ac apiCard
@@ -110,10 +112,53 @@ func (c *Client) GetByCode(ctx context.Context, setCode, number string) (*catalo
 			if err != nil {
 				return nil, fmt.Errorf("tcgdex card %s %s: %w", setCode, number, err)
 			}
-			return c.toCard(ctx, &ac)
+			card, err := c.toCard(ctx, &ac)
+			if err != nil {
+				return nil, err
+			}
+			if name == "" || catalog.NamesAgree(name, card.Name) {
+				return card, nil
+			}
+			if first == nil {
+				first = card
+			}
+			break
 		}
 	}
+	if name != "" {
+		card, err := c.uniqueInSets(ctx, setIDs, name)
+		if err != nil {
+			return nil, err
+		}
+		if card != nil {
+			return card, nil
+		}
+	}
+	if first != nil {
+		return first, nil
+	}
 	return nil, fmt.Errorf("tcgdex card %s %s: %w", setCode, number, catalog.ErrNotFound)
+}
+
+// uniqueInSets returns the one card named name in the sets, or nil when
+// there are none or several.
+func (c *Client) uniqueInSets(ctx context.Context, setIDs []string, name string) (*catalog.Card, error) {
+	var match []catalog.Ref
+	for _, setID := range setIDs {
+		refs, err := c.Search(ctx, catalog.Query{Name: name, Exact: true, SetID: setID})
+		if err != nil {
+			return nil, err
+		}
+		for _, r := range refs {
+			if catalog.NamesAgree(name, r.Name) {
+				match = append(match, r)
+			}
+		}
+	}
+	if len(match) != 1 {
+		return nil, nil
+	}
+	return c.Get(ctx, match[0].ID)
 }
 
 // setIDsForCode returns the sets to try for a code and number, subset first.
@@ -124,14 +169,14 @@ func (c *Client) setIDsForCode(ctx context.Context, code, number string) ([]stri
 	}
 	var ids []string
 	for _, cd := range codes {
-		id, err := c.SetIDForCode(ctx, cd)
+		found, err := c.SetIDsForCode(ctx, cd)
 		if errors.Is(err, catalog.ErrNotFound) {
 			continue
 		}
 		if err != nil {
 			return nil, err
 		}
-		ids = append(ids, id)
+		ids = append(ids, found...)
 	}
 	if len(ids) == 0 {
 		return nil, fmt.Errorf("set code %q: %w", code, catalog.ErrNotFound)
@@ -184,31 +229,35 @@ func (c *Client) Search(ctx context.Context, q catalog.Query) ([]catalog.Ref, er
 	return refs, nil
 }
 
-// SetIDForCode maps a TCG Live set code such as "OBF" to a TCGdex set ID.
-func (c *Client) SetIDForCode(ctx context.Context, code string) (string, error) {
+// SetIDsForCode maps a TCG Live set code such as "OBF" to TCGdex set IDs.
+// Most codes name one set, but some name several ("30C").
+func (c *Client) SetIDsForCode(ctx context.Context, code string) ([]string, error) {
 	code = strings.ToUpper(strings.TrimSpace(code))
 	if id, ok := setCodeToID[code]; ok {
-		return id, nil
+		return []string{id}, nil
 	}
 	c.mu.Lock()
-	id, ok := c.codeToSet[code]
+	ids, ok := c.codeToSet[code]
 	c.mu.Unlock()
 	if ok {
-		return id, nil
+		return ids, nil
 	}
 
 	var sets []apiBrief
 	params := url.Values{"abbreviation.official": {"eq:" + code}}
 	if err := c.get(ctx, "/sets", params, &sets); err != nil {
-		return "", fmt.Errorf("tcgdex set code %s: %w", code, err)
+		return nil, fmt.Errorf("tcgdex set code %s: %w", code, err)
 	}
 	if len(sets) == 0 {
-		return "", fmt.Errorf("set code %q: %w", code, catalog.ErrNotFound)
+		return nil, fmt.Errorf("set code %q: %w", code, catalog.ErrNotFound)
+	}
+	for _, s := range sets {
+		ids = append(ids, s.ID)
 	}
 	c.mu.Lock()
-	c.codeToSet[code] = sets[0].ID
+	c.codeToSet[code] = ids
 	c.mu.Unlock()
-	return sets[0].ID, nil
+	return ids, nil
 }
 
 func (c *Client) set(ctx context.Context, id string) (*apiSet, error) {

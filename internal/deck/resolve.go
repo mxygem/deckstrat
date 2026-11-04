@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"sort"
-	"strings"
 
 	"github.com/mxygem/deckstrat/internal/catalog"
 )
@@ -48,13 +47,13 @@ func Resolve(ctx context.Context, cat catalog.Catalog, d Deck) ([]Entry, []Unmat
 func resolveLine(ctx context.Context, cat catalog.Catalog, l Line) (*catalog.Card, string, error) {
 	name := CatalogName(l.Name)
 	if l.SetCode != "" {
-		card, err := cat.GetByCode(ctx, l.SetCode, l.Number)
+		card, err := cat.GetByCode(ctx, l.SetCode, l.Number, name)
 		switch {
 		case errors.Is(err, catalog.ErrNotFound):
 			return nil, fmt.Sprintf("no card %s %s in the catalog", l.SetCode, l.Number), nil
 		case err != nil:
 			return nil, "", err
-		case !namesAgree(name, card.Name):
+		case !catalog.NamesAgree(name, card.Name):
 			return nil, fmt.Sprintf("%s %s is %q, not %q; check the set code and number", l.SetCode, l.Number, card.Name, l.Name), nil
 		}
 		return card, "", nil
@@ -101,14 +100,4 @@ func resolveLine(ctx context.Context, cat catalog.Catalog, l Line) (*catalog.Car
 		return nil, fmt.Sprintf("no card named %q in the catalog", name), nil
 	}
 	return best, "", nil
-}
-
-// namesAgree tolerates suffixes the catalog adds, e.g. a line "Professor's
-// Research" matching "Professor's Research (Professor Turo)".
-func namesAgree(lineName, cardName string) bool {
-	if catalog.SameName(lineName, cardName) {
-		return true
-	}
-	a, b := strings.ToLower(lineName), strings.ToLower(cardName)
-	return strings.HasPrefix(b, a+" (") || strings.HasPrefix(a, b+" (")
 }

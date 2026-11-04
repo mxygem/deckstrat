@@ -8,8 +8,10 @@ import (
 	"github.com/mxygem/deckstrat/internal/catalog"
 )
 
-// ExportTCGLive writes resolved entries in TCG Live's import format,
-// grouped by card category and merging repeated printings.
+// ExportTCGLive writes resolved entries in TCG Live's format, grouped by
+// card category and merging repeated printings. Lines imported with a set
+// code keep their original text, since TCG Live's names and numbers can
+// differ from the catalog's (it numbers MEE energy 9-16, TCGdex 1-8).
 func ExportTCGLive(entries []Entry) string {
 	type row struct {
 		qty  int
@@ -25,10 +27,8 @@ func ExportTCGLive(entries []Entry) string {
 		{"Energy", catalog.Energy, nil},
 	}
 	byKey := map[string]*row{}
-	total := 0
 	for _, e := range entries {
-		text := exportLine(e.Card)
-		total += e.Line.Qty
+		text := exportLine(e)
 		if r, ok := byKey[text]; ok {
 			r.qty += e.Line.Qty
 			continue
@@ -54,34 +54,23 @@ func ExportTCGLive(entries []Entry) string {
 		}
 		b.WriteString("\n")
 	}
-	fmt.Fprintf(&b, "Total Cards: %d\n", total)
-	return b.String()
+	return strings.TrimSuffix(b.String(), "\n")
 }
 
-// exportLine writes a card the way TCG Live does: rule names without
-// catalog subtitles, "Basic {R} Energy" for basic energy, and the set code
-// and number. Cards with no known TCG Live code are written by name only.
-func exportLine(c *catalog.Card) string {
-	name := catalog.RuleName(c.Name)
-	if c.IsBasicEnergy() {
-		if sym, ok := energySymbol(name); ok {
-			name = "Basic {" + sym + "} Energy"
-		}
+// exportLine writes one card as TCG Live does: "4 Dreepy TWM 128",
+// with basic energy as "Psychic Energy MEE 13". Lines that came in with a
+// set code are written back unchanged. Cards with no known TCG Live code
+// are written by name only.
+func exportLine(e Entry) string {
+	if e.Line.SetCode != "" && e.Line.Number != "" {
+		return fmt.Sprintf("%s %s %s", e.Line.Name, e.Line.SetCode, e.Line.Number)
 	}
+	c := e.Card
+	name := catalog.RuleName(c.Name)
 	if c.SetCode == "" {
 		return name
 	}
 	return fmt.Sprintf("%s %s %s", name, c.SetCode, exportNumber(c.Number))
-}
-
-func energySymbol(name string) (string, bool) {
-	typ := strings.TrimSuffix(strings.TrimPrefix(name, "Basic "), " Energy")
-	for sym, t := range energySymbols {
-		if t == typ {
-			return sym, true
-		}
-	}
-	return "", false
 }
 
 // exportNumber drops the catalog's zero padding: TCG Live writes "5", not

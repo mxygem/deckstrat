@@ -26,12 +26,29 @@ func (f *Fake) Get(_ context.Context, id string) (*catalog.Card, error) {
 	return nil, catalog.ErrNotFound
 }
 
-func (f *Fake) GetByCode(_ context.Context, setCode, number string) (*catalog.Card, error) {
-	for i := range f.Cards {
-		c := f.Cards[i]
-		if strings.EqualFold(c.SetCode, setCode) && strings.TrimLeft(c.Number, "0") == strings.TrimLeft(number, "0") {
-			return &c, nil
+// GetByCode matches SetCode and number like TCGdex: name is preferred,
+// and a unique name in the set wins when the number does not agree.
+func (f *Fake) GetByCode(_ context.Context, setCode, number, name string) (*catalog.Card, error) {
+	var atNumber, byName []catalog.Card
+	for _, c := range f.Cards {
+		if !strings.EqualFold(c.SetCode, setCode) {
+			continue
 		}
+		if strings.TrimLeft(c.Number, "0") == strings.TrimLeft(number, "0") {
+			if name == "" || catalog.NamesAgree(name, c.Name) {
+				return &c, nil
+			}
+			atNumber = append(atNumber, c)
+		}
+		if name != "" && catalog.NamesAgree(name, c.Name) {
+			byName = append(byName, c)
+		}
+	}
+	if len(byName) == 1 {
+		return &byName[0], nil
+	}
+	if len(atNumber) > 0 {
+		return &atNumber[0], nil
 	}
 	return nil, catalog.ErrNotFound
 }

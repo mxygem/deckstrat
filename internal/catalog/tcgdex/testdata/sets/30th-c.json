@@ -1,0 +1,24 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 0,
+  "official": 0,
+  "reverse": 0,
+  "total": 30
+ },
+ "id": "30th-c",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "name": "30th Classic Collection",
+ "releaseDate": "2026-09-16",
+ "serie": {
+  "id": "me",
+  "name": "Mega Evolution"
+ },
+ "abbreviation": {
+  "official": "30C"
+ }
+}

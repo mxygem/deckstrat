@@ -112,3 +112,15 @@ func TestRadiantPrismStar(t *testing.T) {
 		t.Error("series rank order")
 	}
 }
+
+func TestNamesAgree(t *testing.T) {
+	if !NamesAgree("Professor's Research", "Professor's Research (Professor Turo)") {
+		t.Error("catalog suffix should be tolerated")
+	}
+	if !NamesAgree("Pikachu & Zekrom-GX", "Pikachu & Zekrom GX") {
+		t.Error("punctuation should not matter")
+	}
+	if NamesAgree("Iono", "Arven") {
+		t.Error("different names agreed")
+	}
+}

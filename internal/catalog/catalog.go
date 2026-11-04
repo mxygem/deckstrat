@@ -19,8 +19,13 @@ type Catalog interface {
 	// Get returns one printing by provider ID, e.g. "sv03-125".
 	Get(ctx context.Context, id string) (*Card, error)
 	// GetByCode returns a printing by TCG Live set code and collector
-	// number, e.g. ("OBF", "125").
-	GetByCode(ctx context.Context, setCode, number string) (*Card, error)
+	// number, e.g. ("OBF", "125"). When name is set, it is preferred:
+	// codes shared by several sets (30C) return the card that agrees with
+	// name, and when no card at that number agrees, a single card with
+	// that name in the set is returned instead (TCG Live numbers basic
+	// energy differently). A returned card may still disagree with name;
+	// callers should check with NamesAgree.
+	GetByCode(ctx context.Context, setCode, number, name string) (*Card, error)
 	// Search returns brief matches; call Get for full data.
 	Search(ctx context.Context, q Query) ([]Ref, error)
 }
@@ -202,6 +207,17 @@ func normalize(s string) string {
 // SameName reports whether two names match, ignoring case, accents and
 // punctuation. Use it for matching user input, not for copy limits.
 func SameName(a, b string) bool { return normalize(a) == normalize(b) }
+
+// NamesAgree reports whether a decklist name refers to a catalog name. It
+// tolerates subtitles the catalog adds: "Professor's Research" matches
+// "Professor's Research (Professor Turo)".
+func NamesAgree(lineName, cardName string) bool {
+	if SameName(lineName, cardName) {
+		return true
+	}
+	a, b := strings.ToLower(lineName), strings.ToLower(cardName)
+	return strings.HasPrefix(b, a+" (") || strings.HasPrefix(a, b+" (")
+}
 
 // RuleName is the card's name for game rules such as copy limits. It drops
 // the subtitle catalogs add to tell versions apart:

@@ -1,0 +1,86 @@
+Pokémon (19.22)
+4.00 Dreepy TWM 128
+4.00 Drakloak TWM 129
+2.96 Dragapult ex TWM 130
+1.98 Munkidori TWM 95
+1.92 Budew ASC 16
+1.00 Fezandipiti ex ASC 142
+1.00 Meowth ex POR 62
+0.72 Dudunsparce TEF 129
+0.54 Dunsparce TEF 128
+0.40 Moltres PFL 14
+0.30 Dudunsparce ex JTG 121
+0.19 Dunsparce JTG 120
+0.07 Shaymin DRI 10
+0.02 Yveltal MEG 88
+0.02 Psyduck ASC 39
+0.02 Chi-Yu TWM 39
+0.01 Lillie's Clefairy ex JTG 56
+0.01 Bronzor PRE 66
+0.01 Bronzong TEF 69
+0.01 Torchic DRI 40
+0.01 Blaziken ex JTG 24
+0.01 Latias ex SSP 76
+0.01 Snorunt ASC 46
+0.01 Froslass TWM 53
+0.00 Abra TWM 80
+0.00 Kadabra MEG 55
+0.00 Alakazam MEG 56
+0.00 Mew ex 30C 66
+0.00 Patrat CRI 70
+0.00 Flutter Mane TEF 78
+0.00 Buneary PFL 83
+0.00 Mega Lopunny ex PFL 84
+0.00 Hoothoot SCR 114
+0.00 Noctowl SCR 115
+0.00 Fan Rotom SCR 118
+0.00 Wellspring Mask Ogerpon ex TWM 64
+0.00 Terapagos ex SCR 128
+0.00 Abra MEG 54
+0.00 Pecharunt ex SFA 39
+0.00 Team Rocket's Zubat DRI 120
+0.00 Team Rocket's Golbat DRI 121
+0.00 Team Rocket's Crobat ex DRI 122
+
+Trainer (32.25)
+4.00 Lillie's Determination MEG 119
+4.00 Buddy-Buddy Poffin TEF 144
+4.00 Poké Pad POR 81
+3.79 Crushing Hammer POR 71
+3.10 Ultra Ball MEG 131
+3.00 Boss's Orders MEG 114
+2.86 Night Stretcher ASC 196
+2.01 Crispin SCR 133
+1.73 Risky Ruins MEG 127
+0.99 Unfair Stamp TWM 165
+0.98 Rosa's Encouragement POR 84
+0.92 Judge POR 76
+0.32 Special Red Card CRI 82
+0.29 Team Rocket's Watchtower DRI 180
+0.06 Dawn PFL 87
+0.06 Jamming Tower TWM 153
+0.04 Rare Candy MEG 125
+0.03 Handheld Fan TWM 150
+0.02 Xerosic's Machinations SFA 64
+0.01 Tool Scrapper ASC 212
+0.01 Dark Bell PBL 75
+0.01 Pokémon Catcher POR 82
+0.01 Switch MEG 130
+0.01 Area Zero Underdepths SCR 131
+0.00 Ruffian JTG 157
+0.00 Pokégear 3.0 SVI 186
+0.00 Enhanced Hammer TWM 148
+0.00 Sparkling Crystal SCR 142
+0.00 Salvatore TEF 160
+0.00 Energy Retrieval SVI 171
+0.00 Hero's Cape TEF 152
+0.00 Tera Orb SSP 189
+0.00 Harlequin WHT 83
+
+Energy (8.48)
+3.08 Fire Energy MEE 10
+3.06 Psychic Energy MEE 13
+2.34 Darkness Energy MEE 15
+0.00 Telepathic Psychic Energy POR 88
+0.00 Water Energy MEE 11
+0.00 Team Rocket's Energy DRI 182

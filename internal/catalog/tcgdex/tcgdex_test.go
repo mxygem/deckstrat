@@ -24,6 +24,8 @@ func fakeServer(t *testing.T) (*httptest.Server, *[]string) {
 		paths = append(paths, r.URL.RequestURI())
 		parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 		switch {
+		case len(parts) == 1 && parts[0] == "cards" && r.URL.Query().Has("set.id"):
+			serveCardSearch(t, w, r)
 		case len(parts) == 1 && parts[0] == "cards":
 			serveFile(w, r, "search_charizard_ex.json")
 		case len(parts) == 2 && parts[0] == "cards":
@@ -56,6 +58,26 @@ func serveFile(w http.ResponseWriter, r *http.Request, name string) {
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(b)
+}
+
+// serveCardSearch filters the card fixtures like TCGdex does for
+// name=eq:X&set.id=eq:Y: the name match ignores case.
+func serveCardSearch(t *testing.T, w http.ResponseWriter, r *http.Request) {
+	name := strings.TrimPrefix(r.URL.Query().Get("name"), "eq:")
+	setID := strings.TrimPrefix(r.URL.Query().Get("set.id"), "eq:")
+	files, _ := filepath.Glob(filepath.Join("testdata", "cards", "*.json"))
+	out := []apiBrief{}
+	for _, f := range files {
+		b, _ := os.ReadFile(f)
+		var c apiCard
+		if err := json.Unmarshal(b, &c); err != nil {
+			t.Error(err)
+		}
+		if c.Set.ID == setID && strings.EqualFold(c.Name, name) {
+			out = append(out, apiBrief{ID: c.ID, Name: c.Name, Image: c.Image})
+		}
+	}
+	json.NewEncoder(w).Encode(out)
 }
 
 func serveSetsByCode(t *testing.T, w http.ResponseWriter, code string) {
@@ -161,14 +183,14 @@ func TestGetNotFound(t *testing.T) {
 func TestGetByCode(t *testing.T) {
 	c, paths := newTestClient(t)
 	ctx := context.Background()
-	card, err := c.GetByCode(ctx, "OBF", "125")
+	card, err := c.GetByCode(ctx, "OBF", "125", "")
 	if err != nil {
 		t.Fatal(err)
 	}
 	if card.ID != "sv03-125" {
 		t.Errorf("id = %s", card.ID)
 	}
-	if _, err := c.GetByCode(ctx, "sve", "2"); err != nil {
+	if _, err := c.GetByCode(ctx, "sve", "2", ""); err != nil {
 		t.Errorf("lowercase code, unpadded number: %v", err)
 	}
 
@@ -179,7 +201,7 @@ func TestGetByCode(t *testing.T) {
 			n++
 		}
 	}
-	if _, err := c.GetByCode(ctx, "OBF", "125"); err != nil {
+	if _, err := c.GetByCode(ctx, "OBF", "125", ""); err != nil {
 		t.Fatal(err)
 	}
 	m := 0
@@ -192,7 +214,7 @@ func TestGetByCode(t *testing.T) {
 		t.Errorf("set code looked up again: %d -> %d", n, m)
 	}
 
-	if _, err := c.GetByCode(ctx, "NOPE", "1"); !errors.Is(err, catalog.ErrNotFound) {
+	if _, err := c.GetByCode(ctx, "NOPE", "1", ""); !errors.Is(err, catalog.ErrNotFound) {
 		t.Errorf("unknown code err = %v", err)
 	}
 }
@@ -241,7 +263,7 @@ func TestGetByCodeSubsetsAndPromos(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.code+" "+tt.number, func(t *testing.T) {
-			card, err := c.GetByCode(ctx, tt.code, tt.number)
+			card, err := c.GetByCode(ctx, tt.code, tt.number, "")
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -278,5 +300,38 @@ func TestNumberCandidates(t *testing.T) {
 		if got := strings.Join(numberCandidates(in), ","); got != want {
 			t.Errorf("numberCandidates(%q) = %s, want %s", in, got, want)
 		}
+	}
+}
+
+func TestGetByCodeUsesName(t *testing.T) {
+	c, _ := newTestClient(t)
+	ctx := context.Background()
+	tests := []struct {
+		code, number, name, wantID string
+	}{
+		// TCG Live numbers MEE energy 9-16; TCGdex numbers them 001-008.
+		{"MEE", "13", "Psychic Energy", "mee-005"},
+		// 30C is the code of two sets with overlapping numbers.
+		{"30C", "66", "Mew ex", "30th-066"},
+		{"30C", "11", "Crobat G", "30th-c-011"},
+		{"30C", "11", "Moltres", "30th-011"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.code+" "+tt.number+" "+tt.name, func(t *testing.T) {
+			card, err := c.GetByCode(ctx, tt.code, tt.number, tt.name)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if card.ID != tt.wantID {
+				t.Errorf("got %s, want %s", card.ID, tt.wantID)
+			}
+		})
+	}
+
+	// A wrong name with no match in the set returns the card at the
+	// number, so the caller can report the mismatch.
+	card, err := c.GetByCode(ctx, "OBF", "125", "Iono")
+	if err != nil || card.ID != "sv03-125" {
+		t.Errorf("got %v, %v", card, err)
 	}
 }
