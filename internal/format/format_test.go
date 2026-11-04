@@ -212,6 +212,125 @@ func TestBanList(t *testing.T) {
 	}
 }
 
+func hasRule(vs []Violation, rule string) bool {
+	for _, v := range vs {
+		if v.Rule == rule {
+			return true
+		}
+	}
+	return false
+}
+
+func TestPrintingBans(t *testing.T) {
+	exp, _ := Get("expanded")
+	unown90 := catalog.Card{ID: "sm8-90", Name: "Unown", Category: catalog.Pokemon, Stage: "Basic", HP: 60, Types: []string{"Psychic"}, Attacks: []catalog.Attack{{Name: "Hand Ability"}}, Series: "sm"}
+	unownOther := catalog.Card{ID: "sm11-90", Name: "Unown", Category: catalog.Pokemon, Stage: "Basic", HP: 70, Types: []string{"Psychic"}, Attacks: []catalog.Attack{{Name: "Hidden Power"}}, Series: "sm"}
+	delinquent := catalog.Card{ID: "xy9-98", Name: "Delinquent", Category: catalog.Trainer, TrainerType: "Supporter", Text: "Discard a Stadium.", Series: "xy"}
+	delinquentAlt := delinquent
+	delinquentAlt.ID = "xy9-98a"
+	cat := &catalogtest.Fake{Cards: []catalog.Card{unown90, unownOther, delinquent, delinquentAlt}}
+	v := &Validator{Format: exp, Reprints: CatalogPrintings(cat)}
+
+	tests := []struct {
+		card   catalog.Card
+		banned bool
+	}{
+		{unown90, true},
+		{unownOther, false},   // same name, different card
+		{delinquentAlt, true}, // unlisted alternate of a banned printing
+	}
+	for _, tt := range tests {
+		res, err := v.Validate(context.Background(), []deck.Entry{entry(1, tt.card)})
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got := hasRule(res.Violations, "banned"); got != tt.banned {
+			t.Errorf("%s banned = %v, want %v: %+v", tt.card.ID, got, tt.banned, res.Violations)
+		}
+	}
+
+	// Without a PrintingFinder only listed IDs match.
+	v.Reprints = nil
+	res, _ := v.Validate(context.Background(), []deck.Entry{entry(1, delinquentAlt)})
+	if hasRule(res.Violations, "banned") {
+		t.Error("alternate should not match without a PrintingFinder")
+	}
+}
+
+func TestBanByNameCoversEveryPrinting(t *testing.T) {
+	glc, _ := Get("glc")
+	dce := catalog.Card{ID: "anything-1", Name: "Double Colorless Energy", Category: catalog.Energy, EnergyType: "Special", Series: "xy"}
+	v := &Validator{Format: glc, AsOf: time.Date(2025, 4, 24, 0, 0, 0, 0, time.UTC)}
+	res, _ := v.Validate(context.Background(), []deck.Entry{entry(1, dce)})
+	var msg string
+	for _, vi := range res.Violations {
+		if vi.Rule == "banned" {
+			msg = vi.Message
+		}
+	}
+	if want := "Double Colorless Energy (anything-1) is banned in Gym Leader Challenge (since 2025-04-24)"; msg != want {
+		t.Errorf("message = %q, want %q", msg, want)
+	}
+	v.AsOf = time.Date(2025, 4, 23, 0, 0, 0, 0, time.UTC)
+	res, _ = v.Validate(context.Background(), []deck.Entry{entry(1, dce)})
+	if hasRule(res.Violations, "banned") {
+		t.Error("ban is not effective until 2025-04-24")
+	}
+}
+
+func TestBanListData(t *testing.T) {
+	for _, id := range IDs() {
+		f, _ := Get(id)
+		if !f.BanListVerified || f.BanListChecked == "" {
+			t.Errorf("%s: ban list should be verified with a checked date", id)
+		}
+		seen := map[string]bool{}
+		for _, b := range f.BanList {
+			if b.Name == "" {
+				t.Errorf("%s: ban with no name: %+v", id, b)
+			}
+			for _, p := range b.Printings {
+				if !strings.Contains(p, "-") || seen[p] {
+					t.Errorf("%s: bad or duplicate printing ID %q", id, p)
+				}
+				seen[p] = true
+			}
+		}
+	}
+	std, _ := Get("standard")
+	if len(std.BanList) != 0 {
+		t.Errorf("Standard has no bans as of 2026-11-04, got %d", len(std.BanList))
+	}
+}
+
+func TestNotYetLegal(t *testing.T) {
+	std, _ := Get("standard")
+	newCard := pikachu
+	newCard.SetName, newCard.ReleaseDate = "New Set", "2026-10-30"
+	energy := fighting
+	energy.ReleaseDate = "2026-10-30"
+	entries := []deck.Entry{entry(1, newCard), entry(1, energy)}
+
+	v := &Validator{Format: std, AsOf: time.Date(2026, 11, 12, 0, 0, 0, 0, time.UTC)}
+	res, _ := v.Validate(context.Background(), entries)
+	var msgs []string
+	for _, vi := range res.Violations {
+		if vi.Rule == "not-yet-legal" {
+			msgs = append(msgs, vi.Message)
+		}
+	}
+	want := "Pikachu (X 1) is from New Set, released 2026-10-30; it is legal in Standard from 2026-11-13"
+	if len(msgs) != 1 || msgs[0] != want {
+		t.Errorf("not-yet-legal = %q, want only %q (Basic Energy is exempt)", msgs, want)
+	}
+
+	v.AsOf = time.Date(2026, 11, 13, 0, 0, 0, 0, time.UTC)
+	res, _ = v.Validate(context.Background(), entries)
+	if hasRule(res.Violations, "not-yet-legal") {
+		t.Errorf("legal on its legal date: %+v", res.Violations)
+	}
+}
+
 func TestCopyLimitUsesRuleName(t *testing.T) {
 	std, _ := Get("standard")
 	boss := catalog.Card{ID: "a-1", Name: "Boss's Orders (Ghetsis)", Category: catalog.Trainer, SetCode: "PAL", Number: "172", RegulationMark: "H"}

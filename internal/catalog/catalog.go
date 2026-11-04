@@ -81,6 +81,9 @@ type Card struct {
 	SetName string `json:"set_name,omitempty"`
 	Series  string `json:"series,omitempty"`
 	Number  string `json:"number"`
+	// ReleaseDate is the set's release date, YYYY-MM-DD; empty when
+	// unknown. Formats use it to decide when a new set becomes legal.
+	ReleaseDate string `json:"release_date,omitempty"`
 
 	RegulationMark string `json:"regulation_mark,omitempty"`
 	Rarity         string `json:"rarity,omitempty"`

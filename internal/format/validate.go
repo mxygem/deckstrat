@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"slices"
 	"sort"
 	"strings"
 	"time"
@@ -166,14 +167,34 @@ func (v *Validator) Validate(ctx context.Context, entries []deck.Entry) (Result,
 	if asOf.IsZero() {
 		asOf = time.Now()
 	}
+	today := asOf.Format(time.DateOnly)
 	for _, b := range f.BanList {
-		if b.Effective != "" && b.Effective > asOf.Format(time.DateOnly) {
+		if b.Effective != "" && b.Effective > today {
 			continue
 		}
 		for _, e := range entries {
-			if catalog.SameName(catalog.RuleName(e.Card.Name), b.Name) {
-				add("banned", "%s is banned in %s (since %s)", e.Card.Name, f.Name, b.Effective)
+			banned, err := v.isBanned(ctx, b, e.Card)
+			if err != nil {
+				return Result{}, err
 			}
+			if !banned {
+				continue
+			}
+			if b.Effective == "" {
+				add("banned", "%s is banned in %s", printing(e.Card), f.Name)
+			} else {
+				add("banned", "%s is banned in %s (since %s)", printing(e.Card), f.Name, b.Effective)
+			}
+		}
+	}
+
+	for _, e := range entries {
+		if e.Card.IsBasicEnergy() {
+			continue
+		}
+		if from := f.LegalFrom(e.Card); from != "" && from > today {
+			add("not-yet-legal", "%s is from %s, released %s; it is legal in %s from %s",
+				printing(e.Card), e.Card.SetName, e.Card.ReleaseDate, f.Name, from)
 		}
 	}
 
@@ -196,6 +217,31 @@ func (v *Validator) Validate(ctx context.Context, entries []deck.Entry) (Result,
 		add("pool", "%s %s", printing(e.Card), reason)
 	}
 	return res, nil
+}
+
+// isBanned reports whether c is a banned printing or a reprint of one.
+// Reprints need the PrintingFinder; without it only listed IDs match.
+func (v *Validator) isBanned(ctx context.Context, b Ban, c *catalog.Card) (bool, error) {
+	if len(b.Printings) == 0 {
+		return catalog.SameName(catalog.RuleName(c.Name), b.Name), nil
+	}
+	if slices.Contains(b.Printings, c.ID) {
+		return true, nil
+	}
+	if v.Reprints == nil || !catalog.SameName(catalog.RuleName(c.Name), catalog.RuleName(b.Name)) {
+		return false, nil
+	}
+	printings, err := v.Reprints.Printings(ctx, c.Name)
+	if err != nil {
+		return false, fmt.Errorf("finding printings of banned card %s: %w", b.Name, err)
+	}
+	key := c.FunctionalKey()
+	for _, p := range printings {
+		if slices.Contains(b.Printings, p.ID) && p.FunctionalKey() == key {
+			return true, nil
+		}
+	}
+	return false, nil
 }
 
 func (v *Validator) legalReprint(ctx context.Context, c *catalog.Card) (*catalog.Card, error) {

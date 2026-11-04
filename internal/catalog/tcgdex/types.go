@@ -17,6 +17,7 @@ type apiBrief struct {
 type apiSet struct {
 	ID           string `json:"id"`
 	Name         string `json:"name"`
+	ReleaseDate  string `json:"releaseDate"`
 	Abbreviation struct {
 		Official string `json:"official"`
 	} `json:"abbreviation"`

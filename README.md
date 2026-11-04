@@ -72,8 +72,18 @@ pbpaste | go run ./cmd/validate -
 | `internal/httpcache`      | On-disk HTTP cache                                    |
 
 Formats are data. A rotation or ban is an edit to
-`internal/format/formats/*.json`, not a code change. The ban lists are
-not entered yet, and `validate` warns about this.
+`internal/format/formats/*.json`, not a code change.
+
+- Bans list specific printings by TCGdex ID, because different cards share
+  names (only two of Lost Thunder's Unown are banned in Expanded).
+  Reprints of a banned printing are banned with it. A ban with no
+  printings covers every card with that name.
+- Standard and Expanded bans come from pokemon.com's banned card list,
+  GLC bans from gymleaderchallenge.com. `ban_list_checked` records when
+  each list was last compared with its source.
+- A set becomes legal 14 days after its release date
+  (`set_legal_delay_days`). Earlier, cards from it are reported as
+  `not-yet-legal`.
 
 ## Tests
 

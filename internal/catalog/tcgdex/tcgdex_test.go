@@ -126,7 +126,7 @@ func TestGet(t *testing.T) {
 			if c.Attacks[1].Damage != "270" {
 				t.Errorf("numeric damage = %q", c.Attacks[1].Damage)
 			}
-			if !c.IsRuleBox() || c.RegulationMark != "I" || c.SetCode != "MEG" {
+			if !c.IsRuleBox() || c.RegulationMark != "I" || c.SetCode != "MEG" || c.ReleaseDate != "2025-09-26" {
 				t.Errorf("got %+v", c)
 			}
 		}},

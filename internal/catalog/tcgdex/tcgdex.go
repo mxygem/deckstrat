@@ -285,6 +285,7 @@ func (c *Client) toCard(ctx context.Context, ac *apiCard) (*catalog.Card, error)
 	}
 	card.SetCode = tcgLiveCode(s)
 	card.Series = s.Serie.ID
+	card.ReleaseDate = s.ReleaseDate
 	return card, nil
 }
 
