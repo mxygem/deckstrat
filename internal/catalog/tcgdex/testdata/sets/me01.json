@@ -1,0 +1,26 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 105,
+  "normal": 131,
+  "official": 132,
+  "reverse": 123,
+  "total": 188
+ },
+ "id": "me01",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "logo": "https://assets.tcgdex.net/en/me/me01/logo",
+ "name": "Mega Evolution",
+ "releaseDate": "2025-09-26",
+ "serie": {
+  "id": "me",
+  "name": "Mega Evolution"
+ },
+ "symbol": "https://assets.tcgdex.net/univ/me/me01/symbol",
+ "abbreviation": {
+  "official": "MEG"
+ }
+}

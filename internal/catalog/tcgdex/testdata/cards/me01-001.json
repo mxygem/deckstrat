@@ -1,0 +1,45 @@
+{
+ "category": "Pokemon",
+ "id": "me01-001",
+ "image": "https://assets.tcgdex.net/en/me/me01/001",
+ "localId": "001",
+ "name": "Bulbasaur",
+ "rarity": "Common",
+ "set": {
+  "cardCount": {
+   "official": 132,
+   "total": 188
+  },
+  "id": "me01",
+  "logo": "https://assets.tcgdex.net/en/me/me01/logo",
+  "name": "Mega Evolution",
+  "symbol": "https://assets.tcgdex.net/univ/me/me01/symbol"
+ },
+ "hp": 80,
+ "types": [
+  "Grass"
+ ],
+ "stage": "Basic",
+ "attacks": [
+  {
+   "cost": [
+    "Grass"
+   ],
+   "name": "Bind Down",
+   "effect": "During your opponent's next turn, the Defending Pokémon can't retreat.",
+   "damage": 10
+  }
+ ],
+ "weaknesses": [
+  {
+   "type": "Fire",
+   "value": "×2"
+  }
+ ],
+ "retreat": 2,
+ "regulationMark": "I",
+ "legal": {
+  "standard": true,
+  "expanded": true
+ }
+}

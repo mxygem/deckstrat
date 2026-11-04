@@ -1,0 +1,25 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 125,
+  "normal": 164,
+  "official": 162,
+  "reverse": 143,
+  "total": 218
+ },
+ "id": "sv05",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "name": "Temporal Forces",
+ "releaseDate": "2024-03-22",
+ "serie": {
+  "id": "sv",
+  "name": "Scarlet & Violet"
+ },
+ "symbol": "https://assets.tcgdex.net/univ/sv/sv05/symbol",
+ "abbreviation": {
+  "official": "TEF"
+ }
+}

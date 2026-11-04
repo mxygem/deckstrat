@@ -1,0 +1,26 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 93,
+  "normal": 184,
+  "official": 197,
+  "reverse": 179,
+  "total": 230
+ },
+ "id": "sv03",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "logo": "https://assets.tcgdex.net/en/sv/sv03/logo",
+ "name": "Obsidian Flames",
+ "releaseDate": "2023-08-11",
+ "serie": {
+  "id": "sv",
+  "name": "Scarlet & Violet"
+ },
+ "symbol": "https://assets.tcgdex.net/univ/sv/sv03/symbol",
+ "abbreviation": {
+  "official": "OBF"
+ }
+}

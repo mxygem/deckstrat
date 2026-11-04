@@ -1,0 +1,222 @@
+package tcgdex
+
+import (
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/http/httptest"
+	"os"
+	"path/filepath"
+	"strings"
+	"testing"
+
+	"github.com/mxygem/deckstrat/internal/catalog"
+)
+
+// fakeServer serves recorded TCGdex responses from testdata.
+func fakeServer(t *testing.T) (*httptest.Server, *[]string) {
+	t.Helper()
+	var paths []string
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		paths = append(paths, r.URL.RequestURI())
+		parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
+		switch {
+		case len(parts) == 1 && parts[0] == "cards":
+			serveFile(w, r, "search_charizard_ex.json")
+		case len(parts) == 2 && parts[0] == "cards":
+			serveFile(w, r, filepath.Join("cards", parts[1]+".json"))
+		case len(parts) == 1 && parts[0] == "sets":
+			serveSetsByCode(t, w, strings.TrimPrefix(r.URL.Query().Get("abbreviation.official"), "eq:"))
+		case len(parts) == 2 && parts[0] == "sets":
+			serveFile(w, r, filepath.Join("sets", parts[1]+".json"))
+		case len(parts) == 3 && parts[0] == "sets":
+			serveFile(w, r, filepath.Join("cards", fmt.Sprintf("%s-%03s.json", parts[1], parts[2])))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	t.Cleanup(srv.Close)
+	return srv, &paths
+}
+
+func serveFile(w http.ResponseWriter, r *http.Request, name string) {
+	b, err := os.ReadFile(filepath.Join("testdata", name))
+	if err != nil {
+		http.NotFound(w, r)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(b)
+}
+
+func serveSetsByCode(t *testing.T, w http.ResponseWriter, code string) {
+	files, _ := filepath.Glob(filepath.Join("testdata", "sets", "*.json"))
+	out := []apiBrief{}
+	for _, f := range files {
+		b, _ := os.ReadFile(f)
+		var s apiSet
+		if err := json.Unmarshal(b, &s); err != nil {
+			t.Error(err)
+		}
+		if s.Abbreviation.Official == code {
+			out = append(out, apiBrief{ID: s.ID, Name: s.Name})
+		}
+	}
+	json.NewEncoder(w).Encode(out)
+}
+
+func newTestClient(t *testing.T) (*Client, *[]string) {
+	srv, paths := fakeServer(t)
+	return New(WithBaseURL(srv.URL)), paths
+}
+
+func TestGet(t *testing.T) {
+	c, _ := newTestClient(t)
+	ctx := context.Background()
+
+	tests := []struct {
+		id    string
+		check func(t *testing.T, c *catalog.Card)
+	}{
+		{"sv03-125", func(t *testing.T, c *catalog.Card) {
+			want := catalog.Card{Name: "Charizard ex", Category: catalog.Pokemon, Stage: "Stage2", Suffix: "ex", HP: 330, RegulationMark: "G", SetCode: "OBF", Series: "sv", Number: "125"}
+			if c.Name != want.Name || c.Category != want.Category || c.Stage != want.Stage || c.Suffix != want.Suffix ||
+				c.HP != want.HP || c.RegulationMark != want.RegulationMark || c.SetCode != want.SetCode || c.Series != want.Series || c.Number != want.Number {
+				t.Errorf("got %+v", c)
+			}
+			if !c.IsRuleBox() || c.IsBasicPokemon() {
+				t.Error("Charizard ex should be a non-basic Rule Box Pokémon")
+			}
+			if len(c.Attacks) != 1 || c.Attacks[0].Damage != "180+" {
+				t.Errorf("string damage not decoded: %+v", c.Attacks)
+			}
+		}},
+		{"me01-077", func(t *testing.T, c *catalog.Card) {
+			if c.Attacks[1].Damage != "270" {
+				t.Errorf("numeric damage = %q", c.Attacks[1].Damage)
+			}
+			if !c.IsRuleBox() || c.RegulationMark != "I" || c.SetCode != "MEG" {
+				t.Errorf("got %+v", c)
+			}
+		}},
+		{"sv08.5-119", func(t *testing.T, c *catalog.Card) {
+			if !c.IsAceSpec() || c.TrainerType != "Item" || c.Text == "" {
+				t.Errorf("Prime Catcher: %+v", c)
+			}
+		}},
+		{"sve-002", func(t *testing.T, c *catalog.Card) {
+			if !c.IsBasicEnergy() || c.RegulationMark != "" {
+				t.Errorf("Fire Energy: %+v", c)
+			}
+		}},
+		{"me01-001", func(t *testing.T, c *catalog.Card) {
+			if !c.IsBasicPokemon() || c.IsRuleBox() {
+				t.Errorf("Bulbasaur: %+v", c)
+			}
+		}},
+	}
+	for _, tt := range tests {
+		t.Run(tt.id, func(t *testing.T) {
+			card, err := c.Get(ctx, tt.id)
+			if err != nil {
+				t.Fatal(err)
+			}
+			tt.check(t, card)
+		})
+	}
+}
+
+func TestReprintsShareFunctionalKey(t *testing.T) {
+	c, _ := newTestClient(t)
+	a, err := c.Get(context.Background(), "sv05-157")
+	if err != nil {
+		t.Fatal(err)
+	}
+	b, err := c.Get(context.Background(), "sv08.5-119")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if a.FunctionalKey() != b.FunctionalKey() {
+		t.Errorf("Prime Catcher printings differ:\n%s\n%s", a.FunctionalKey(), b.FunctionalKey())
+	}
+}
+
+func TestGetNotFound(t *testing.T) {
+	c, _ := newTestClient(t)
+	_, err := c.Get(context.Background(), "zzz-999")
+	if !errors.Is(err, catalog.ErrNotFound) {
+		t.Fatalf("err = %v, want ErrNotFound", err)
+	}
+}
+
+func TestGetByCode(t *testing.T) {
+	c, paths := newTestClient(t)
+	ctx := context.Background()
+	card, err := c.GetByCode(ctx, "OBF", "125")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if card.ID != "sv03-125" {
+		t.Errorf("id = %s", card.ID)
+	}
+	if _, err := c.GetByCode(ctx, "sve", "2"); err != nil {
+		t.Errorf("lowercase code, unpadded number: %v", err)
+	}
+
+	// The set code lookup is memoized.
+	n := 0
+	for _, p := range *paths {
+		if strings.HasPrefix(p, "/sets?") {
+			n++
+		}
+	}
+	if _, err := c.GetByCode(ctx, "OBF", "125"); err != nil {
+		t.Fatal(err)
+	}
+	m := 0
+	for _, p := range *paths {
+		if strings.HasPrefix(p, "/sets?") {
+			m++
+		}
+	}
+	if m != n {
+		t.Errorf("set code looked up again: %d -> %d", n, m)
+	}
+
+	if _, err := c.GetByCode(ctx, "NOPE", "1"); !errors.Is(err, catalog.ErrNotFound) {
+		t.Errorf("unknown code err = %v", err)
+	}
+}
+
+func TestSearchDropsPocketCards(t *testing.T) {
+	c, paths := newTestClient(t)
+	refs, err := c.Search(context.Background(), catalog.Query{Name: "Charizard ex", Exact: true, Limit: 3})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(refs) == 0 || len(refs) > 3 {
+		t.Fatalf("refs = %+v", refs)
+	}
+	for _, r := range refs {
+		if strings.HasPrefix(r.ID, "A") {
+			t.Errorf("Pocket card in results: %+v", r)
+		}
+	}
+	if last := (*paths)[len(*paths)-1]; !strings.Contains(last, "name=eq%3ACharizard+ex") {
+		t.Errorf("query = %s", last)
+	}
+}
+
+func TestAPIError(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Error(w, "boom", http.StatusBadGateway)
+	}))
+	defer srv.Close()
+	_, err := New(WithBaseURL(srv.URL)).Get(context.Background(), "x")
+	var apiErr *APIError
+	if !errors.As(err, &apiErr) || apiErr.Status != http.StatusBadGateway {
+		t.Fatalf("err = %v", err)
+	}
+}
