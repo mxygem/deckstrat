@@ -1,0 +1,56 @@
+{
+  "data": [
+    {
+      "uuid": "f8c3de3d-1fea-5d7c-a8b0-29f63c4c3454",
+      "id": "pokemon-battle-academy-fire-energy-22-charizard-stamped-promo",
+      "name": "Fire Energy (#22 Charizard Stamped)",
+      "game": "Pokemon",
+      "set": "battle-academy-pokemon",
+      "set_name": "Battle Academy",
+      "number": "N/A",
+      "tcgplayerId": "219042",
+      "rarity": "Promo",
+      "details": null,
+      "variants": [
+        {
+          "uuid": "a1b2c3d4-5e6f-5a7b-8c9d-0e1f2a3b4c5d",
+          "id": "pokemon-battle-academy-fire-energy-22-charizard-stamped-promo_near-mint",
+          "printing": "Normal",
+          "condition": "Near Mint",
+          "price": 4.99,
+          "lastUpdated": 1743100261,
+          "language": "English",
+          "tcgplayerSkuId": "1234567",
+          "priceStatus": "current",
+          "priceChange24hr": 0.5,
+          "priceChange7d": -2.1,
+          "avgPrice": 4.9,
+          "minPrice7d": 4.5
+        },
+        {
+          "uuid": "b2",
+          "id": "pokemon-battle-academy-fire-energy-22-charizard-stamped-promo_lightly-played",
+          "printing": "Normal",
+          "condition": "Lightly Played",
+          "price": null,
+          "lastUpdated": null,
+          "priceStatus": "unpriced"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "total": 1,
+    "limit": 20,
+    "offset": 0,
+    "hasMore": false
+  },
+  "_metadata": {
+    "apiPlan": "Free",
+    "apiRequestsRemaining": 999,
+    "apiDailyRequestsRemaining": 99,
+    "apiRateLimit": 10
+  },
+  "error": null,
+  "code": null
+}
