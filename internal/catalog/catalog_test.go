@@ -16,6 +16,8 @@ func TestCardClassification(t *testing.T) {
 		{name: "vstar", card: Card{Category: Pokemon, Stage: "VSTAR"}, ruleBox: true},
 		{name: "radiant", card: Card{Name: "Radiant Charizard", Category: Pokemon, Stage: "Basic"}, ruleBox: true, basic: true},
 		{name: "plain basic", card: Card{Name: "Riolu", Category: Pokemon, Stage: "Basic"}, basic: true},
+		{name: "bw ace spec flag", card: Card{Category: Trainer, Rarity: "Rare", AceSpec: true}, aceSpec: true},
+		{name: "prism star", card: Card{Name: "Volcanion ◇", Category: Pokemon, Stage: "Basic"}, ruleBox: true, basic: true},
 		{name: "trainer named ex-ish", card: Card{Name: "Exp. Share", Category: Trainer, Suffix: "ex"}},
 	}
 	for _, tt := range tests {
@@ -38,7 +40,7 @@ func TestCardClassification(t *testing.T) {
 }
 
 func TestFunctionalKey(t *testing.T) {
-	a := Card{ID: "sv05-157", Name: "Prime Catcher", Category: Trainer, TrainerType: "Item", Text: "Switch in 1 of your opponent's Benched Pokémon."}
+	a := Card{ID: "sv05-157", Name: "Prime Catcher", Category: Trainer, TrainerType: "Item", Rarity: "ACE SPEC Rare", Text: "Switch in 1 of your opponent's Benched Pokémon."}
 	b := a
 	b.ID, b.Rarity, b.RegulationMark = "sv08.5-119", "ACE SPEC Rare", "H"
 	b.Text = "Switch in 1 of your opponent’s Benched Pokemon." // curly quote, no accent
@@ -46,9 +48,28 @@ func TestFunctionalKey(t *testing.T) {
 		t.Errorf("reprint keys differ:\n%s\n%s", a.FunctionalKey(), b.FunctionalKey())
 	}
 	c := a
-	c.Text = "Draw 2 cards."
-	if a.FunctionalKey() == c.FunctionalKey() {
-		t.Error("different text should give different keys")
+	c.Text = "Switch in 1 of your opponent's Benched Pokemon. (Reworded.)"
+	if a.FunctionalKey() != c.FunctionalKey() {
+		t.Error("reworded reprints should share a key")
+	}
+	d := a
+	d.Name = "Computer Search"
+	if a.FunctionalKey() == d.FunctionalKey() {
+		t.Error("different names should give different keys")
+	}
+
+	// Base Set Computer Search is not the BW ACE SPEC.
+	oldCS := Card{Name: "Computer Search", Category: Trainer}
+	aceCS := Card{Name: "Computer Search", Category: Trainer, TrainerType: "Item", AceSpec: true}
+	if oldCS.FunctionalKey() == aceCS.FunctionalKey() {
+		t.Error("ACE SPEC and non-ACE SPEC versions should differ")
+	}
+
+	p1 := Card{Name: "Pikachu", Category: Pokemon, HP: 60, Types: []string{"Lightning"}, Attacks: []Attack{{Name: "Thunder Shock", Cost: []string{"Lightning"}, Damage: "20"}}}
+	p2 := p1
+	p2.Attacks = []Attack{{Name: "Gnaw", Cost: []string{"Colorless"}, Damage: "10"}}
+	if p1.FunctionalKey() == p2.FunctionalKey() {
+		t.Error("Pokémon with different attacks should differ")
 	}
 }
 
@@ -78,5 +99,16 @@ func TestRuleName(t *testing.T) {
 	b.Name = "Boss's Orders (Ghetsis)"
 	if a.FunctionalKey() != b.FunctionalKey() {
 		t.Error("subtitled versions should share a functional key")
+	}
+}
+
+func TestRadiantPrismStar(t *testing.T) {
+	r := Card{Name: "Radiant Greninja", Category: Pokemon}
+	p := Card{Name: "Lysandre ◇", Category: Trainer}
+	if !r.IsRadiant() || r.IsPrismStar() || p.IsRadiant() || !p.IsPrismStar() {
+		t.Error("misclassified")
+	}
+	if SeriesRank("me") <= SeriesRank("sv") || SeriesRank("bw") <= SeriesRank("base") || SeriesRank("tcgp") != 0 {
+		t.Error("series rank order")
 	}
 }

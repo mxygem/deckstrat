@@ -8,7 +8,8 @@ import (
 	"github.com/mxygem/deckstrat/internal/catalog"
 )
 
-// Fake serves a fixed card list.
+// Fake serves a fixed card list. Like TCGdex, its exact-name search
+// ignores case and punctuation.
 type Fake struct {
 	Cards []catalog.Card
 }
@@ -43,7 +44,7 @@ func (f *Fake) Search(_ context.Context, q catalog.Query) ([]catalog.Ref, error)
 			match = strings.Contains(strings.ToLower(c.Name), strings.ToLower(q.Name))
 		}
 		if match && (q.SetID == "" || q.SetID == c.SetID) {
-			refs = append(refs, catalog.Ref{ID: c.ID, Name: c.Name})
+			refs = append(refs, catalog.Ref{ID: c.ID, Name: c.Name, Series: c.Series})
 		}
 		if q.Limit > 0 && len(refs) == q.Limit {
 			break

@@ -10,6 +10,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"regexp"
 	"strconv"
 	"strings"
 	"sync"
@@ -23,11 +24,31 @@ const DefaultBaseURL = "https://api.tcgdex.net/v2/en"
 // pocketSeries is TCG Pocket, a different game that TCGdex also serves.
 const pocketSeries = "tcgp"
 
-// setCodeAliases maps TCG Live set codes that differ from TCGdex's
-// official abbreviation.
-var setCodeAliases = map[string]string{
-	"PR-SV": "SVP",
-	"PR-ME": "MEP",
+// setCodeToID maps TCG Live set codes that TCGdex's abbreviations do not
+// cover straight to set IDs. Subsets use "CODE:PREFIX" keys, matching
+// TCGdex abbreviations like "BRS:TG".
+var setCodeToID = map[string]string{
+	"PR-SV":  "svp",
+	"PR-SW":  "swshp",
+	"PR-ME":  "mep",
+	"HIF:SV": "sma",
+}
+
+// setIDToCode is the reverse for export, for sets whose TCG Live code is
+// not their TCGdex abbreviation.
+var setIDToCode = map[string]string{
+	"svp":   "PR-SV",
+	"swshp": "PR-SW",
+	"sma":   "HIF",
+}
+
+// legacyAceSpecs are Black & White ACE SPECs. TCGdex gives them rarity
+// "Rare" and no ACE SPEC text, so they are listed by ID.
+var legacyAceSpecs = map[string]bool{
+	"bw7-137": true, "bw7-138": true, "bw7-139": true, "bw7-140": true, // Computer Search, Crystal Edge, Crystal Wall, Gold Potion
+	"bw8-128": true, "bw8-129": true, "bw8-130": true, // Dowsing Machine, Scramble Switch, Victory Piece
+	"bw9-107": true, "bw9-108": true, // Life Dew, Rock Guard
+	"bw10-92": true, "bw10-93": true, "bw10-94": true, "bw10-95": true, // G Booster, G Scope, Master Ball, Scoop Up Cyclone
 }
 
 type Client struct {
@@ -70,17 +91,63 @@ func (c *Client) Get(ctx context.Context, id string) (*catalog.Card, error) {
 	return c.toCard(ctx, &ac)
 }
 
+// GetByCode finds a printing by TCG Live set code and number. Subset
+// numbers like "TG01" or "GG44" are looked up in the matching subset set,
+// and short numbers are retried zero-padded ("SV49" -> "SV049").
 func (c *Client) GetByCode(ctx context.Context, setCode, number string) (*catalog.Card, error) {
-	setID, err := c.SetIDForCode(ctx, setCode)
+	setIDs, err := c.setIDsForCode(ctx, setCode, number)
 	if err != nil {
 		return nil, err
 	}
-	var ac apiCard
-	path := "/sets/" + url.PathEscape(setID) + "/" + url.PathEscape(number)
-	if err := c.get(ctx, path, nil, &ac); err != nil {
-		return nil, fmt.Errorf("tcgdex card %s %s: %w", setCode, number, err)
+	for _, setID := range setIDs {
+		for _, n := range numberCandidates(number) {
+			var ac apiCard
+			path := "/sets/" + url.PathEscape(setID) + "/" + url.PathEscape(n)
+			err := c.get(ctx, path, nil, &ac)
+			if errors.Is(err, catalog.ErrNotFound) {
+				continue
+			}
+			if err != nil {
+				return nil, fmt.Errorf("tcgdex card %s %s: %w", setCode, number, err)
+			}
+			return c.toCard(ctx, &ac)
+		}
 	}
-	return c.toCard(ctx, &ac)
+	return nil, fmt.Errorf("tcgdex card %s %s: %w", setCode, number, catalog.ErrNotFound)
+}
+
+// setIDsForCode returns the sets to try for a code and number, subset first.
+func (c *Client) setIDsForCode(ctx context.Context, code, number string) ([]string, error) {
+	codes := []string{code}
+	if prefix := numberPrefixRe.FindStringSubmatch(number); prefix != nil && prefix[1] != "" {
+		codes = []string{code + ":" + strings.ToUpper(prefix[1]), code}
+	}
+	var ids []string
+	for _, cd := range codes {
+		id, err := c.SetIDForCode(ctx, cd)
+		if errors.Is(err, catalog.ErrNotFound) {
+			continue
+		}
+		if err != nil {
+			return nil, err
+		}
+		ids = append(ids, id)
+	}
+	if len(ids) == 0 {
+		return nil, fmt.Errorf("set code %q: %w", code, catalog.ErrNotFound)
+	}
+	return ids, nil
+}
+
+var numberPrefixRe = regexp.MustCompile(`^([A-Za-z]*)(\d+)$`)
+
+// numberCandidates lists spellings of a collector number to try.
+func numberCandidates(n string) []string {
+	out := []string{n}
+	if m := numberPrefixRe.FindStringSubmatch(n); m != nil && m[1] != "" && len(m[2]) < 3 {
+		out = append(out, m[1]+fmt.Sprintf("%03s", m[2]))
+	}
+	return out
 }
 
 func (c *Client) Search(ctx context.Context, q catalog.Query) ([]catalog.Ref, error) {
@@ -109,7 +176,7 @@ func (c *Client) Search(ctx context.Context, q catalog.Query) ([]catalog.Ref, er
 		if seriesFromImage(b.Image) == pocketSeries {
 			continue
 		}
-		refs = append(refs, catalog.Ref{ID: b.ID, Name: b.Name})
+		refs = append(refs, catalog.Ref{ID: b.ID, Name: b.Name, Series: seriesFromImage(b.Image)})
 		if q.Limit > 0 && len(refs) == q.Limit {
 			break
 		}
@@ -120,8 +187,8 @@ func (c *Client) Search(ctx context.Context, q catalog.Query) ([]catalog.Ref, er
 // SetIDForCode maps a TCG Live set code such as "OBF" to a TCGdex set ID.
 func (c *Client) SetIDForCode(ctx context.Context, code string) (string, error) {
 	code = strings.ToUpper(strings.TrimSpace(code))
-	if alias, ok := setCodeAliases[code]; ok {
-		code = alias
+	if id, ok := setCodeToID[code]; ok {
+		return id, nil
 	}
 	c.mu.Lock()
 	id, ok := c.codeToSet[code]
@@ -167,9 +234,19 @@ func (c *Client) toCard(ctx context.Context, ac *apiCard) (*catalog.Card, error)
 	if err != nil {
 		return nil, err
 	}
-	card.SetCode = s.Abbreviation.Official
+	card.SetCode = tcgLiveCode(s)
 	card.Series = s.Serie.ID
 	return card, nil
+}
+
+// tcgLiveCode is the set code TCG Live uses: "BRS" for the "BRS:TG"
+// subset, "PR-SV" for SVP promos, "" when unknown.
+func tcgLiveCode(s *apiSet) string {
+	if code, ok := setIDToCode[s.ID]; ok {
+		return code
+	}
+	code, _, _ := strings.Cut(s.Abbreviation.Official, ":")
+	return code
 }
 
 // APIError is a non-2xx response other than 404.

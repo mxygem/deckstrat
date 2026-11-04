@@ -6,6 +6,7 @@ package catalog
 import (
 	"context"
 	"errors"
+	"strconv"
 	"strings"
 	"unicode"
 )
@@ -35,8 +36,22 @@ type Query struct {
 
 // Ref is a brief search result.
 type Ref struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID     string `json:"id"`
+	Name   string `json:"name"`
+	Series string `json:"series,omitempty"` // when the provider knows it
+}
+
+// seriesOrder lists series newest first.
+var seriesOrder = []string{"me", "sv", "swsh", "sm", "xy", "bw", "col", "hgss", "pl", "dp", "pop", "ex", "ecard", "neo", "gym", "base"}
+
+// SeriesRank orders series by age: higher is newer, unknown is 0.
+func SeriesRank(series string) int {
+	for i, s := range seriesOrder {
+		if s == series {
+			return len(seriesOrder) - i
+		}
+	}
+	return 0
 }
 
 type Category string
@@ -57,13 +72,16 @@ type Card struct {
 	Category Category `json:"category"`
 
 	SetID   string `json:"set_id"`
-	SetCode string `json:"set_code,omitempty"` // TCG Live code, e.g. "OBF"
+	SetCode string `json:"set_code,omitempty"` // TCG Live code, e.g. "OBF"; empty when unknown
 	SetName string `json:"set_name,omitempty"`
 	Series  string `json:"series,omitempty"`
 	Number  string `json:"number"`
 
 	RegulationMark string `json:"regulation_mark,omitempty"`
 	Rarity         string `json:"rarity,omitempty"`
+	// AceSpec is set by providers that know a card is an ACE SPEC even
+	// when its rarity does not say so (Black & White era printings).
+	AceSpec bool `json:"ace_spec,omitempty"`
 
 	Stage       string    `json:"stage,omitempty"`  // Basic, Stage1, Stage2, VMAX...
 	Suffix      string    `json:"suffix,omitempty"` // ex, V, GX...
@@ -107,7 +125,17 @@ func (c *Card) IsBasicPokemon() bool {
 
 // IsAceSpec reports whether the card is an ACE SPEC.
 func (c *Card) IsAceSpec() bool {
-	return strings.HasPrefix(strings.ToUpper(c.Rarity), "ACE SPEC")
+	return c.AceSpec || strings.HasPrefix(strings.ToUpper(c.Rarity), "ACE SPEC")
+}
+
+// IsRadiant reports whether the card is a Radiant Pokémon (max 1 per deck).
+func (c *Card) IsRadiant() bool {
+	return c.Category == Pokemon && strings.HasPrefix(c.Name, "Radiant ")
+}
+
+// IsPrismStar reports whether the card is a Prism Star card (max 1 per name).
+func (c *Card) IsPrismStar() bool {
+	return strings.Contains(c.Name, "◇") || strings.Contains(c.Name, "Prism Star")
 }
 
 var (
@@ -121,29 +149,39 @@ func (c *Card) IsRuleBox() bool {
 	if c.Category != Pokemon {
 		return false
 	}
-	return ruleBoxSuffixes[c.Suffix] || ruleBoxStages[c.Stage] ||
-		strings.HasPrefix(c.Name, "Radiant ") || strings.Contains(c.Name, "◇")
+	return ruleBoxSuffixes[c.Suffix] || ruleBoxStages[c.Stage] || c.IsRadiant() || c.IsPrismStar()
 }
 
-// FunctionalKey identifies the card's gameplay text, ignoring printing
-// details. Two printings with the same key are the same card for legality.
+// FunctionalKey identifies the card for legality, ignoring printing
+// details. Two printings with the same key are treated as the same card.
+//
+// Effect text is left out on purpose: reprints often modernize wording
+// without changing play (SWSH and SV Boss's Orders read differently in
+// the catalog). The key uses what identifies a card in practice instead:
+// name, kind, HP, types, attack names, costs and damage, and ability
+// names. Two same-name cards that differ only in effect text would match;
+// that has not been seen in practice.
 func (c *Card) FunctionalKey() string {
 	var b strings.Builder
 	add := func(s string) { b.WriteString(normalize(s)); b.WriteByte('|') }
 	add(RuleName(c.Name))
 	add(string(c.Category))
-	add(c.Stage)
 	add(c.TrainerType)
-	add(c.Text)
-	for _, a := range c.Abilities {
-		add(a.Name)
-		add(a.Effect)
+	add(c.EnergyType)
+	if c.IsAceSpec() {
+		add("acespec")
 	}
-	for _, a := range c.Attacks {
-		add(a.Name)
-		add(strings.Join(a.Cost, ","))
-		add(a.Damage)
-		add(a.Effect)
+	if c.Category == Pokemon {
+		add(strconv.Itoa(c.HP))
+		add(strings.Join(c.Types, ","))
+		for _, a := range c.Abilities {
+			add(a.Name)
+		}
+		for _, a := range c.Attacks {
+			add(a.Name)
+			add(strings.Join(a.Cost, ","))
+			add(a.Damage)
+		}
 	}
 	return b.String()
 }

@@ -9,6 +9,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -32,7 +33,13 @@ func fakeServer(t *testing.T) (*httptest.Server, *[]string) {
 		case len(parts) == 2 && parts[0] == "sets":
 			serveFile(w, r, filepath.Join("sets", parts[1]+".json"))
 		case len(parts) == 3 && parts[0] == "sets":
-			serveFile(w, r, filepath.Join("cards", fmt.Sprintf("%s-%03s.json", parts[1], parts[2])))
+			// Like the real API: plain numbers may be unpadded, but
+			// prefixed numbers must match the localId exactly.
+			n := parts[2]
+			if _, err := strconv.Atoi(n); err == nil {
+				n = fmt.Sprintf("%03s", n)
+			}
+			serveFile(w, r, filepath.Join("cards", parts[1]+"-"+n+".json"))
 		default:
 			http.NotFound(w, r)
 		}
@@ -218,5 +225,58 @@ func TestAPIError(t *testing.T) {
 	var apiErr *APIError
 	if !errors.As(err, &apiErr) || apiErr.Status != http.StatusBadGateway {
 		t.Fatalf("err = %v", err)
+	}
+}
+
+func TestGetByCodeSubsetsAndPromos(t *testing.T) {
+	c, _ := newTestClient(t)
+	ctx := context.Background()
+	tests := []struct {
+		code, number, wantID, wantCode string
+	}{
+		{"BRS", "TG01", "swsh9tg-TG01", "BRS"},    // Trainer Gallery via "BRS:TG"
+		{"SHF", "SV49", "swsh4.5sv-SV049", "SHF"}, // Shiny Vault, number needs padding
+		{"HIF", "SV49", "sma-SV49", "HIF"},        // Hidden Fates Shiny Vault has no abbreviation
+		{"PR-SV", "85", "svp-085", "PR-SV"},       // promo alias, round-trips to TCG Live's code
+	}
+	for _, tt := range tests {
+		t.Run(tt.code+" "+tt.number, func(t *testing.T) {
+			card, err := c.GetByCode(ctx, tt.code, tt.number)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if card.ID != tt.wantID || card.SetCode != tt.wantCode {
+				t.Errorf("got %s code %q, want %s code %q", card.ID, card.SetCode, tt.wantID, tt.wantCode)
+			}
+		})
+	}
+}
+
+func TestLegacyCards(t *testing.T) {
+	c, _ := newTestClient(t)
+	ctx := context.Background()
+	cs, err := c.Get(ctx, "bw7-137")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !cs.IsAceSpec() || cs.Rarity != "Rare" {
+		t.Errorf("Computer Search: ace spec %v rarity %q", cs.IsAceSpec(), cs.Rarity)
+	}
+	tag, err := c.Get(ctx, "sm9-33")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !tag.IsBasicPokemon() || !tag.IsRuleBox() {
+		t.Errorf("Pikachu & Zekrom GX: stage %q", tag.Stage)
+	}
+}
+
+func TestNumberCandidates(t *testing.T) {
+	for in, want := range map[string]string{
+		"SV49": "SV49,SV049", "TG01": "TG01,TG001", "5": "5", "SWSH1": "SWSH1,SWSH001", "GG44": "GG44,GG044",
+	} {
+		if got := strings.Join(numberCandidates(in), ","); got != want {
+			t.Errorf("numberCandidates(%q) = %s, want %s", in, got, want)
+		}
 	}
 }

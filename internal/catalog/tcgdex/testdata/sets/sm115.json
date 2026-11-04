@@ -1,0 +1,27 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 0,
+  "official": 68,
+  "reverse": 0,
+  "total": 69
+ },
+ "id": "sm115",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "logo": "https://assets.tcgdex.net/en/sm/sm115/logo",
+ "name": "Hidden Fates",
+ "releaseDate": "2019-08-23",
+ "serie": {
+  "id": "sm",
+  "name": "Sun & Moon"
+ },
+ "symbol": "https://assets.tcgdex.net/univ/sm/sm115/symbol",
+ "tcgOnline": "HIF",
+ "abbreviation": {
+  "official": "HIF"
+ }
+}

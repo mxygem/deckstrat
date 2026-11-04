@@ -1,0 +1,25 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 30,
+  "normal": 0,
+  "official": 30,
+  "reverse": 2,
+  "total": 30
+ },
+ "id": "swsh9tg",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "name": "Brilliant Stars Trainer Gallery",
+ "releaseDate": "2022-02-25",
+ "serie": {
+  "id": "swsh",
+  "name": "Sword & Shield"
+ },
+ "tcgOnline": "BRS",
+ "abbreviation": {
+  "official": "BRS:TG"
+ }
+}

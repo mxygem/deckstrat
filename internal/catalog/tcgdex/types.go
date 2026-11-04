@@ -113,6 +113,12 @@ func (ac *apiCard) toCard() *catalog.Card {
 		TCGPlayerID:    ac.ThirdParty.TCGPlayer.String(),
 		Image:          ac.Image,
 	}
+	c.AceSpec = legacyAceSpecs[ac.ID]
+	// TCGdex leaves stage null on Sun & Moon GX and TAG TEAM cards; a
+	// Pokémon that evolves from nothing is a Basic.
+	if c.Category == catalog.Pokemon && c.Stage == "" && c.EvolvesFrom == "" {
+		c.Stage = "Basic"
+	}
 	for _, a := range ac.Abilities {
 		c.Abilities = append(c.Abilities, catalog.Ability{Type: a.Type, Name: a.Name, Effect: a.Effect})
 	}

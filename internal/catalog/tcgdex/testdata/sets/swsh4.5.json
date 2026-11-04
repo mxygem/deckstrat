@@ -1,0 +1,27 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 35,
+  "normal": 39,
+  "official": 72,
+  "reverse": 46,
+  "total": 73
+ },
+ "id": "swsh4.5",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "logo": "https://assets.tcgdex.net/en/swsh/swsh4.5/logo",
+ "name": "Shining Fates",
+ "releaseDate": "2021-02-19",
+ "serie": {
+  "id": "swsh",
+  "name": "Sword & Shield"
+ },
+ "symbol": "https://assets.tcgdex.net/univ/swsh/swsh4.5/symbol",
+ "tcgOnline": "SHF",
+ "abbreviation": {
+  "official": "SHF"
+ }
+}
