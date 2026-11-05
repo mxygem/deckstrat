@@ -41,6 +41,8 @@ func TestLoad(t *testing.T) {
 		{name: "ENVIRONMENT selects section", file: file, env: []string{"ENVIRONMENT=production"}, wantKey: "file-prod", wantEnv: "production"},
 		{name: "env overrides file", file: file, env: []string{"DECKSTRAT_JUST_TCG_API_KEY=from-env"}, wantKey: "from-env", wantEnv: "development", wantCache: "/tmp/dev"},
 		{name: "missing file, env only", file: filepath.Join(t.TempDir(), "nope.json"), env: []string{"DECKSTRAT_JUST_TCG_API_KEY=only-env"}, wantKey: "only-env", wantEnv: "development"},
+		{name: "JUSTTCG_API_KEY overrides file", file: file, env: []string{"JUSTTCG_API_KEY=conventional"}, wantKey: "conventional", wantEnv: "development"},
+		{name: "DECKSTRAT_ var beats JUSTTCG_API_KEY", file: file, env: []string{"JUSTTCG_API_KEY=conventional", "DECKSTRAT_JUST_TCG_API_KEY=prefixed"}, wantKey: "prefixed", wantEnv: "development"},
 		{name: "missing file, nothing set", file: filepath.Join(t.TempDir(), "nope.json"), wantEnv: "development"},
 	}
 	for _, tt := range tests {

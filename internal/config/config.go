@@ -20,6 +20,9 @@ const (
 	// DefaultFile is read from the working directory when present.
 	DefaultFile = ".env.json"
 	envPrefix   = "DECKSTRAT_"
+	// JustTCGKeyVar is JustTCG's conventional variable, read when
+	// DECKSTRAT_JUST_TCG_API_KEY is unset.
+	JustTCGKeyVar = "JUSTTCG_API_KEY"
 )
 
 type Config struct {
@@ -46,7 +49,8 @@ type Options struct {
 //	{"development": {"just_tcg_api_key": "..."}}
 //
 // Each key can be overridden by an upper-cased env var, e.g.
-// DECKSTRAT_JUST_TCG_API_KEY. DECKSTRAT_ENV (or ENVIRONMENT) picks the
+// DECKSTRAT_JUST_TCG_API_KEY; JUSTTCG_API_KEY also sets the key, below
+// the DECKSTRAT_ variable but above the file. DECKSTRAT_ENV (or ENVIRONMENT) picks the
 // section and defaults to "development".
 func Load(opts Options) (*Config, error) {
 	environ := opts.Environ
@@ -84,6 +88,9 @@ func Load(opts Options) (*Config, error) {
 		return nil, fmt.Errorf("reading %q config: %w", envName, err)
 	}
 	cfg.Env = envName
+	if v := vars[JustTCGKeyVar]; v != "" && vars[envPrefix+"JUST_TCG_API_KEY"] == "" {
+		cfg.JustTCGAPIKey = v
+	}
 
 	if cfg.CacheDir == "" {
 		dir, err := os.UserCacheDir()
@@ -98,7 +105,7 @@ func Load(opts Options) (*Config, error) {
 // RequireJustTCG reports a helpful error when the JustTCG key is missing.
 func (c *Config) RequireJustTCG() error {
 	if c.JustTCGAPIKey == "" {
-		return fmt.Errorf("no JustTCG API key: set just_tcg_api_key under %q in %s or %sJUST_TCG_API_KEY", c.Env, DefaultFile, envPrefix)
+		return fmt.Errorf("no JustTCG API key: set %s, %sJUST_TCG_API_KEY, or just_tcg_api_key under %q in %s", JustTCGKeyVar, envPrefix, c.Env, DefaultFile)
 	}
 	return nil
 }

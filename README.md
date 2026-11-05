@@ -27,6 +27,7 @@ file:
 | Variable                     | Purpose                                        |
 | ---------------------------- | ---------------------------------------------- |
 | `DECKSTRAT_JUST_TCG_API_KEY` | JustTCG API key                                |
+| `JUSTTCG_API_KEY`            | JustTCG API key, if the above is unset         |
 | `DECKSTRAT_CACHE_DIR`        | Catalog cache (default: user cache dir)        |
 | `DECKSTRAT_ENV`              | Section of the config file (`development`)     |
 | `DECKSTRAT_CONFIG`           | Config file path (default `.env.json`)         |
