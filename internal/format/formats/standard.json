@@ -12,6 +12,9 @@
       "I",
       "J"
     ],
+    "legal_sets": [
+      "30th"
+    ],
     "reprints_legal": true,
     "set_legal_delay_days": 14
   },
@@ -22,6 +25,6 @@
   },
   "ban_list": [],
   "ban_list_verified": true,
-  "notes": "G rotated out April 10, 2026 (March 26 on TCG Live). No cards are banned in Standard. Add new marks here as sets become legal.",
+  "notes": "G rotated out April 10, 2026 (March 26 on TCG Live). No cards are banned in Standard. Add new marks here as sets become legal. 30th Celebration (30th) has no regulation marks and is listed as legal by decision; its Classic Collection subset (30th-c), which shares the 30C code, is not.",
   "ban_list_checked": "2026-11-04"
 }

@@ -43,6 +43,9 @@ type Pool struct {
 	// ReprintsLegal lets an out-of-pool printing count as legal when a
 	// functionally identical printing is in the pool.
 	ReprintsLegal bool `json:"reprints_legal"`
+	// LegalSets are catalog set IDs legal whatever their regulation mark
+	// or series, for sets printed without marks such as 30th Celebration.
+	LegalSets []string `json:"legal_sets,omitempty"`
 	// SetLegalDelayDays is how long after release a set becomes legal.
 	// Play! Pokémon has used 14 days, counted from the first booster
 	// product, since January 28, 2026. Zero makes sets legal on release.
@@ -119,6 +122,9 @@ func (f *Format) PoolReason(c *catalog.Card) string {
 		return ""
 	}
 	p := f.Pool
+	if slices.Contains(p.LegalSets, c.SetID) {
+		return ""
+	}
 	if len(p.RegulationMarks) > 0 && !slices.Contains(p.RegulationMarks, c.RegulationMark) {
 		if c.RegulationMark == "" {
 			return fmt.Sprintf("has no regulation mark; %s allows %s", f.Name, strings.Join(p.RegulationMarks, ", "))
