@@ -1,0 +1,24 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 280,
+  "normal": 48,
+  "official": 225,
+  "reverse": 1,
+  "total": 226
+ },
+ "id": "svp",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "name": "SVP Black Star Promos",
+ "releaseDate": "2023-03-31",
+ "serie": {
+  "id": "sv",
+  "name": "Scarlet & Violet"
+ },
+ "abbreviation": {
+  "official": "SVP"
+ }
+}

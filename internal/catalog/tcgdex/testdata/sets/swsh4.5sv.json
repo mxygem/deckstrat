@@ -1,0 +1,25 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 122,
+  "normal": 0,
+  "official": 122,
+  "reverse": 0,
+  "total": 122
+ },
+ "id": "swsh4.5sv",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "name": "Shining Fates Shiny Vault",
+ "releaseDate": "2021-02-19",
+ "serie": {
+  "id": "swsh",
+  "name": "Sword & Shield"
+ },
+ "tcgOnline": "SHF",
+ "abbreviation": {
+  "official": "SHF:SV"
+ }
+}

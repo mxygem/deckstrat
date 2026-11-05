@@ -1,0 +1,48 @@
+{
+ "category": "Pokemon",
+ "id": "swsh4.5sv-SV049",
+ "localId": "SV049",
+ "name": "Galarian Corsola",
+ "rarity": "Shiny rare",
+ "set": {
+  "cardCount": {
+   "official": 122,
+   "total": 122
+  },
+  "id": "swsh4.5sv",
+  "name": "Shining Fates Shiny Vault"
+ },
+ "hp": 80,
+ "types": [
+  "Psychic"
+ ],
+ "description": "Watch your step when wandering areas oceans once covered. What looks like a stone could be this Pokémon, and it will curse you if you kick it.",
+ "stage": "Basic",
+ "attacks": [
+  {
+   "cost": [
+    "Psychic"
+   ],
+   "name": "Cursed Drop",
+   "effect": "Put 3 damage counters on your opponent's Pokémon in any way you like."
+  }
+ ],
+ "weaknesses": [
+  {
+   "type": "Darkness",
+   "value": "×2"
+  }
+ ],
+ "resistances": [
+  {
+   "type": "Fighting",
+   "value": "-30"
+  }
+ ],
+ "retreat": 2,
+ "regulationMark": "D",
+ "legal": {
+  "standard": false,
+  "expanded": true
+ }
+}

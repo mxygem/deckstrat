@@ -1,0 +1,25 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 127,
+  "normal": 81,
+  "official": 131,
+  "reverse": 268,
+  "total": 180
+ },
+ "id": "sv08.5",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "logo": "https://assets.tcgdex.net/en/sv/sv08.5/logo",
+ "name": "Prismatic Evolutions",
+ "releaseDate": "2025-01-17",
+ "serie": {
+  "id": "sv",
+  "name": "Scarlet & Violet"
+ },
+ "abbreviation": {
+  "official": "PRE"
+ }
+}

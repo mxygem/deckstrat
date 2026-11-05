@@ -1,0 +1,52 @@
+{
+ "category": "Pokemon",
+ "id": "swsh9tg-TG01",
+ "localId": "TG01",
+ "name": "Flareon",
+ "rarity": "Rare",
+ "set": {
+  "cardCount": {
+   "official": 30,
+   "total": 30
+  },
+  "id": "swsh9tg",
+  "name": "Brilliant Stars Trainer Gallery"
+ },
+ "hp": 110,
+ "types": [
+  "Fire"
+ ],
+ "evolveFrom": "Eevee",
+ "description": "Once it has stored up enough heat, this Pokémon's body temperature can reach up to 1,700 degrees Fahrenheit.",
+ "stage": "Stage1",
+ "abilities": [
+  {
+   "type": "Ability",
+   "name": "Incandescent Awakening",
+   "effect": "If this Pokémon has a Memory Capsule attached, Grass Pokémon in play (both yours and your opponent's) have no Abilities."
+  }
+ ],
+ "attacks": [
+  {
+   "cost": [
+    "Fire",
+    "Fire",
+    "Colorless"
+   ],
+   "name": "Fire Mane",
+   "damage": 100
+  }
+ ],
+ "weaknesses": [
+  {
+   "type": "Water",
+   "value": "×2"
+  }
+ ],
+ "retreat": 2,
+ "regulationMark": "D",
+ "legal": {
+  "standard": false,
+  "expanded": true
+ }
+}

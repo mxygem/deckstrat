@@ -1,0 +1,208 @@
+{
+  "id": "expanded",
+  "name": "Expanded",
+  "version": "2026-04-10",
+  "sources": [
+    "https://www.pokemon.com/us/play-pokemon/about/pokemon-tcg-banned-card-list"
+  ],
+  "pool": {
+    "series": [
+      "bw",
+      "xy",
+      "sm",
+      "swsh",
+      "sv",
+      "me"
+    ],
+    "reprints_legal": true,
+    "set_legal_delay_days": 14
+  },
+  "rules": {
+    "size": 60,
+    "copy_limit": 4,
+    "max_ace_spec": 1
+  },
+  "ban_list": [
+    {
+      "name": "Archeops",
+      "printings": [
+        "bw3-67",
+        "bw5-110"
+      ]
+    },
+    {
+      "name": "Chip-Chip Ice Axe",
+      "printings": [
+        "sm10-165"
+      ]
+    },
+    {
+      "name": "Delinquent",
+      "printings": [
+        "xy9-98"
+      ],
+      "note": "Also 98a and 98b alternates; they match as reprints."
+    },
+    {
+      "name": "Duskull",
+      "printings": [
+        "sm12-83"
+      ]
+    },
+    {
+      "name": "Flabébé",
+      "printings": [
+        "sm6-83"
+      ]
+    },
+    {
+      "name": "Flapple",
+      "printings": [
+        "swsh2-22",
+        "swsh4.5sv-SV013",
+        "swsh10tg-TG02",
+        "swshp-SWSH022"
+      ]
+    },
+    {
+      "name": "Forest of Giant Plants",
+      "printings": [
+        "xy7-74"
+      ]
+    },
+    {
+      "name": "Ghetsis",
+      "printings": [
+        "bw9-101",
+        "bw9-115"
+      ]
+    },
+    {
+      "name": "Hex Maniac",
+      "printings": [
+        "xy7-75"
+      ],
+      "note": "Also the 75a alternate."
+    },
+    {
+      "name": "Island Challenge Amulet",
+      "printings": [
+        "sm12-194",
+        "sm12-265"
+      ]
+    },
+    {
+      "name": "Jessie & James",
+      "printings": [
+        "sm115-58",
+        "sm115-68"
+      ]
+    },
+    {
+      "name": "Lt. Surge's Strategy",
+      "printings": [
+        "sm10-178",
+        "sm115-60"
+      ]
+    },
+    {
+      "name": "Lysandre's Trump Card",
+      "printings": [
+        "xy4-99",
+        "xy4-118"
+      ]
+    },
+    {
+      "name": "Marshadow",
+      "printings": [
+        "sm3.5-45",
+        "smp-SM85"
+      ]
+    },
+    {
+      "name": "Maxie's Hidden Ball Trick",
+      "printings": [
+        "xy5-133",
+        "xy5-158"
+      ]
+    },
+    {
+      "name": "Medicham V",
+      "printings": [
+        "swsh7-83",
+        "swsh7-185",
+        "swsh7-186"
+      ]
+    },
+    {
+      "name": "Milotic",
+      "printings": [
+        "xy2-23"
+      ]
+    },
+    {
+      "name": "Mismagius",
+      "printings": [
+        "sm10-78"
+      ]
+    },
+    {
+      "name": "Oranguru",
+      "printings": [
+        "sm5-114"
+      ]
+    },
+    {
+      "name": "Puzzle of Time",
+      "printings": [
+        "xy9-109"
+      ]
+    },
+    {
+      "name": "Red Card",
+      "printings": [
+        "xy1-124",
+        "g1-71"
+      ]
+    },
+    {
+      "name": "Reset Stamp",
+      "printings": [
+        "sm11-206",
+        "sm11-253"
+      ],
+      "note": "Also the 206a alternate."
+    },
+    {
+      "name": "Sableye",
+      "printings": [
+        "bw5-62"
+      ]
+    },
+    {
+      "name": "Scoop Up Net",
+      "printings": [
+        "swsh2-165",
+        "swsh2-207"
+      ]
+    },
+    {
+      "name": "Shaymin-EX",
+      "printings": [
+        "xy6-77",
+        "xy6-106"
+      ],
+      "note": "Also the 77a alternate."
+    },
+    {
+      "name": "Unown",
+      "printings": [
+        "sm8-90",
+        "sm8-91"
+      ]
+    }
+  ],
+  "ban_list_verified": true,
+  "notes": "Black & White series onward. pokemon.com gives no effective dates for Expanded bans.",
+  "ban_list_checked": "2026-11-04"
+}

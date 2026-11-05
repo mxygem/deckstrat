@@ -1,0 +1,24 @@
+Pokémon: 14
+4 Riolu MEG 76
+3 Mega Lucario ex MEG 77
+3 Makuhita MEG 72
+3 Hariyama MEG 73
+1 Charizard ex OBF 125
+
+Trainer: 27
+5 Ultra Ball MEG 131
+4 Buddy-Buddy Poffin TEF 144
+2 Boss's Orders MEG 114
+4 Lillie's Determination MEG 119
+2 Night Stretcher SFA 61
+2 Nest Ball SVI 181
+4 Premium Power Pro MEG 124
+1 Prime Catcher TEF 157
+1 Maximum Belt TEF 154
+1 Iono MEG 999
+this line is garbage
+
+Energy: 19
+19 Basic {F} Energy SVE 6
+
+Total Cards: 60

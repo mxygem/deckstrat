@@ -1,0 +1,126 @@
+{
+  "id": "glc",
+  "name": "Gym Leader Challenge",
+  "version": "2026-04-10",
+  "sources": [
+    "https://gymleaderchallenge.com/rules",
+    "https://gymleaderchallenge.com/ban-list"
+  ],
+  "pool": {
+    "series": [
+      "bw",
+      "xy",
+      "sm",
+      "swsh",
+      "sv",
+      "me"
+    ],
+    "reprints_legal": true,
+    "set_legal_delay_days": 14
+  },
+  "rules": {
+    "size": 60,
+    "copy_limit": 1,
+    "max_ace_spec": 0,
+    "single_type": true,
+    "no_rule_box": true
+  },
+  "ban_list": [
+    {
+      "name": "Lysandre's Trump Card",
+      "printings": [
+        "xy4-99",
+        "xy4-118"
+      ],
+      "effective": "2021-11-16"
+    },
+    {
+      "name": "Oranguru",
+      "printings": [
+        "sm5-114"
+      ],
+      "effective": "2021-11-16"
+    },
+    {
+      "name": "Forest of Giant Plants",
+      "printings": [
+        "xy7-74"
+      ],
+      "effective": "2022-01-10"
+    },
+    {
+      "name": "Chip-Chip Ice Axe",
+      "printings": [
+        "sm10-165"
+      ],
+      "effective": "2022-06-08"
+    },
+    {
+      "name": "Hiker",
+      "printings": [
+        "sm7-133",
+        "sma-SV85"
+      ],
+      "effective": "2022-06-08"
+    },
+    {
+      "name": "Kyogre",
+      "printings": [
+        "swsh4.5-21"
+      ],
+      "effective": "2022-11-11"
+    },
+    {
+      "name": "Pokémon Research Lab",
+      "printings": [
+        "sm11-205"
+      ],
+      "effective": "2023-11-01"
+    },
+    {
+      "name": "Raikou",
+      "printings": [
+        "swsh4-50"
+      ],
+      "effective": "2024-09-01"
+    },
+    {
+      "name": "Marshadow",
+      "printings": [
+        "sm3.5-45",
+        "smp-SM85"
+      ],
+      "effective": "2024-09-01"
+    },
+    {
+      "name": "Duskull",
+      "printings": [
+        "sm12-83"
+      ],
+      "effective": "2024-09-01"
+    },
+    {
+      "name": "Double Colorless Energy",
+      "effective": "2025-04-24",
+      "note": "Every version is banned."
+    },
+    {
+      "name": "Twin Energy",
+      "printings": [
+        "swsh2-174",
+        "swsh2-209"
+      ],
+      "effective": "2025-04-24"
+    },
+    {
+      "name": "Dimension Valley",
+      "printings": [
+        "xy4-93"
+      ],
+      "effective": "2026-04-20"
+    }
+  ],
+  "ban_list_verified": true,
+  "notes": "Expanded pool, singleton except Basic Energy, one Pokémon type, no Rule Box Pokémon, no ACE SPEC.",
+  "ban_list_checked": "2026-11-04"
+}

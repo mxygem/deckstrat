@@ -1,0 +1,24 @@
+{
+ "category": "Trainer",
+ "id": "sv05-157",
+ "image": "https://assets.tcgdex.net/en/sv/sv05/157",
+ "localId": "157",
+ "name": "Prime Catcher",
+ "rarity": "ACE SPEC Rare",
+ "set": {
+  "cardCount": {
+   "official": 162,
+   "total": 218
+  },
+  "id": "sv05",
+  "name": "Temporal Forces",
+  "symbol": "https://assets.tcgdex.net/univ/sv/sv05/symbol"
+ },
+ "effect": "Switch in 1 of your opponent's Benched Pokémon to the Active Spot. If you do, switch your Active Pokémon with 1 of your Benched Pokémon.",
+ "trainerType": "Item",
+ "regulationMark": "H",
+ "legal": {
+  "standard": true,
+  "expanded": true
+ }
+}

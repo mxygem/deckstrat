@@ -1,0 +1,22 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 0,
+  "official": 94,
+  "reverse": 0,
+  "total": 94
+ },
+ "id": "sma",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "name": "Hidden Fates Shiny Vault",
+ "releaseDate": "2019-08-23",
+ "serie": {
+  "id": "sm",
+  "name": "Sun & Moon"
+ },
+ "symbol": "https://assets.tcgdex.net/univ/sm/sma/symbol"
+}

@@ -1,0 +1,27 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 1,
+  "official": 181,
+  "reverse": 1,
+  "total": 196
+ },
+ "id": "sm9",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "logo": "https://assets.tcgdex.net/en/sm/sm9/logo",
+ "name": "Team Up",
+ "releaseDate": "2019-01-31",
+ "serie": {
+  "id": "sm",
+  "name": "Sun & Moon"
+ },
+ "symbol": "https://assets.tcgdex.net/univ/sm/sm9/symbol",
+ "tcgOnline": "TEU",
+ "abbreviation": {
+  "official": "TEU"
+ }
+}

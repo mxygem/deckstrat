@@ -1,0 +1,27 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 0,
+  "official": 149,
+  "reverse": 0,
+  "total": 153
+ },
+ "id": "bw7",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "logo": "https://assets.tcgdex.net/en/bw/bw7/logo",
+ "name": "Boundaries Crossed",
+ "releaseDate": "2012-11-07",
+ "serie": {
+  "id": "bw",
+  "name": "Black & White"
+ },
+ "symbol": "https://assets.tcgdex.net/univ/bw/bw7/symbol",
+ "tcgOnline": "BCR",
+ "abbreviation": {
+  "official": "BCR"
+ }
+}

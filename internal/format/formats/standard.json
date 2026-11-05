@@ -1,0 +1,27 @@
+{
+  "id": "standard",
+  "name": "Standard",
+  "version": "2026-04-10",
+  "sources": [
+    "https://www.pokemon.com/us/pokemon-news/2026-pokemon-tcg-standard-format-rotation-announcement",
+    "https://www.pokemon.com/us/play-pokemon/about/pokemon-tcg-banned-card-list"
+  ],
+  "pool": {
+    "regulation_marks": [
+      "H",
+      "I",
+      "J"
+    ],
+    "reprints_legal": true,
+    "set_legal_delay_days": 14
+  },
+  "rules": {
+    "size": 60,
+    "copy_limit": 4,
+    "max_ace_spec": 1
+  },
+  "ban_list": [],
+  "ban_list_verified": true,
+  "notes": "G rotated out April 10, 2026 (March 26 on TCG Live). No cards are banned in Standard. Add new marks here as sets become legal.",
+  "ban_list_checked": "2026-11-04"
+}

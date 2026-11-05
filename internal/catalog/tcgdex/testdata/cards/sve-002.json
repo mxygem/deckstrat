@@ -1,0 +1,20 @@
+{
+ "category": "Energy",
+ "id": "sve-002",
+ "localId": "002",
+ "name": "Fire Energy",
+ "rarity": "Common",
+ "set": {
+  "cardCount": {
+   "official": 24,
+   "total": 24
+  },
+  "id": "sve",
+  "name": "Scarlet & Violet Energy"
+ },
+ "energyType": "Normal",
+ "legal": {
+  "standard": true,
+  "expanded": true
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 79,
+  "normal": 114,
+  "official": 172,
+  "reverse": 125,
+  "total": 186
+ },
+ "id": "swsh9",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "logo": "https://assets.tcgdex.net/en/swsh/swsh9/logo",
+ "name": "Brilliant Stars",
+ "releaseDate": "2022-02-25",
+ "serie": {
+  "id": "swsh",
+  "name": "Sword & Shield"
+ },
+ "symbol": "https://assets.tcgdex.net/univ/swsh/swsh9/symbol",
+ "tcgOnline": "BRS",
+ "abbreviation": {
+  "official": "BRS"
+ }
+}

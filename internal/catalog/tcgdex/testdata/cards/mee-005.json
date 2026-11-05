@@ -1,0 +1,20 @@
+{
+ "category": "Energy",
+ "id": "mee-005",
+ "localId": "005",
+ "name": "Psychic Energy",
+ "rarity": "Common",
+ "set": {
+  "cardCount": {
+   "official": 8,
+   "total": 8
+  },
+  "id": "mee",
+  "name": "Mega Evolution Energy"
+ },
+ "energyType": "Normal",
+ "legal": {
+  "standard": true,
+  "expanded": true
+ }
+}

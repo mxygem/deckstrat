@@ -1,0 +1,24 @@
+{
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 8,
+  "official": 8,
+  "reverse": 8,
+  "total": 8
+ },
+ "id": "mee",
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "name": "Mega Evolution Energy",
+ "releaseDate": "2025-09-25",
+ "serie": {
+  "id": "me",
+  "name": "Mega Evolution"
+ },
+ "abbreviation": {
+  "official": "MEE"
+ }
+}

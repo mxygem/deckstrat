@@ -1,0 +1,42 @@
+{
+ "category": "Pokemon",
+ "id": "svp-085",
+ "localId": "085",
+ "name": "Pikachu with Grey Felt Hat",
+ "rarity": "Promo",
+ "set": {
+  "cardCount": {
+   "official": 225,
+   "total": 226
+  },
+  "id": "svp",
+  "name": "SVP Black Star Promos"
+ },
+ "hp": 60,
+ "types": [
+  "Lightning"
+ ],
+ "description": "When it is angered, it immediately discharges the energy stored in the pouches of its cheeks.",
+ "stage": "Basic",
+ "attacks": [
+  {
+   "cost": [
+    "Lightning"
+   ],
+   "name": "Pika-Portrait",
+   "effect": "Search your deck for a Pikachu and put it onto your Bench. Then, shuffle your deck."
+  }
+ ],
+ "weaknesses": [
+  {
+   "type": "Fighting",
+   "value": "×2"
+  }
+ ],
+ "retreat": 1,
+ "regulationMark": "H",
+ "legal": {
+  "standard": true,
+  "expanded": true
+ }
+}
