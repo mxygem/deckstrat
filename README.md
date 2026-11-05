@@ -59,6 +59,11 @@ pbpaste | go run ./cmd/validate -
 
 `validate` exits 0 when the deck is legal, 1 when it is not and 2 on errors.
 
+`--export` writes the deck back in TCG Live's format. Lines that came in
+with a set code are kept as written; lines without one get a printing from
+the catalog. Both kinds import into TCG Live and the Limitless deck
+builder (checked 2026-11-05 with a 60-card Standard list).
+
 ## Layout
 
 | Path                      | What it holds                                         |
