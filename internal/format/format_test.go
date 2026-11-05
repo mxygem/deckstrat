@@ -331,6 +331,18 @@ func TestNotYetLegal(t *testing.T) {
 	}
 }
 
+func TestLegalSets(t *testing.T) {
+	std, _ := Get("standard")
+	mew := catalog.Card{ID: "30th-066", Name: "Mew ex", Category: catalog.Pokemon, SetID: "30th", Series: "me"}
+	if r := std.PoolReason(&mew); r != "" {
+		t.Errorf("30th Celebration should be legal in Standard: %s", r)
+	}
+	crobat := catalog.Card{ID: "30th-c-011", Name: "Crobat G", Category: catalog.Pokemon, SetID: "30th-c", Series: "me"}
+	if r := std.PoolReason(&crobat); r == "" {
+		t.Error("the Classic Collection should still need a regulation mark")
+	}
+}
+
 func TestCopyLimitUsesRuleName(t *testing.T) {
 	std, _ := Get("standard")
 	boss := catalog.Card{ID: "a-1", Name: "Boss's Orders (Ghetsis)", Category: catalog.Trainer, SetCode: "PAL", Number: "172", RegulationMark: "H"}
