@@ -3,6 +3,7 @@
 //	tag pool [-f standard] [--refresh]   build or load a format's card pool
 //	tag run  [-f standard] [--llm]       tag every card in the pool
 //	tag show [--llm] <card> [<card>...]  print a card's tags
+//	tag eval [--source rules|store|llm]  score tags against data/eval/tags.json
 //
 // --llm also asks Claude, which needs ANTHROPIC_API_KEY or an "ant auth
 // login" profile. run sends one Message Batch (half price) and saves its
@@ -14,6 +15,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -53,7 +55,7 @@ type env struct {
 
 func run(args []string, stdout, stderr io.Writer) int {
 	usage := func() int {
-		fmt.Fprintln(stderr, "usage: tag pool|run|show [flags] [cards]")
+		fmt.Fprintln(stderr, "usage: tag pool|run|show|eval [flags] [cards]")
 		return 2
 	}
 	if len(args) == 0 {
@@ -81,6 +83,8 @@ func run(args []string, stdout, stderr io.Writer) int {
 		cmdErr = e.run(ctx, args[1:])
 	case "show":
 		cmdErr = e.show(ctx, args[1:])
+	case "eval":
+		cmdErr = e.eval(ctx, args[1:])
 	default:
 		return usage()
 	}
@@ -306,6 +310,105 @@ func (e *env) show(ctx context.Context, args []string) error {
 			fmt.Fprintln(e.stdout)
 		}
 		printCard(e.stdout, c, tags, reviewed)
+	}
+	return nil
+}
+
+// DefaultEval is the hand-tagged eval set, relative to the repo root.
+const DefaultEval = "data/eval/tags.json"
+
+func (e *env) eval(ctx context.Context, args []string) error {
+	fs := flag.NewFlagSet("eval", flag.ContinueOnError)
+	evalPath := fs.String("set", DefaultEval, "eval set file")
+	source := fs.String("source", "rules", "tags to score: rules (run now), store (merged store tags) or llm (ask Claude now, one request per card)")
+	storePath := fs.String("store", DefaultStore, "tag store file, for --source store")
+	model := fs.String("model", tag.DefaultModel, "Claude model, for --source llm")
+	if err := fs.Parse(args); err != nil {
+		return err
+	}
+	b, err := os.ReadFile(*evalPath)
+	if err != nil {
+		return err
+	}
+	var set struct {
+		Cards []struct {
+			Card string   `json:"card"`
+			Tags []string `json:"tags"`
+		} `json:"cards"`
+	}
+	if err := json.Unmarshal(b, &set); err != nil {
+		return fmt.Errorf("reading %s: %w", *evalPath, err)
+	}
+	names := make([]string, len(set.Cards))
+	gold := map[string][]string{}
+	for i, c := range set.Cards {
+		names[i] = c.Card
+		gold[c.Card] = c.Tags
+	}
+	cards, err := resolve(ctx, e.client, names)
+	if err != nil {
+		return err
+	}
+
+	var tagger func(*catalog.Card) ([]tag.Tag, error)
+	switch *source {
+	case "rules":
+		tagger = func(c *catalog.Card) ([]tag.Tag, error) { return tag.Rules{}.Tag(ctx, c) }
+	case "llm":
+		claude := &tag.Claude{Client: anthropic.NewClient(), Model: *model}
+		tagger = func(c *catalog.Card) ([]tag.Tag, error) { return claude.Tag(ctx, c) }
+	case "store":
+		store, err := tag.LoadStore(*storePath)
+		if err != nil {
+			return err
+		}
+		tagger = func(c *catalog.Card) ([]tag.Tag, error) {
+			if entry := store.Get(c); entry != nil {
+				return entry.Tags, nil
+			}
+			return nil, nil
+		}
+	default:
+		return fmt.Errorf("unknown --source %q", *source)
+	}
+
+	pred := map[string][]string{}
+	for i, c := range cards {
+		tags, err := tagger(c)
+		if err != nil {
+			return err
+		}
+		for _, t := range tags {
+			pred[names[i]] = append(pred[names[i]], t.Key())
+		}
+	}
+	r := tag.Score(gold, pred)
+
+	pct := func(v float64, ok bool) string {
+		if !ok {
+			return "-"
+		}
+		return fmt.Sprintf("%.0f%%", v*100)
+	}
+	fmt.Fprintf(e.stdout, "%s on %d cards: precision %s, recall %s (%d right, %d extra, %d missed)\n\n",
+		*source, len(cards), pct(r.Precision, r.TP+r.FP > 0), pct(r.Recall, r.TP+r.FN > 0), r.TP, r.FP, r.FN)
+	tw := tabwriter.NewWriter(e.stdout, 0, 0, 2, ' ', 0)
+	fmt.Fprintln(tw, "TERM\tPRECISION\tRECALL\tRIGHT\tEXTRA\tMISSED")
+	for _, t := range r.Terms {
+		fmt.Fprintf(tw, "%s\t%s\t%s\t%d\t%d\t%d\n", t.Term, pct(t.Precision, t.HasPrecision), pct(t.Recall, t.HasRecall), t.TP, t.FP, t.FN)
+	}
+	tw.Flush()
+	if len(r.Diffs) > 0 {
+		fmt.Fprintln(e.stdout, "\ndisagreements:")
+		for _, d := range r.Diffs {
+			fmt.Fprintf(e.stdout, "  %s\n", d.Card)
+			for _, k := range d.Missing {
+				fmt.Fprintf(e.stdout, "    missed %s\n", k)
+			}
+			for _, k := range d.Extra {
+				fmt.Fprintf(e.stdout, "    extra  %s\n", k)
+			}
+		}
 	}
 	return nil
 }

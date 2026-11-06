@@ -1,0 +1,20 @@
+{
+  "note": "Hand-checked gold tags for 'tag eval'. Each card is a decklist line without the quantity. Seeded by Claude Code on 2026-11-05; review and grow toward ~200 cards.",
+  "cards": [
+    {"card": "Ultra Ball MEG 131", "tags": ["provides:search-pokemon", "provides:discard-from-hand"]},
+    {"card": "Rare Candy MEG 125", "tags": ["provides:evolution-accel"]},
+    {"card": "Boss's Orders MEG 114", "tags": ["provides:gust"]},
+    {"card": "Arven SVI 166", "tags": ["provides:search-trainer"]},
+    {"card": "Night Stretcher MEG 173", "tags": ["provides:recover-pokemon", "provides:recover-energy"]},
+    {"card": "Energy Switch MEG 115", "tags": ["provides:energy-move"]},
+    {"card": "Iono PAF 80", "tags": ["provides:draw", "provides:hand-disruption"]},
+    {"card": "Mega Lucario ex MEG 77", "tags": ["needs:energy-attached:Fighting", "needs:energy-in-discard", "needs:search-pokemon", "provides:energy-accel-discard:Fighting"]},
+    {"card": "Dragapult ex TWM 130", "tags": ["needs:energy-attached:Fire", "needs:energy-attached:Psychic", "needs:evolution-accel", "needs:search-pokemon", "provides:spread-damage"]},
+    {"card": "Gardevoir ex SVI 86", "tags": ["needs:energy-attached:Psychic", "needs:energy-in-discard", "needs:evolution-accel", "needs:search-pokemon", "provides:energy-accel-discard:Psychic"]},
+    {"card": "Area Zero Underdepths SCR 131", "tags": ["provides:bench-expand"]},
+    {"card": "Crispin SCR 133", "tags": ["provides:search-energy", "provides:energy-accel-deck"]},
+    {"card": "Professor's Research BLK 85", "tags": ["provides:draw", "provides:discard-from-hand"]},
+    {"card": "Pidgeot ex OBF 164", "tags": ["needs:evolution-accel", "needs:search-pokemon", "provides:search-pokemon", "provides:search-trainer"]},
+    {"card": "Psychic Energy MEE 13", "tags": []}
+  ]
+}

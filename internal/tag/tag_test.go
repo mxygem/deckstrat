@@ -203,3 +203,33 @@ func TestStore(t *testing.T) {
 		t.Error("a reprint should find the original's tags")
 	}
 }
+
+func TestScore(t *testing.T) {
+	gold := map[string][]string{
+		"Ultra Ball": {"provides:search-pokemon", "provides:discard-from-hand"},
+		"Crispin":    {"provides:search-energy", "provides:energy-accel-deck"},
+		"Gardevoir":  {"needs:energy-attached:Psychic"},
+	}
+	pred := map[string][]string{
+		"Ultra Ball": {"provides:search-pokemon", "provides:discard-from-hand"},
+		"Crispin":    {"provides:search-energy", "provides:draw"},
+		"Gardevoir":  {"needs:energy-attached:Fire"},
+	}
+	r := Score(gold, pred)
+	if r.TP != 3 || r.FP != 2 || r.FN != 2 {
+		t.Errorf("TP/FP/FN = %d/%d/%d, want 3/2/2", r.TP, r.FP, r.FN)
+	}
+	if len(r.Diffs) != 2 || r.Diffs[0].Card != "Crispin" || r.Diffs[0].Missing[0] != "provides:energy-accel-deck" {
+		t.Errorf("diffs = %+v", r.Diffs)
+	}
+	var energy TermScore
+	for _, ts := range r.Terms {
+		if ts.Term == "needs:energy-attached" {
+			energy = ts
+		}
+	}
+	// A wrong qualifier is both a false positive and a miss.
+	if energy.FP != 1 || energy.FN != 1 || energy.TP != 0 || !energy.HasPrecision {
+		t.Errorf("energy-attached = %+v", energy)
+	}
+}
