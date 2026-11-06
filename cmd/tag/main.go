@@ -1,8 +1,12 @@
 // Command tag gives cards needs and provides tags.
 //
 //	tag pool [-f standard] [--refresh]   build or load a format's card pool
-//	tag run  [-f standard]               tag every card in the pool
-//	tag show <card> [<card>...]          print a card's tags
+//	tag run  [-f standard] [--llm]       tag every card in the pool
+//	tag show [--llm] <card> [<card>...]  print a card's tags
+//
+// --llm also asks Claude, which needs ANTHROPIC_API_KEY or an "ant auth
+// login" profile. run sends one Message Batch (half price) and saves its
+// ID, so an interrupted run resumes instead of paying twice.
 //
 // Cards are named as decklist lines without the quantity: a name, or a
 // name with a TCG Live set code and number ("Ultra Ball MEG 131").
@@ -19,6 +23,8 @@ import (
 	"strings"
 	"text/tabwriter"
 	"time"
+
+	"github.com/anthropics/anthropic-sdk-go/v2"
 
 	"github.com/mxygem/deckstrat/internal/catalog"
 	"github.com/mxygem/deckstrat/internal/catalog/tcgdex"
@@ -140,6 +146,10 @@ func (e *env) run(ctx context.Context, args []string) error {
 	fs := flag.NewFlagSet("run", flag.ContinueOnError)
 	formatID := fs.StringP("format", "f", "standard", "format whose pool to tag")
 	storePath := fs.String("store", DefaultStore, "tag store file")
+	useLLM := fs.Bool("llm", false, "also tag with Claude, in one Message Batch")
+	retag := fs.Bool("retag", false, "with --llm, retag cards that already have Claude tags")
+	limit := fs.Int("limit", 0, "with --llm, tag at most this many cards (0 means all)")
+	model := fs.String("model", tag.DefaultModel, "Claude model")
 	if err := fs.Parse(args); err != nil {
 		return err
 	}
@@ -151,30 +161,115 @@ func (e *env) run(ctx context.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	tagged, untagged := 0, 0
+
+	// Rules first, keeping Claude and human tags already stored.
+	tagged := 0
 	for _, c := range p.Cards {
 		tags, err := tag.Rules{}.Tag(ctx, c)
 		if err != nil {
 			return err
 		}
+		if old := store.Get(c); old != nil {
+			tags = append(tags, sourced(old.Tags, tag.LLM)...)
+		}
 		store.Put(c, tags)
 		if len(tags) > 0 {
 			tagged++
-		} else {
-			untagged++
 		}
 	}
 	if err := store.Save(*storePath); err != nil {
 		return err
 	}
-	fmt.Fprintf(e.stdout, "tagged %d of %d cards with rules (%d got no tags); wrote %s\n",
-		tagged, len(p.Cards), untagged, *storePath)
+	fmt.Fprintf(e.stdout, "rules: tagged %d of %d cards; wrote %s\n", tagged, len(p.Cards), *storePath)
+	if !*useLLM {
+		return nil
+	}
+
+	var todo []*catalog.Card
+	for _, c := range p.Cards {
+		old := store.Get(c)
+		if old != nil && (old.Reviewed || (!*retag && len(sourced(old.Tags, tag.LLM)) > 0)) {
+			continue
+		}
+		todo = append(todo, c)
+	}
+	if *limit > 0 && len(todo) > *limit {
+		todo = todo[:*limit]
+	}
+	if len(todo) == 0 {
+		fmt.Fprintln(e.stdout, "claude: every card already has Claude tags (use --retag to redo them)")
+		return nil
+	}
+
+	claude := &tag.Claude{Client: anthropic.NewClient(), Model: *model, Progress: func(n anthropic.MessageBatchRequestCounts) {
+		fmt.Fprintf(e.stderr, "  batch: %d processing, %d succeeded, %d errored\n", n.Processing, n.Succeeded, n.Errored)
+	}}
+	pendingPath := filepath.Join(e.cfg.CacheDir, "tag-batch-"+p.Format+".txt")
+	var results []tag.BatchResult
+	if b, err := os.ReadFile(pendingPath); err == nil && strings.TrimSpace(string(b)) != "" {
+		id := strings.TrimSpace(string(b))
+		fmt.Fprintf(e.stderr, "resuming batch %s\n", id)
+		results, err = claude.Results(ctx, id, todo)
+		if err != nil {
+			return err
+		}
+	} else {
+		fmt.Fprintf(e.stderr, "sending %d cards to %s in one batch...\n", len(todo), *model)
+		results, err = claude.Batch(ctx, todo, func(id string) {
+			if err := os.WriteFile(pendingPath, []byte(id+"\n"), 0o600); err != nil {
+				fmt.Fprintln(e.stderr, "warning: can't save the batch ID:", err)
+			}
+			fmt.Fprintf(e.stderr, "batch %s submitted; rerun the same command to resume if interrupted\n", id)
+		})
+		if err != nil {
+			return err
+		}
+	}
+
+	var ok, failed int
+	var usage anthropic.Usage
+	for _, r := range results {
+		if r.Err != nil {
+			failed++
+			fmt.Fprintln(e.stderr, " ", r.Err)
+			continue
+		}
+		ok++
+		usage.InputTokens += r.Usage.InputTokens
+		usage.OutputTokens += r.Usage.OutputTokens
+		usage.CacheReadInputTokens += r.Usage.CacheReadInputTokens
+		usage.CacheCreationInputTokens += r.Usage.CacheCreationInputTokens
+		rules, err := tag.Rules{}.Tag(ctx, r.Card)
+		if err != nil {
+			return err
+		}
+		store.Put(r.Card, append(rules, r.Tags...))
+	}
+	if err := store.Save(*storePath); err != nil {
+		return err
+	}
+	os.Remove(pendingPath)
+	fmt.Fprintf(e.stdout, "claude: tagged %d cards, %d failed; tokens: %d input, %d cache read, %d cache write, %d output\n",
+		ok, failed, usage.InputTokens, usage.CacheReadInputTokens, usage.CacheCreationInputTokens, usage.OutputTokens)
 	return nil
+}
+
+// sourced keeps the tags from one source.
+func sourced(tags []tag.Tag, src tag.Source) []tag.Tag {
+	var out []tag.Tag
+	for _, t := range tags {
+		if t.Source == src {
+			out = append(out, t)
+		}
+	}
+	return out
 }
 
 func (e *env) show(ctx context.Context, args []string) error {
 	fs := flag.NewFlagSet("show", flag.ContinueOnError)
 	storePath := fs.String("store", DefaultStore, "tag store file")
+	useLLM := fs.Bool("llm", false, "also ask Claude now, one request per card (not saved)")
+	model := fs.String("model", tag.DefaultModel, "Claude model")
 	if err := fs.Parse(args); err != nil {
 		return err
 	}
@@ -193,6 +288,14 @@ func (e *env) show(ctx context.Context, args []string) error {
 		tags, err := tag.Rules{}.Tag(ctx, c)
 		if err != nil {
 			return err
+		}
+		if *useLLM {
+			claude := &tag.Claude{Client: anthropic.NewClient(), Model: *model}
+			llmTags, err := claude.Tag(ctx, c)
+			if err != nil {
+				return err
+			}
+			tags = tag.Merge(tags, llmTags)
 		}
 		reviewed := false
 		if entry := store.Get(c); entry != nil {
