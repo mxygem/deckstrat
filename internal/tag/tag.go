@@ -105,9 +105,10 @@ func (v *Vocabulary) Term(id string) (Term, bool) {
 	return v.Terms[i], true
 }
 
-// Satisfies reports whether a provided tag meets a needed one. Qualifiers
-// must match when both have one: Fire acceleration does not meet a
-// Psychic Energy need, but untyped acceleration does.
+// Satisfies reports whether a provided tag meets a needed one. A typed
+// provide meets only a need of the same type: Fire acceleration does not
+// meet a Psychic or an untyped Energy need. An untyped provide, such as
+// Energy Switch, meets any.
 func (v *Vocabulary) Satisfies(provided, needed Tag) bool {
 	if provided.Kind != Provides || needed.Kind != Needs {
 		return false
@@ -123,7 +124,7 @@ func (v *Vocabulary) Satisfies(provided, needed Tag) bool {
 	if !slices.Contains(by, provided.Term) {
 		return false
 	}
-	return provided.Qualifier == "" || needed.Qualifier == "" || provided.Qualifier == needed.Qualifier
+	return provided.Qualifier == "" || provided.Qualifier == needed.Qualifier
 }
 
 // Check reports why a tag does not fit the vocabulary, or nil.

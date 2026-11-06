@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 	"slices"
@@ -167,6 +168,36 @@ func preferred(a, b *catalog.Card) bool {
 		return false
 	}
 	return a.ID < b.ID
+}
+
+// LoadOrBuild returns the pool saved at path when it was built today, and
+// otherwise builds it, saves it and returns it. Progress lines go to log
+// when it is not nil.
+func LoadOrBuild(ctx context.Context, path string, l Lister, cat catalog.Catalog, f *format.Format, refresh bool, log io.Writer) (*Pool, error) {
+	if !refresh {
+		p, err := Load(path)
+		if err != nil {
+			return nil, err
+		}
+		if p != nil && p.Format == f.ID && p.AsOf == time.Now().Format(time.DateOnly) {
+			return p, nil
+		}
+	}
+	if log == nil {
+		log = io.Discard
+	}
+	fmt.Fprintf(log, "building the %s pool (the first run fetches a few thousand cards)...\n", f.Name)
+	last := time.Now()
+	p, err := Build(ctx, l, cat, f, Options{Progress: func(done, total int) {
+		if time.Since(last) > 2*time.Second || done == total {
+			fmt.Fprintf(log, "  %d/%d cards\n", done, total)
+			last = time.Now()
+		}
+	}})
+	if err != nil {
+		return nil, err
+	}
+	return p, p.Save(path)
 }
 
 // Load reads a saved pool. It returns nil, nil when the file is missing.

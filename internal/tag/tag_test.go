@@ -116,6 +116,7 @@ func TestSatisfies(t *testing.T) {
 		{prov("energy-accel-discard", "Psychic"), need("energy-attached", "Psychic"), true},
 		{prov("energy-accel-discard", "Fire"), need("energy-attached", "Psychic"), false},
 		{prov("energy-move", ""), need("energy-attached", "Psychic"), true},
+		{prov("energy-accel-deck", "Darkness"), need("energy-attached", ""), false},
 		{prov("discard-from-hand", ""), need("energy-in-discard", ""), true},
 		{prov("search-pokemon", ""), need("search-pokemon", ""), true},
 		{prov("bench-expand", ""), need("bench-size", ""), true},

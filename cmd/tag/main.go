@@ -95,35 +95,14 @@ func run(args []string, stdout, stderr io.Writer) int {
 	return 0
 }
 
-// loadPool reads the cached pool, rebuilding it when missing, older than
-// a day, or refresh is set.
+// loadPool reads today's cached pool or builds it.
 func (e *env) loadPool(ctx context.Context, formatID string, refresh bool) (*pool.Pool, error) {
 	f, err := format.Get(formatID)
 	if err != nil {
 		return nil, err
 	}
 	path := filepath.Join(e.cfg.CacheDir, "pool", f.ID+".json")
-	if !refresh {
-		p, err := pool.Load(path)
-		if err != nil {
-			return nil, err
-		}
-		if p != nil && p.AsOf == time.Now().Format(time.DateOnly) {
-			return p, nil
-		}
-	}
-	fmt.Fprintf(e.stderr, "building the %s pool (first run fetches a few thousand cards)...\n", f.Name)
-	last := time.Now()
-	p, err := pool.Build(ctx, e.client, e.client, f, pool.Options{Progress: func(done, total int) {
-		if time.Since(last) > 2*time.Second || done == total {
-			fmt.Fprintf(e.stderr, "  %d/%d cards\n", done, total)
-			last = time.Now()
-		}
-	}})
-	if err != nil {
-		return nil, err
-	}
-	return p, p.Save(path)
+	return pool.LoadOrBuild(ctx, path, e.client, e.client, f, refresh, e.stderr)
 }
 
 func (e *env) pool(ctx context.Context, args []string) error {

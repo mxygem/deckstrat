@@ -29,6 +29,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Sand Attack costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.9,
@@ -89,6 +96,13 @@
       "name": "Team Rocket's Porygon2",
       "card_id": "sv10-154",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "R Command costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -226,6 +240,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Horn Drill costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.7,
@@ -271,7 +292,15 @@
     "01ae2a442c978048": {
       "name": "Team Rocket's Kangaskhan ex",
       "card_id": "me02.5-162",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Comet Punch costs 2 Colorless Energy"
+        }
+      ]
     },
     "01bb9eb2a02a416b": {
       "name": "Erika's Bellsprout",
@@ -312,6 +341,13 @@
       "name": "Ethan's Pinsir",
       "card_id": "sv10-001",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rallying Horn costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -491,6 +527,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hook costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "energy-in-discard",
           "source": "rule",
           "confidence": 0.75,
@@ -619,6 +662,13 @@
       "name": "Slowbro",
       "card_id": "me05-030",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Zen Headbutt costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -752,6 +802,13 @@
       "name": "Great Tusk",
       "card_id": "sv08.5-055",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Land Collapse costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -1098,6 +1155,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Razor Wing costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Metal",
           "source": "rule",
           "confidence": 0.9,
@@ -1277,6 +1341,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Metal Blast costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Metal",
           "source": "rule",
           "confidence": 0.7,
@@ -1309,6 +1380,13 @@
       "name": "Snorlax",
       "card_id": "30th-119",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Collapse costs 3 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "heal",
@@ -1384,6 +1462,13 @@
       "name": "Scream Tail",
       "card_id": "sv05-077",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hyper Voice costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "heal",
@@ -1518,6 +1603,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Metronome costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Psychic",
           "source": "rule",
           "confidence": 0.9,
@@ -1629,7 +1721,15 @@
     "09262c18bddb3989": {
       "name": "Clefairy",
       "card_id": "me02.5-074",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Moon Kick costs 2 Colorless Energy"
+        }
+      ]
     },
     "093a7dbf30365256": {
       "name": "Deoxys",
@@ -1762,6 +1862,13 @@
       "card_id": "me02-027",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tackle costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-trainer",
           "source": "rule",
@@ -1795,6 +1902,13 @@
       "name": "Kilowattrel ex",
       "card_id": "sv08-068",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Thunder Lance costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -1863,6 +1977,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Slash costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Lightning",
           "source": "rule",
           "confidence": 0.9,
@@ -1914,7 +2035,15 @@
     "0b763fce6cdd469b": {
       "name": "Eevee",
       "card_id": "30th-117",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Quick Attack costs 2 Colorless Energy"
+        }
+      ]
     },
     "0b7a8fe975943da4": {
       "name": "Gossifleur",
@@ -2035,6 +2164,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hammer In costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -2046,6 +2182,13 @@
       "name": "N's Darmanitan",
       "card_id": "me02.5-033",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Back Draft costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -2254,6 +2397,13 @@
       "card_id": "sv08-097",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tackle costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-energy",
           "source": "rule",
@@ -2303,6 +2453,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Boss Headbutt costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -2326,7 +2483,15 @@
     "0eb9b9c15108202a": {
       "name": "Psyduck",
       "card_id": "me02.5-039",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ram costs 2 Colorless Energy"
+        }
+      ]
     },
     "0f21fd183a7beb11": {
       "name": "Canari",
@@ -2432,6 +2597,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Chew Off costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.9,
@@ -2522,6 +2694,13 @@
       "card_id": "30th-113",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Pay Day costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "draw",
           "source": "rule",
@@ -2593,6 +2772,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Snow Coating costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.9,
@@ -2625,6 +2811,13 @@
       "name": "Zoroark",
       "card_id": "sv06.5-032",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Illusory Hijacking costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -2803,7 +2996,15 @@
     "114e14a3a13e9d49": {
       "name": "Cramorant",
       "card_id": "sv09-137",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ceaseless Spitting costs 2 Colorless Energy"
+        }
+      ]
     },
     "115ff95ba1ad9c49": {
       "name": "Stunky",
@@ -3019,6 +3220,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Short-Circuit Knuckle costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Lightning",
           "source": "rule",
           "confidence": 0.9,
@@ -3075,6 +3283,13 @@
       "name": "Mega Meganium ex",
       "card_id": "me02.5-010",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Giant Bouquet costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "evolution-accel",
@@ -3903,6 +4118,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bite costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -3926,6 +4148,13 @@
       "name": "Floragato",
       "card_id": "sv09-017",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Magical Leaf costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -4071,6 +4300,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Light Punch costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.9,
@@ -4194,6 +4430,13 @@
       "card_id": "sv06-133",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Boundless Power costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "energy-accel-hand",
           "source": "rule",
@@ -4206,6 +4449,13 @@
       "name": "Unfezant",
       "card_id": "sv05-135",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Opposing Winds costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "evolution-accel",
@@ -4425,6 +4675,13 @@
       "card_id": "sv08.5-088",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bite costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "damage-prevention",
           "source": "rule",
@@ -4612,6 +4869,13 @@
       "card_id": "me04-004",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Chomp Whole costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "switch",
           "source": "rule",
@@ -4736,6 +5000,13 @@
       "name": "Chimecho",
       "card_id": "sv06-085",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Homeward Chime costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -5113,6 +5384,13 @@
       "card_id": "me02.5-172",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ear Force costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "energy-accel-deck",
           "source": "rule",
@@ -5253,6 +5531,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Round costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.9,
@@ -5360,6 +5645,13 @@
       "name": "Beheeyem",
       "card_id": "sv10.5b-041",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Psychic costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -5477,6 +5769,13 @@
       "name": "Melmetal",
       "card_id": "sv07-104",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Wrack Down costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -5659,6 +5958,13 @@
       "name": "Bronzong",
       "card_id": "me02-072",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tool Drop costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -5917,7 +6223,15 @@
     "24093352a44f8ece": {
       "name": "Cubone",
       "card_id": "sv09-076",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Light Punch costs 2 Colorless Energy"
+        }
+      ]
     },
     "241d5ace0a1be93e": {
       "name": "Mudbray",
@@ -5990,6 +6304,13 @@
       "card_id": "me05-046",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Dig Claws costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-pokemon",
           "source": "rule",
@@ -6016,6 +6337,13 @@
       "name": "Greavard",
       "card_id": "sv07-070",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Paw Shake Punch costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -6112,6 +6440,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hydro Pump costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -6123,6 +6458,13 @@
       "name": "Nosepass",
       "card_id": "sv10-097",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rock Throw costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -6163,6 +6505,13 @@
       "name": "Pikachu",
       "card_id": "30th-043",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tropical Vibes costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "draw",
@@ -6215,7 +6564,15 @@
     "274973215cb60a09": {
       "name": "Froakie",
       "card_id": "mep-060",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Pound costs 2 Colorless Energy"
+        }
+      ]
     },
     "280117e4bcccdf35": {
       "name": "Banette",
@@ -6293,6 +6650,13 @@
       "name": "Kangaskhan",
       "card_id": "svp-202",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Mega Punch costs 3 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "search-pokemon",
@@ -6592,7 +6956,15 @@
     "2ab79fd681193345": {
       "name": "Chewtle",
       "card_id": "sv07-043",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Headbutt costs 3 Colorless Energy"
+        }
+      ]
     },
     "2aece68f122f9820": {
       "name": "Pikachu",
@@ -6612,6 +6984,13 @@
       "name": "Poliwrath",
       "card_id": "sv06-043",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Jumping Uppercut costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -6989,6 +7368,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Razor Wing costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -7040,6 +7426,13 @@
       "name": "Suicune",
       "card_id": "sv08.5-024",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Overrun costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -7193,7 +7586,15 @@
     "2f8ad3afbbf4e8df": {
       "name": "Chinchou",
       "card_id": "sv07-048",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Double Voltage costs 2 Colorless Energy"
+        }
+      ]
     },
     "2f990f12f02893ac": {
       "name": "Pokégear 3.0",
@@ -7268,6 +7669,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gentle Slap costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -7307,6 +7715,13 @@
       "name": "Goldeen",
       "card_id": "sv08.5-020",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Whirlpool costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "energy-disruption",
@@ -7378,6 +7793,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Sharp Fin costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.7,
@@ -7403,6 +7825,13 @@
       "name": "Eevee",
       "card_id": "sv06.5-050",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Headbutt costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "search-energy",
@@ -7663,6 +8092,13 @@
       "card_id": "sv08-144",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Mega Punch costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "draw",
           "source": "rule",
@@ -7703,6 +8139,13 @@
       "name": "Probopass",
       "card_id": "sv10-098",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Mountain Drop costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -7945,7 +8388,15 @@
     "34dd22a69183e8b8": {
       "name": "Rufflet",
       "card_id": "sv10.5b-077",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Glide costs 2 Colorless Energy"
+        }
+      ]
     },
     "34e40400845e0241": {
       "name": "Erika's Oddish",
@@ -8338,6 +8789,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Speed Dive costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -8518,6 +8976,13 @@
       "card_id": "mep-025",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rapid-Fire Combo costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "draw",
           "source": "rule",
@@ -8579,6 +9044,13 @@
       "card_id": "sv07-112",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Destructive Horn costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "energy-disruption",
           "source": "rule",
@@ -8618,7 +9090,15 @@
     "3b4ec658358d925c": {
       "name": "Rufflet",
       "card_id": "sv08-152",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Flap costs 2 Colorless Energy"
+        }
+      ]
     },
     "3b5277348235d0e6": {
       "name": "Quilladin",
@@ -8844,6 +9324,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Air Slash costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -9022,6 +9509,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ram costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.9,
@@ -9054,6 +9548,13 @@
       "name": "Hop's Corvisquire",
       "card_id": "sv09-134",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Razor Wing costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -9274,6 +9775,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Double Hit costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Darkness",
           "source": "rule",
           "confidence": 0.9,
@@ -9313,6 +9821,13 @@
       "name": "Noivern",
       "card_id": "me02.5-157",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Agility costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -9359,6 +9874,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tackle costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Grass",
           "source": "rule",
           "confidence": 0.7,
@@ -9390,7 +9912,15 @@
     "406b5928b4496560": {
       "name": "Orthworm ex",
       "card_id": "sv07-110",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rock Tomb costs 4 Colorless Energy"
+        }
+      ]
     },
     "40951f098db6f3d7": {
       "name": "Victini",
@@ -9466,6 +9996,13 @@
       "card_id": "30th-115",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Surprisingly Transform costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-pokemon",
           "source": "rule",
@@ -9498,6 +10035,13 @@
       "name": "Klang",
       "card_id": "sv07-100",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Iron Tackle costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -9572,6 +10116,13 @@
       "name": "Cosmoem",
       "card_id": "30th-079",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Stiffen costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -9679,7 +10230,15 @@
     "42ce138d6a436dc7": {
       "name": "Larry's Rufflet",
       "card_id": "me02.5-173",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Peck the Wound costs 2 Colorless Energy"
+        }
+      ]
     },
     "430b3120e2754d74": {
       "name": "Primeape",
@@ -9763,12 +10322,27 @@
     "4407f89f3ecf4ab7": {
       "name": "Goldeen",
       "card_id": "me05-013",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Pierce costs 2 Colorless Energy"
+        }
+      ]
     },
     "4426a4cdf36a49fe": {
       "name": "Meowscarada",
       "card_id": "sv09-018",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rising Bloom costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "evolution-accel",
@@ -9788,12 +10362,27 @@
     "443569f4c3145bf6": {
       "name": "Aipom",
       "card_id": "me02-078",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Astonish costs 2 Colorless Energy"
+        }
+      ]
     },
     "4456cfddb4985b9c": {
       "name": "Noivern ex",
       "card_id": "sv08.5-091",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Sonic Blast costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -9973,12 +10562,28 @@
     "4510388039e01822": {
       "name": "Hop's Rookidee",
       "card_id": "sv09-133",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Peck costs 2 Colorless Energy"
+        }
+      ]
     },
     "451dc41598694cc2": {
       "name": "Tauros",
       "card_id": "me04-069",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Target Together costs 2 Colorless Energy"
+        }
+      ]
     },
     "4530518b0ff8114f": {
       "name": "Erika's Vileplume ex",
@@ -10037,7 +10642,15 @@
     "4581261ae5bac7da": {
       "name": "Kecleon",
       "card_id": "sv08-150",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Lick Whip costs 2 Colorless Energy"
+        }
+      ]
     },
     "45aae3b38a592488": {
       "name": "Roggenrola",
@@ -10092,6 +10705,13 @@
       "name": "Ducklett",
       "card_id": "sv10.5w-025",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Wing Attack costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "energy-disruption",
@@ -10388,12 +11008,27 @@
     "47afcaa1dfe9ca66": {
       "name": "Tauros",
       "card_id": "sv10-152",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Clean Hit costs 2 Colorless Energy"
+        }
+      ]
     },
     "47d8a6f17a4114f3": {
       "name": "Golurk",
       "card_id": "sv05-088",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Fighting Fist costs 4 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -10422,6 +11057,13 @@
       "name": "Kyurem ex",
       "card_id": "sv10.5b-028",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Slash costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -10523,7 +11165,15 @@
     "48b75648cd4a4062": {
       "name": "Type: Null",
       "card_id": "me05-069",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Power Edge costs 2 Colorless Energy"
+        }
+      ]
     },
     "48b966ddcc21b040": {
       "name": "Team Rocket's Rattata",
@@ -10533,7 +11183,15 @@
     "48d1c0c546b3554f": {
       "name": "Pikachu",
       "card_id": "30th-046",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Smash Kick costs 2 Colorless Energy"
+        }
+      ]
     },
     "48f3ea33efd5e477": {
       "name": "Shuppet",
@@ -10637,7 +11295,15 @@
     "4915e7b1c29dc8bd": {
       "name": "Grubbin",
       "card_id": "me02.5-017",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ambush costs 2 Colorless Energy"
+        }
+      ]
     },
     "497ec427917f99fe": {
       "name": "Kyogre",
@@ -10792,6 +11458,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Punch costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.7,
@@ -10845,6 +11518,13 @@
       "name": "Wailord",
       "card_id": "sv09-041",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hydro Pump costs 4 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -11140,12 +11820,27 @@
     "4bc320d2809ad590": {
       "name": "Grubbin",
       "card_id": "sv05-018",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Vise Grip costs 2 Colorless Energy"
+        }
+      ]
     },
     "4bedaf464e9e489c": {
       "name": "Gholdengo",
       "card_id": "sv08-131",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Surf Back costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -11236,7 +11931,15 @@
     "4c659cc7b18ee875": {
       "name": "Togepi",
       "card_id": "me02.5-080",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Pound costs 2 Colorless Energy"
+        }
+      ]
     },
     "4c916bfaa1ccf06a": {
       "name": "Ethan's Magcargo",
@@ -11346,6 +12049,13 @@
           "source": "rule",
           "confidence": 0.85,
           "reason": "attack Rage: \"for each damage counter on this\""
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rage costs 2 Colorless Energy"
         }
       ]
     },
@@ -11439,6 +12149,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Disorienting Flash costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Lightning",
           "source": "rule",
           "confidence": 0.9,
@@ -11526,6 +12243,13 @@
       "name": "Swellow",
       "card_id": "sv10-157",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Speed Wing costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -11673,6 +12397,13 @@
       "name": "Lopunny",
       "card_id": "me01-108",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Spiral Kick costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -11906,6 +12637,13 @@
       "card_id": "sv07-099",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Beam costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "draw",
           "source": "rule",
@@ -12049,6 +12787,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Assault Laser costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.9,
@@ -12116,6 +12861,13 @@
       "name": "Falinks",
       "card_id": "sv07-088",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "All-Out Attack costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "search-pokemon",
@@ -12201,6 +12953,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Energy Blender costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -12226,6 +12985,13 @@
       "name": "Vanilluxe",
       "card_id": "sv10.5w-029",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ram costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -12376,6 +13142,13 @@
       "card_id": "me03-066",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Peck costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-pokemon",
           "source": "rule",
@@ -12515,6 +13288,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Fury Swipes costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -12601,12 +13381,27 @@
     "55d90a6a5d6f3bd5": {
       "name": "Darumaka",
       "card_id": "me02-015",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Blaze Ball costs 3 Colorless Energy"
+        }
+      ]
     },
     "55fee2ccd18d1ed2": {
       "name": "Noctowl",
       "card_id": "sv05-127",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Talon Hunt costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -12638,7 +13433,15 @@
     "5626de844f625513": {
       "name": "Nosepass",
       "card_id": "sv06-101",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Power Rush costs 3 Colorless Energy"
+        }
+      ]
     },
     "563b1c722628b05f": {
       "name": "Brambleghast",
@@ -12707,6 +13510,13 @@
       "name": "Hisuian Zoroark",
       "card_id": "30th-123",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Swirling Resentment costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -12858,6 +13668,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Steel Tackle costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Metal",
           "source": "rule",
           "confidence": 0.7,
@@ -12876,6 +13693,13 @@
       "name": "Medicham",
       "card_id": "sv05-083",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "High Jump Kick costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -13055,6 +13879,13 @@
       "name": "Arven's Greedent",
       "card_id": "sv10-159",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rolling Tackle costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -13284,6 +14115,13 @@
       "card_id": "sv09-122",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Stealth Attack costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "damage-prevention",
           "source": "rule",
@@ -13296,6 +14134,13 @@
       "name": "Shaymin",
       "card_id": "sv05-013",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rear Kick costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -13331,6 +14176,13 @@
       "name": "Bouffalant ex",
       "card_id": "sv10.5w-077",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gold Breaker costs 3 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "damage-prevention",
@@ -13552,6 +14404,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Comet Slap costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Grass",
           "source": "rule",
           "confidence": 0.7,
@@ -13633,6 +14492,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Work Rush costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -13656,12 +14522,27 @@
     "5d25b2f1b2c10e18": {
       "name": "Wooloo",
       "card_id": "sv07-124",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Knock Over costs 2 Colorless Energy"
+        }
+      ]
     },
     "5d3c57985cf7cec2": {
       "name": "Dachsbun ex",
       "card_id": "sv07-067",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Wonder Shine costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -13682,6 +14563,13 @@
       "name": "Dubwool",
       "card_id": "sv07-125",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Knock Over costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -13788,6 +14676,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Special Roll costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -13798,7 +14693,15 @@
     "5dc9ece44cf955fc": {
       "name": "Meowth",
       "card_id": "me02-106",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Fury Swipes costs 2 Colorless Energy"
+        }
+      ]
     },
     "5de0893b595107d3": {
       "name": "Koraidon ex",
@@ -13938,6 +14841,13 @@
       "name": "Azumarill ex",
       "card_id": "me02.5-084",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Energized Balloon costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -14255,6 +15165,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Aroma Shot costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Grass",
           "source": "rule",
           "confidence": 0.7,
@@ -14386,6 +15303,13 @@
       "name": "Golurk",
       "card_id": "sv10.5b-043",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Double Smash costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -14540,6 +15464,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Steel Wing costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Metal",
           "source": "rule",
           "confidence": 0.7,
@@ -14658,6 +15589,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hydro Pump costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.7,
@@ -14724,12 +15662,27 @@
     "65779a33700ab3d7": {
       "name": "Delibird",
       "card_id": "me04-018",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Flap costs 2 Colorless Energy"
+        }
+      ]
     },
     "6582fc2c1b40e07a": {
       "name": "Team Rocket's Porygon-Z",
       "card_id": "sv10-155",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "R Command costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "evolution-accel",
@@ -14817,6 +15770,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Corkscrew Punch costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.7,
@@ -14869,6 +15829,13 @@
       "name": "Buneary",
       "card_id": "me02-083",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Kick costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "switch",
@@ -14970,6 +15937,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Foul Play costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Darkness",
           "source": "rule",
           "confidence": 0.7,
@@ -15001,6 +15975,13 @@
       "name": "Tapu Lele",
       "card_id": "sv08-092",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Perplex costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -15274,6 +16255,13 @@
       "card_id": "sv05-124",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Strength costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "hand-disruption",
           "source": "rule",
@@ -15286,6 +16274,13 @@
       "name": "Sableye",
       "card_id": "sv05-107",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Damage Collection costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -15366,6 +16361,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Try to Imitate costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.7,
@@ -15413,6 +16415,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gadget Show costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "tools-attached",
           "source": "rule",
           "confidence": 0.8,
@@ -15431,6 +16440,13 @@
       "name": "Morgrem",
       "card_id": "sv07-095",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gentle Slap costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -15643,6 +16659,13 @@
       "card_id": "me03-062",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tuck Tail costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-trainer",
           "source": "rule",
@@ -15710,7 +16733,15 @@
     "6a834d366353f7c7": {
       "name": "Tympole",
       "card_id": "sv10.5b-019",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Round costs 2 Colorless Energy"
+        }
+      ]
     },
     "6a8820837a773bc8": {
       "name": "Mega Venusaur ex",
@@ -15771,6 +16802,13 @@
       "name": "Dunsparce",
       "card_id": "sv09-120",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ram costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "switch",
@@ -15963,6 +17001,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Whap Down costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -16015,6 +17060,13 @@
       "name": "Larry's Staraptor",
       "card_id": "me02.5-170",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Feathery Strike costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "evolution-accel",
@@ -16076,6 +17128,13 @@
       "name": "Slaking ex",
       "card_id": "sv08-147",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Great Swing costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "evolution-accel",
@@ -16151,7 +17210,15 @@
     "6d6ee762c42c2724": {
       "name": "Hoothoot",
       "card_id": "sv08.5-077",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tackle costs 2 Colorless Energy"
+        }
+      ]
     },
     "6d79a7236c4d4883": {
       "name": "Mareep",
@@ -16181,6 +17248,13 @@
       "name": "Ledian",
       "card_id": "sv07-003",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Swift costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -16241,6 +17315,13 @@
       "name": "Blissey ex",
       "card_id": "sv06-134",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Return costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -16343,6 +17424,13 @@
       "name": "Doublade",
       "card_id": "me03-057",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Weaponized Swords costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -16665,6 +17753,13 @@
       "card_id": "sv06-135",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Quick Attack costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-pokemon",
           "source": "rule",
@@ -16805,6 +17900,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Upthrusting Horns costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.9,
@@ -16815,7 +17917,15 @@
     "71d1789115c6a35c": {
       "name": "Bramblin",
       "card_id": "sv05-020",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Spike Sting costs 2 Colorless Energy"
+        }
+      ]
     },
     "71d7a62128839667": {
       "name": "Cinderace ex",
@@ -16907,7 +18017,15 @@
     "722cb2e2d27dda02": {
       "name": "Marnie's Morpeko",
       "card_id": "sv10-137",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Spiky Wheel costs 3 Colorless Energy"
+        }
+      ]
     },
     "723a2cadb55a4c55": {
       "name": "Tyrantrum",
@@ -17053,6 +18171,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Odor Sleuth costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "evolution-accel",
           "source": "rule",
           "confidence": 0.8,
@@ -17138,6 +18263,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rising Lunge costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.9,
@@ -17178,6 +18310,13 @@
       "name": "Heliolisk",
       "card_id": "sv08-155",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Electroslug costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -17320,6 +18459,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Welcoming Tail costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Metal",
           "source": "rule",
           "confidence": 0.9,
@@ -17337,7 +18483,15 @@
     "7541fbfe009617d1": {
       "name": "Sandygast",
       "card_id": "sv08-090",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Sand Spray costs 3 Colorless Energy"
+        }
+      ]
     },
     "756b8d45fbb7b436": {
       "name": "Probopass",
@@ -17667,6 +18821,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Energy Loop costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Grass",
           "source": "rule",
           "confidence": 0.7,
@@ -17763,6 +18924,13 @@
       "name": "Breloom",
       "card_id": "sv10-006",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Damage Rush costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -17908,6 +19076,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Destructive Drill costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -17919,6 +19094,13 @@
       "name": "Koraidon",
       "card_id": "sv08-116",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Unrelenting Onslaught costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -17947,6 +19129,13 @@
       "name": "Klawf",
       "card_id": "sv09-090",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Snipping Pincers costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -18137,7 +19326,15 @@
     "7a4993aa455604ff": {
       "name": "Psyduck",
       "card_id": "mep-007",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Collision costs 2 Colorless Energy"
+        }
+      ]
     },
     "7a5073f1b613ab6e": {
       "name": "Bombirdier",
@@ -18187,6 +19384,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gentle Slap costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -18198,6 +19402,13 @@
       "name": "Dudunsparce",
       "card_id": "sv08.5-080",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Land Crush costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -18236,12 +19447,27 @@
     "7b02a832991fd10c": {
       "name": "N's Joltik",
       "card_id": "sv09-049",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Zapping Short costs 2 Colorless Energy"
+        }
+      ]
     },
     "7b03749c1335c80a": {
       "name": "Simisage",
       "card_id": "sv10.5b-005",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gentle Slap costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -18309,6 +19535,13 @@
       "name": "Slowpoke",
       "card_id": "me05-029",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Headbutt costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -18440,7 +19673,15 @@
     "7c5574ce67214061": {
       "name": "Pineco",
       "card_id": "sv05-002",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ram costs 3 Colorless Energy"
+        }
+      ]
     },
     "7cb31ea1af15e505": {
       "name": "Fletchinder",
@@ -18503,6 +19744,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Dig Claws costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.7,
@@ -18555,7 +19803,15 @@
     "7d89d3f8a6b2a40e": {
       "name": "Carvanha",
       "card_id": "sv05-042",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Wave Splash costs 2 Colorless Energy"
+        }
+      ]
     },
     "7d8d9382cdbae6bf": {
       "name": "Pikachu",
@@ -18665,6 +19921,13 @@
       "card_id": "sv10-010",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Smash Kick costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "bench-protection",
           "source": "rule",
@@ -18684,6 +19947,13 @@
       "name": "Jirachi ex",
       "card_id": "30th-102",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Swift costs 3 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "draw",
@@ -18833,7 +20103,15 @@
     "7ecb28d4490d6d94": {
       "name": "Rockruff",
       "card_id": "sv09-084",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Stampede costs 2 Colorless Energy"
+        }
+      ]
     },
     "7edcbe209cb49b4f": {
       "name": "Vivillon",
@@ -18941,6 +20219,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Boundless Power costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.7,
@@ -18965,7 +20250,15 @@
     "7f639abca5aee864": {
       "name": "Stufful",
       "card_id": "me01-111",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Flop costs 2 Colorless Energy"
+        }
+      ]
     },
     "7f7398bf8fac3eab": {
       "name": "Simisear",
@@ -19092,6 +20385,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bite costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.9,
@@ -19110,6 +20410,13 @@
       "name": "N's Darumaka",
       "card_id": "me02.5-032",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rolling Tackle costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -19311,7 +20618,15 @@
     "8132e7c20d1db726": {
       "name": "Iron Jugulis",
       "card_id": "sv05-139",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Blasting Wind costs 3 Colorless Energy"
+        }
+      ]
     },
     "813399ccc122f9f5": {
       "name": "Bubbly Water Energy",
@@ -19442,6 +20757,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Aero Chase costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "evolution-accel",
           "source": "rule",
           "confidence": 0.8,
@@ -19459,7 +20781,15 @@
     "81c6d1c140855632": {
       "name": "Drampa",
       "card_id": "me02.5-176",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gentle Slap costs 2 Colorless Energy"
+        }
+      ]
     },
     "81c72ebf09e52711": {
       "name": "Durant",
@@ -19486,6 +20816,13 @@
       "name": "Luxray ex",
       "card_id": "sv06-068",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Piercing Gaze costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -19571,6 +20908,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "One-derful Rumble costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Psychic",
           "source": "rule",
           "confidence": 0.9,
@@ -19589,6 +20933,13 @@
       "name": "Team Rocket's Exeggutor",
       "card_id": "me02.5-078",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tri Kinesis costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -19721,6 +21072,13 @@
       "card_id": "me02-071",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rollout costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "damage-prevention",
           "source": "rule",
@@ -19803,6 +21161,13 @@
       "card_id": "sv09-131",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gnaw costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "draw",
           "source": "rule",
@@ -19815,6 +21180,13 @@
       "name": "Larvitar",
       "card_id": "sv09-080",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Crunch costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "energy-disruption",
@@ -20015,6 +21387,13 @@
       "card_id": "me01-109",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gnaw costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "draw",
           "source": "rule",
@@ -20046,6 +21425,13 @@
       "name": "Lopunny",
       "card_id": "sv08.5-084",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rear Kick costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -20204,6 +21590,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Spike Sting costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Metal",
           "source": "rule",
           "confidence": 0.7,
@@ -20332,6 +21725,13 @@
       "name": "Abomasnow",
       "card_id": "sv10-060",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Lunge Out costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -20582,6 +21982,13 @@
       "name": "Dartrix",
       "card_id": "me03-011",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Feather Shot costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -21039,12 +22446,28 @@
     "8bfa9f5b1b5598b7": {
       "name": "Pikachu",
       "card_id": "30th-035",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rollout costs 2 Colorless Energy"
+        }
+      ]
     },
     "8bffce1a4aa63a5b": {
       "name": "Drampa",
       "card_id": "sv05-138",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Raging Cannon costs 3 Colorless Energy"
+        }
+      ]
     },
     "8c03d5dc208bb30e": {
       "name": "Antique Skull Fossil",
@@ -21320,6 +22743,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Nebula Beam costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.7,
@@ -21365,7 +22795,15 @@
     "8e23728a85fe8527": {
       "name": "Oranguru",
       "card_id": "sv08-156",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Smack costs 3 Colorless Energy"
+        }
+      ]
     },
     "8e26be7ad7800c22": {
       "name": "Accelgor",
@@ -21428,6 +22866,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Take Down costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -21439,6 +22884,13 @@
       "name": "Minior",
       "card_id": "30th-124",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Shoot Meteors costs 3 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "energy-disruption",
@@ -21483,6 +22935,13 @@
       "name": "Mawile",
       "card_id": "sv05-112",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Invite and Strike costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -21661,6 +23120,13 @@
       "name": "Hop's Dubwool",
       "card_id": "sv09-136",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Headbutt costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -21862,6 +23328,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Knuckle Punch costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -22021,6 +23494,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Round costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.9,
@@ -22039,6 +23519,13 @@
       "name": "Tranquill",
       "card_id": "sv05-134",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Jet Wing costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -22132,6 +23619,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Drag Off costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -22185,6 +23679,13 @@
       "card_id": "sv08.5-079",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Dig costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "damage-prevention",
           "source": "rule",
@@ -22197,6 +23698,13 @@
       "name": "Cramorant",
       "card_id": "sv06-058",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Spit Shot costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -22233,6 +23741,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Combustion costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.9,
@@ -22265,6 +23780,13 @@
       "name": "Arcanine",
       "card_id": "sv10-028",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Flare costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -22311,7 +23833,15 @@
     "9426d453233ac92e": {
       "name": "Kangaskhan",
       "card_id": "sv10-151",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gentle Slap costs 2 Colorless Energy"
+        }
+      ]
     },
     "947370eedad152f3": {
       "name": "Cynthia's Roselia",
@@ -22321,7 +23851,15 @@
     "9475f0a386d689a0": {
       "name": "Galarian Stunfisk",
       "card_id": "sv09-106",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Mud-Slap costs 2 Colorless Energy"
+        }
+      ]
     },
     "94a3671b6b6a679e": {
       "name": "Mienshao",
@@ -22351,6 +23889,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Corkscrew Punch costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.9,
@@ -22369,6 +23914,13 @@
       "name": "Team Rocket's Honchkrow",
       "card_id": "me02.5-127",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rocket Feathers costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -22527,6 +24079,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Sand Spray costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.9,
@@ -22576,6 +24135,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Sudden Scorching costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.9,
@@ -22614,7 +24180,15 @@
     "96a9f7e4f03a5c28": {
       "name": "Veluza",
       "card_id": "sv07-045",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Sonic Edge costs 4 Colorless Energy"
+        }
+      ]
     },
     "96aee9c702004a95": {
       "name": "Palafin",
@@ -22822,7 +24396,15 @@
     "97fd217bf3539269": {
       "name": "Vullaby",
       "card_id": "me02.5-138",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Flap costs 2 Colorless Energy"
+        }
+      ]
     },
     "98705995f7f4044b": {
       "name": "Seedot",
@@ -22901,7 +24483,15 @@
     "990e25bd71bc5836": {
       "name": "Iono's Voltorb",
       "card_id": "sv09-047",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Voltaic Chain costs 2 Colorless Energy"
+        }
+      ]
     },
     "991f47d8ebb2bdc1": {
       "name": "Tandemaus",
@@ -23031,6 +24621,13 @@
       "card_id": "sv07-113",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gnaw costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-pokemon",
           "source": "rule",
@@ -23056,6 +24653,13 @@
       "name": "Hoothoot",
       "card_id": "sv05-126",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Silent Wing costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "hand-disruption",
@@ -23174,7 +24778,15 @@
     "9b11af9549b45921": {
       "name": "Scyther",
       "card_id": "sv05-001",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Slashing Strike costs 2 Colorless Energy"
+        }
+      ]
     },
     "9b39d62958e2e9c2": {
       "name": "Slurpuff",
@@ -23201,6 +24813,13 @@
       "name": "Unfezant",
       "card_id": "sv10.5b-073",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Swift Flight costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "evolution-accel",
@@ -23297,7 +24916,15 @@
     "9cc02225fbda7629": {
       "name": "Deerling",
       "card_id": "sv10.5w-006",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rear Kick costs 2 Colorless Energy"
+        }
+      ]
     },
     "9cc5dc63fe2aaf2d": {
       "name": "Fraxure",
@@ -23364,6 +24991,13 @@
       "name": "Tropius",
       "card_id": "sv09-123",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gust costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "discard-from-hand",
@@ -23572,6 +25206,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Draining Kiss costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -23660,6 +25301,13 @@
       "name": "Lokix",
       "card_id": "me02-010",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Jumping Shot costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -23812,6 +25460,13 @@
       "card_id": "me02.5-178",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hard Tackle costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "energy-accel-deck",
           "source": "rule",
@@ -23831,6 +25486,13 @@
       "name": "Noctowl",
       "card_id": "sv08.5-078",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Speed Wing costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -23911,12 +25573,27 @@
     "9fd30b730b8897c7": {
       "name": "Corphish",
       "card_id": "me01-033",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Take Down costs 2 Colorless Energy"
+        }
+      ]
     },
     "a0302c388d098e81": {
       "name": "Skarmory",
       "card_id": "sv06-119",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Big Storm costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -24046,7 +25723,15 @@
     "a10b6cb71bca8371": {
       "name": "Team Rocket's Meowth",
       "card_id": "me02.5-161",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Fury Swipes costs 2 Colorless Energy"
+        }
+      ]
     },
     "a12e8b93c259c62a": {
       "name": "Drapion",
@@ -24107,6 +25792,13 @@
       "name": "Flutter Mane",
       "card_id": "sv08.5-043",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hex Hurl costs 3 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "spread-damage",
@@ -24213,6 +25905,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Cutting Wind costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -24283,6 +25982,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gust costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -24331,6 +26037,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Blood Moon costs 5 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "prizes-behind",
           "source": "rule",
           "confidence": 0.8,
@@ -24376,6 +26089,13 @@
       "name": "Cyclizar ex",
       "card_id": "sv08-159",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Break Through costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -24519,6 +26239,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Syrup Storm costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "evolution-accel",
           "source": "rule",
           "confidence": 0.8,
@@ -24555,6 +26282,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bug Out costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.7,
@@ -24566,6 +26300,13 @@
       "name": "Houndour",
       "card_id": "sv06.5-007",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gnaw costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -24653,7 +26394,15 @@
     "a4b098c424def003": {
       "name": "Shaymin",
       "card_id": "sv08.5-087",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Reflect Energy costs 2 Colorless Energy"
+        }
+      ]
     },
     "a4c29764f447169c": {
       "name": "Copperajah",
@@ -24791,7 +26540,15 @@
     "a55f8c41b4a3c258": {
       "name": "Pancham",
       "card_id": "sv07-085",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Low Kick costs 2 Colorless Energy"
+        }
+      ]
     },
     "a571139b0a2e8623": {
       "name": "Genesect",
@@ -24818,6 +26575,13 @@
       "name": "Bombirdier",
       "card_id": "me05-071",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Challenging Delivery costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "search-pokemon",
@@ -24902,6 +26666,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bone Vengeance costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.7,
@@ -24933,6 +26704,13 @@
       "name": "Mamoswine",
       "card_id": "me02-025",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Wreck costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -24994,6 +26772,13 @@
       "name": "Oinkologne",
       "card_id": "sv09-140",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Aromatic Stomps costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -25080,7 +26865,15 @@
     "a7685adfa0455222": {
       "name": "Varoom",
       "card_id": "sv07-108",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ram costs 2 Colorless Energy"
+        }
+      ]
     },
     "a78810805a34568b": {
       "name": "Teal Mask Ogerpon",
@@ -25149,6 +26942,13 @@
       "name": "Dhelmise",
       "card_id": "sv05-019",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Spinning Attack costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -25231,7 +27031,15 @@
     "a8c013f086b7b427": {
       "name": "Voltorb ex",
       "card_id": "me02.5-058",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hundred-Hitting Ball costs 3 Colorless Energy"
+        }
+      ]
     },
     "a8c2dd24c7f12d3d": {
       "name": "Larry's Skill",
@@ -25294,6 +27102,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Reckless Charge costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -25326,6 +27141,13 @@
       "name": "Eevee",
       "card_id": "sv08.5-074",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Reckless Charge costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "evolution-accel",
@@ -25461,6 +27283,13 @@
       "name": "Prinplup",
       "card_id": "me02-028",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Targeted Dive costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -25764,6 +27593,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Corkscrew Punch costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -26000,7 +27836,15 @@
     "ae6fd2525cd70eee": {
       "name": "Aipom",
       "card_id": "sv06-137",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Playful Kick costs 2 Colorless Energy"
+        }
+      ]
     },
     "aea0ac03690521f1": {
       "name": "Pikachu",
@@ -26064,6 +27908,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Push Down costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Grass",
           "source": "rule",
           "confidence": 0.9,
@@ -26098,6 +27949,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Energy Crush costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -26122,6 +27980,13 @@
       "name": "Phanpy",
       "card_id": "me04-044",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rollout costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -26331,7 +28196,15 @@
     "b09f2a49663f10be": {
       "name": "Onix",
       "card_id": "me01-070",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bind costs 2 Colorless Energy"
+        }
+      ]
     },
     "b0aa2d25acb0ed3b": {
       "name": "Milcery",
@@ -26350,7 +28223,15 @@
     "b0c276bb834cf5bf": {
       "name": "Crabrawler",
       "card_id": "sv07-087",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Vise Grip costs 2 Colorless Energy"
+        }
+      ]
     },
     "b1200c030f272727": {
       "name": "Ethan's Adventure",
@@ -26511,6 +28392,13 @@
       "card_id": "sv06-136",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Heavy Impact costs 5 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "energy-accel-hand",
           "source": "rule",
@@ -26530,6 +28418,13 @@
       "name": "Team Rocket's Zapdos",
       "card_id": "sv10-070",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Jamming Wing costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -26599,6 +28494,13 @@
           "source": "rule",
           "confidence": 0.85,
           "reason": "attack Clamping Fangs: \"for each damage counter on your\""
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Clamping Fangs costs 3 Colorless Energy"
         },
         {
           "kind": "needs",
@@ -26708,6 +28610,13 @@
       "name": "Seedot",
       "card_id": "sv05-003",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hang Down costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -26890,7 +28799,15 @@
     "b59d3d3bc54f5a30": {
       "name": "Snorlax ex",
       "card_id": "sv08.5-076",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Strength costs 3 Colorless Energy"
+        }
+      ]
     },
     "b5b2f82cf65e0773": {
       "name": "Mienfoo",
@@ -27131,6 +29048,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Haughty Order costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -27205,6 +29129,13 @@
       "name": "Pansage",
       "card_id": "sv10.5b-004",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Scratch costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "draw",
@@ -27391,6 +29322,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gadget Show costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Lightning",
           "source": "rule",
           "confidence": 0.7,
@@ -27540,7 +29478,15 @@
     "ba13ce9d0e635d7f": {
       "name": "Bouffalant",
       "card_id": "sv07-119",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Boundless Power costs 3 Colorless Energy"
+        }
+      ]
     },
     "ba3178f3fe562fe4": {
       "name": "Mawile",
@@ -27637,6 +29583,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Suction costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.9,
@@ -27669,6 +29622,13 @@
       "name": "Heat Rotom",
       "card_id": "sv10-043",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gadget Show costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -27718,6 +29678,13 @@
       "name": "Togekiss",
       "card_id": "me02.5-082",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Speed Wing costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "evolution-accel",
@@ -28009,6 +29976,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Glide costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Lightning",
           "source": "rule",
           "confidence": 0.9,
@@ -28085,6 +30059,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bug Buzz costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Grass",
           "source": "rule",
           "confidence": 0.7,
@@ -28103,6 +30084,13 @@
       "name": "Lickilicky",
       "card_id": "sv05-125",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Body Slam costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -28262,12 +30250,27 @@
     "bf04dab3e333d2ac": {
       "name": "Hop's Snorlax",
       "card_id": "sv09-117",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Dynamic Press costs 3 Colorless Energy"
+        }
+      ]
     },
     "bf2593e155f2927c": {
       "name": "Tornadus",
       "card_id": "sv10.5w-078",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hurricane costs 3 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "energy-accel-hand",
@@ -28358,6 +30361,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bite costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -28438,6 +30448,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Blaze Ball costs 4 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -28453,12 +30470,27 @@
     "c07349f091b57b21": {
       "name": "Wailmer",
       "card_id": "sv09-040",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Surf costs 3 Colorless Energy"
+        }
+      ]
     },
     "c07fa5271f8de49a": {
       "name": "Larry's Braviary",
       "card_id": "me02.5-174",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Clutch costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -28592,6 +30624,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Slashing Claw costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -28620,6 +30659,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Body Slam costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Darkness",
           "source": "rule",
           "confidence": 0.9,
@@ -28630,7 +30676,15 @@
     "c1d2f1fa3d2a4e2b": {
       "name": "Flamigo ex",
       "card_id": "sv08-160",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Precise Beak costs 2 Colorless Energy"
+        }
+      ]
     },
     "c1daf2f344f3c1b3": {
       "name": "Klefki",
@@ -28662,6 +30716,13 @@
           "source": "rule",
           "confidence": 0.85,
           "reason": "attack Flail: \"for each damage counter on this\""
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Dig Claws costs 2 Colorless Energy"
         }
       ]
     },
@@ -28750,12 +30811,27 @@
     "c2d944e6dd8cfa50": {
       "name": "Pancham",
       "card_id": "sv09-083",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Focus Fist costs 3 Colorless Energy"
+        }
+      ]
     },
     "c31c609a6962c663": {
       "name": "Floatzel",
       "card_id": "sv10-058",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Whirlpool costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -28860,6 +30936,13 @@
       "name": "Thievul",
       "card_id": "me05-054",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Skill Thief costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -28971,6 +31054,13 @@
       "name": "Ambipom",
       "card_id": "me02-079",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Slap costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -29099,6 +31189,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Perplexing Transfer costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Psychic",
           "source": "rule",
           "confidence": 0.7,
@@ -29199,7 +31296,15 @@
     "c5b64753cc1fe8c5": {
       "name": "Drampa",
       "card_id": "sv09-130",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Dragon Claw costs 2 Colorless Energy"
+        }
+      ]
     },
     "c5c2a1256f9840a9": {
       "name": "Morpeko ex",
@@ -29258,7 +31363,15 @@
     "c639817a8c3fa87f": {
       "name": "Miltank",
       "card_id": "sv08.5-081",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Moomoo Rolling costs 2 Colorless Energy"
+        }
+      ]
     },
     "c681797cd1d5d3a7": {
       "name": "Levincia",
@@ -29318,6 +31431,13 @@
       "name": "Appletun",
       "card_id": "sv08-140",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Melting Sweetness costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -29783,7 +31903,15 @@
     "c9e64a7c3cd995e4": {
       "name": "Arven's Maschiff",
       "card_id": "sv10-138",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Confront costs 3 Colorless Energy"
+        }
+      ]
     },
     "ca16590e9c7982f5": {
       "name": "Koraidon ex",
@@ -29795,6 +31923,13 @@
           "source": "rule",
           "confidence": 0.85,
           "reason": "attack Retribution Strike: \"for each damage counter on this\""
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Retribution Strike costs 2 Colorless Energy"
         },
         {
           "kind": "needs",
@@ -29818,6 +31953,13 @@
       "name": "Zangoose ex",
       "card_id": "me02.5-167",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Wild Scissors costs 3 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "draw",
@@ -29887,6 +32029,13 @@
       "name": "Wigglytuff",
       "card_id": "me02-077",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Round costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -30008,6 +32157,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hyper Ray costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "evolution-accel",
           "source": "rule",
           "confidence": 0.8,
@@ -30054,6 +32210,13 @@
       "name": "Miltank",
       "card_id": "me01-106",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bellyful of Milk costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "heal",
@@ -30285,6 +32448,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tackle costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Grass",
           "source": "rule",
           "confidence": 0.7,
@@ -30310,6 +32480,13 @@
       "name": "Poliwag",
       "card_id": "sv06-041",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tail Rap costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -30392,6 +32569,13 @@
       "name": "Elgyem",
       "card_id": "sv10.5b-040",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Beam costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -30539,6 +32723,13 @@
       "card_id": "sv09-124",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Zen Headbutt costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "recover-trainer",
           "source": "rule",
@@ -30622,6 +32813,13 @@
       "name": "Noivern",
       "card_id": "sv09-128",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Frightening Howl costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -30808,6 +33006,13 @@
           "source": "rule",
           "confidence": 0.85,
           "reason": "attack Unified Beatdown: \"for each of your benched pokémon\""
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Unified Beatdown costs 2 Colorless Energy"
         },
         {
           "kind": "needs",
@@ -31021,7 +33226,15 @@
     "d301b49989104e11": {
       "name": "Hippopotas",
       "card_id": "sv08.5-052",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tackle costs 3 Colorless Energy"
+        }
+      ]
     },
     "d331f06534cf2238": {
       "name": "Jynx",
@@ -31096,7 +33309,15 @@
     "d418e60d0280a017": {
       "name": "Kyogre",
       "card_id": "30th-019",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hydro Pump costs 4 Colorless Energy"
+        }
+      ]
     },
     "d41d6bfab03933e3": {
       "name": "Sliggoo",
@@ -31251,6 +33472,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Kick costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.7,
@@ -31352,6 +33580,13 @@
       "name": "Mega Lopunny ex",
       "card_id": "me02-084",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Spiky Hopper costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -31613,6 +33848,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hard Crunch costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -31630,7 +33872,15 @@
     "d6b587a8e1ac691b": {
       "name": "Chimchar",
       "card_id": "mep-041",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Fury Swipes costs 2 Colorless Energy"
+        }
+      ]
     },
     "d6b6569bfc32a8bc": {
       "name": "Duraludon",
@@ -31692,6 +33942,13 @@
       "name": "Ducklett",
       "card_id": "sv06-139",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Razor Wing costs 2 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "draw",
@@ -31823,6 +34080,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Coiling Crush costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.9,
@@ -31881,7 +34145,15 @@
     "d7e42e50b1105a45": {
       "name": "Helioptile",
       "card_id": "sv08-154",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Reckless Charge costs 3 Colorless Energy"
+        }
+      ]
     },
     "d8125ec07a584279": {
       "name": "Slither Wing",
@@ -31900,7 +34172,15 @@
     "d84c5029a2965fa5": {
       "name": "Snorlax",
       "card_id": "svp-122",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Lazy Press costs 4 Colorless Energy"
+        }
+      ]
     },
     "d8a13669ebe48d36": {
       "name": "Koraidon",
@@ -32033,7 +34313,15 @@
     "da2cf534eeaae354": {
       "name": "Bouffalant",
       "card_id": "sv08-151",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ready to Ram costs 2 Colorless Energy"
+        }
+      ]
     },
     "da4809162e347c01": {
       "name": "Postwick",
@@ -32092,6 +34380,13 @@
       "name": "Exeggutor",
       "card_id": "me01-005",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Stomping Wood costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -32261,6 +34556,13 @@
       "card_id": "sv07-120",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Knuckle Punch costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "damage-prevention",
           "source": "rule",
@@ -32398,6 +34700,13 @@
       "name": "Poliwhirl",
       "card_id": "sv06-042",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Double Slap costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -32702,6 +35011,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gadget Show costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Grass",
           "source": "rule",
           "confidence": 0.7,
@@ -32740,7 +35056,15 @@
     "dee34ac1bb4c492d": {
       "name": "Capsakid",
       "card_id": "sv08-012",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Headbutt Bounce costs 2 Colorless Energy"
+        }
+      ]
     },
     "dee634d45013388a": {
       "name": "Dewgong",
@@ -32767,6 +35091,13 @@
       "name": "Horsea",
       "card_id": "sv06.5-010",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Razor Fin costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -32867,6 +35198,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hook costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.7,
@@ -32877,12 +35215,27 @@
     "e00d65ccae75db19": {
       "name": "Ledyba",
       "card_id": "sv07-002",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Headbutt Bounce costs 2 Colorless Energy"
+        }
+      ]
     },
     "e06ca815cce07d87": {
       "name": "Reshiram ex",
       "card_id": "sv10.5w-020",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Slash costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -32918,6 +35271,13 @@
       "name": "Purugly",
       "card_id": "sv07-117",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Nyan Roll costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -33010,6 +35370,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gust costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -33055,7 +35422,15 @@
     "e1b6034e0f8bedb7": {
       "name": "Cyclizar",
       "card_id": "sv07-127",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Speed Attack costs 2 Colorless Energy"
+        }
+      ]
     },
     "e1c4766e17301ec6": {
       "name": "Mimikyu",
@@ -33370,6 +35745,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Cross-Cut costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.9,
@@ -33512,7 +35894,15 @@
     "e4563f3f9f9f962b": {
       "name": "Golett",
       "card_id": "sv10.5b-042",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Best Punch costs 2 Colorless Energy"
+        }
+      ]
     },
     "e4ae5d0872fa55ce": {
       "name": "Munna",
@@ -33889,6 +36279,13 @@
       "card_id": "sv05-130",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tackle costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-pokemon",
           "source": "rule",
@@ -34015,6 +36412,13 @@
       "name": "Mega Dragalge ex",
       "card_id": "me04-065",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Corrosive Liquid costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -34222,6 +36626,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Heat Blast costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.7,
@@ -34240,6 +36651,13 @@
       "name": "Blaziken",
       "card_id": "sv10-042",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Heat Blast costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -34793,7 +37211,15 @@
     "ec36d7dcca0ead41": {
       "name": "Shroomish",
       "card_id": "sv10-005",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rolling Tackle costs 2 Colorless Energy"
+        }
+      ]
     },
     "ec3e104b8e119230": {
       "name": "Marshadow",
@@ -34819,7 +37245,15 @@
     "ec4244ff3b4b3b4b": {
       "name": "Shellos",
       "card_id": "sv08-046",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Sprinkle Water costs 2 Colorless Energy"
+        }
+      ]
     },
     "ec6e754a5cb72b44": {
       "name": "Trubbish",
@@ -34898,6 +37332,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Lunge Out costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -34973,7 +37414,15 @@
     "ee3555c4cab0e099": {
       "name": "Minccino",
       "card_id": "sv05-136",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Cleaning Up costs 2 Colorless Energy"
+        }
+      ]
     },
     "ee4ac1f5fb5f6068": {
       "name": "Phantump",
@@ -35163,6 +37612,13 @@
       "card_id": "sv06-009",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Coordinated Strike costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "search-pokemon",
           "source": "rule",
@@ -35189,6 +37645,13 @@
       "name": "Furret",
       "card_id": "sv09-119",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Jet Headbutt costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -35593,6 +38056,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Speed Wing costs 4 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -35673,6 +38143,13 @@
       "card_id": "sv10.5b-017",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Scratch costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "draw",
           "source": "rule",
@@ -35690,6 +38167,13 @@
       "name": "Palossand ex",
       "card_id": "sv08-091",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Sand Tomb costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -36066,6 +38550,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Chi-Atsu costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fighting",
           "source": "rule",
           "confidence": 0.9,
@@ -36084,6 +38575,13 @@
       "name": "Fezandipiti ex",
       "card_id": "me02.5-142",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Cruel Arrow costs 3 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "draw",
@@ -36126,6 +38624,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bone Shot costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Darkness",
           "source": "rule",
           "confidence": 0.9,
@@ -36144,6 +38649,13 @@
       "name": "N's Zekrom",
       "card_id": "me02.5-155",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Shred costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -36205,7 +38717,15 @@
     "f695da6aeca17e2c": {
       "name": "Delibird",
       "card_id": "me01-105",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gentle Slap costs 2 Colorless Energy"
+        }
+      ]
     },
     "f69d406d8cc8e3c5": {
       "name": "Gholdengo",
@@ -36231,7 +38751,15 @@
     "f6ba343c9fb4fca9": {
       "name": "Hop's Wooloo",
       "card_id": "sv09-135",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Smash Kick costs 3 Colorless Energy"
+        }
+      ]
     },
     "f71e290dfe8e2e3d": {
       "name": "Swinub",
@@ -36312,6 +38840,13 @@
       "name": "Black Kyurem ex",
       "card_id": "sv08-048",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Ice Age costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -36503,6 +39038,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Bind Down costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -36519,6 +39061,13 @@
       "name": "Simisear",
       "card_id": "sv10.5w-015",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gentle Slap costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -36545,7 +39094,15 @@
     "f89f676929d5c4dd": {
       "name": "Regigigas",
       "card_id": "sv08.5-086",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Jewel Breaker costs 4 Colorless Energy"
+        }
+      ]
     },
     "f8b5c9ff318b2a18": {
       "name": "Paras",
@@ -36607,6 +39164,13 @@
       "card_id": "sv08.5-082",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hyper Whirlpool costs 3 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "energy-disruption",
           "source": "rule",
@@ -36619,6 +39183,13 @@
       "name": "Bewear",
       "card_id": "sv06.5-053",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hammer In costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -36648,6 +39219,13 @@
       "tags": [
         {
           "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Air Slash costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
           "term": "search-pokemon",
           "source": "rule",
           "confidence": 0.6,
@@ -36672,12 +39250,27 @@
     "f956b4384b6048a8": {
       "name": "Rowlet",
       "card_id": "mep-043",
-      "tags": []
+      "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Tackle costs 2 Colorless Energy"
+        }
+      ]
     },
     "f963fdbd6d61d17c": {
       "name": "Greedent",
       "card_id": "sv09-132",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gluttonous Tail costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -36698,6 +39291,13 @@
       "name": "Grimmsnarl",
       "card_id": "sv07-096",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Goad 'n' Grab costs 2 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "energy-attached",
@@ -36990,6 +39590,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Guard Press costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Fire",
           "source": "rule",
           "confidence": 0.9,
@@ -37085,6 +39692,13 @@
       "card_id": "sv10.5w-014",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Scratch costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "draw",
           "source": "rule",
@@ -37172,6 +39786,13 @@
       "card_id": "sv09-141",
       "tags": [
         {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hyper Voice costs 2 Colorless Energy"
+        },
+        {
           "kind": "provides",
           "term": "draw",
           "source": "rule",
@@ -37211,6 +39832,13 @@
       "name": "Seaking",
       "card_id": "me05-014",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Hydro Jet costs 3 Colorless Energy"
+        },
         {
           "kind": "needs",
           "term": "search-pokemon",
@@ -37589,6 +40217,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Gadget Show costs 2 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Water",
           "source": "rule",
           "confidence": 0.7,
@@ -37659,6 +40294,13 @@
         {
           "kind": "needs",
           "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Slash costs 3 Colorless Energy"
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
           "qualifier": "Metal",
           "source": "rule",
           "confidence": 0.9,
@@ -37703,6 +40345,13 @@
       "name": "Snorlax",
       "card_id": "me03-063",
       "tags": [
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Collapse costs 4 Colorless Energy"
+        },
         {
           "kind": "provides",
           "term": "energy-accel-deck",
@@ -37792,6 +40441,13 @@
           "source": "rule",
           "confidence": 0.85,
           "reason": "attack Flail: \"for each damage counter on this\""
+        },
+        {
+          "kind": "needs",
+          "term": "energy-attached",
+          "source": "rule",
+          "confidence": 0.6,
+          "reason": "Rain Splash costs 2 Colorless Energy"
         },
         {
           "kind": "needs",

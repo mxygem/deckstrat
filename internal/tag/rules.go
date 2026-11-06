@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"regexp"
+	"slices"
 	"strings"
 
 	"github.com/mxygem/deckstrat/internal/catalog"
@@ -102,6 +103,9 @@ var textRules = []textRule{
 
 var energyTypes = []string{"Grass", "Fire", "Water", "Lightning", "Psychic", "Fighting", "Darkness", "Metal", "Dragon", "Fairy"}
 
+// EnergyTypes lists the Basic Energy types.
+func EnergyTypes() []string { return slices.Clone(energyTypes) }
+
 // energySymbols are the type symbols card text uses, as in "Basic {F} Energy".
 var energySymbols = map[string]string{
 	"Grass": "{g}", "Fire": "{r}", "Water": "{w}", "Lightning": "{l}", "Psychic": "{p}",
@@ -151,7 +155,8 @@ func (Rules) Tag(_ context.Context, c *catalog.Card) ([]Tag, error) {
 }
 
 // attackCostTags turns attack costs into Energy needs: one per type, with
-// higher confidence for the types the costliest attack uses.
+// higher confidence for attacks costing 3 or more. An all-Colorless attack
+// costing 2 or more gives an untyped need.
 func attackCostTags(c *catalog.Card) []Tag {
 	var tags []Tag
 	for _, a := range c.Attacks {
@@ -160,6 +165,10 @@ func attackCostTags(c *catalog.Card) []Tag {
 			if e != "Colorless" {
 				counts[e]++
 			}
+		}
+		if len(counts) == 0 && len(a.Cost) >= 2 {
+			tags = append(tags, Tag{Kind: Needs, Term: "energy-attached", Source: Rule, Confidence: 0.6,
+				Reason: fmt.Sprintf("%s costs %d Colorless Energy", a.Name, len(a.Cost))})
 		}
 		for t, n := range counts {
 			conf := 0.7

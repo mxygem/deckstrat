@@ -14,7 +14,7 @@
     {"card": "Area Zero Underdepths SCR 131", "tags": ["provides:bench-expand"]},
     {"card": "Crispin SCR 133", "tags": ["provides:search-energy", "provides:energy-accel-deck"]},
     {"card": "Professor's Research BLK 85", "tags": ["provides:draw", "provides:discard-from-hand"]},
-    {"card": "Pidgeot ex OBF 164", "tags": ["needs:evolution-accel", "needs:search-pokemon", "provides:search-pokemon", "provides:search-trainer"]},
+    {"card": "Pidgeot ex OBF 164", "tags": ["needs:energy-attached", "needs:evolution-accel", "needs:search-pokemon", "provides:search-pokemon", "provides:search-trainer"]},
     {"card": "Psychic Energy MEE 13", "tags": []}
   ]
 }
