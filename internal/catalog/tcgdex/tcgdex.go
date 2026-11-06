@@ -260,6 +260,37 @@ func (c *Client) SetIDsForCode(ctx context.Context, code string) ([]string, erro
 	return ids, nil
 }
 
+// SeriesSets lists the set IDs in a series, such as "sv" or "me", in
+// release order.
+func (c *Client) SeriesSets(ctx context.Context, series string) ([]string, error) {
+	var out struct {
+		Sets []struct {
+			ID string `json:"id"`
+		} `json:"sets"`
+	}
+	if err := c.get(ctx, "/series/"+url.PathEscape(series), nil, &out); err != nil {
+		return nil, fmt.Errorf("tcgdex series %s: %w", series, err)
+	}
+	ids := make([]string, len(out.Sets))
+	for i, s := range out.Sets {
+		ids[i] = s.ID
+	}
+	return ids, nil
+}
+
+// SetCards lists the card IDs in a set.
+func (c *Client) SetCards(ctx context.Context, setID string) ([]string, error) {
+	s, err := c.set(ctx, setID)
+	if err != nil {
+		return nil, err
+	}
+	ids := make([]string, len(s.Cards))
+	for i, card := range s.Cards {
+		ids[i] = card.ID
+	}
+	return ids, nil
+}
+
 func (c *Client) set(ctx context.Context, id string) (*apiSet, error) {
 	c.mu.Lock()
 	s, ok := c.sets[id]

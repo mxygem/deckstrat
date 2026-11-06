@@ -21,5 +21,17 @@
  "symbol": "https://assets.tcgdex.net/univ/sv/sv05/symbol",
  "abbreviation": {
   "official": "TEF"
- }
+ },
+ "cards": [
+  {
+   "id": "sv05-157",
+   "localId": "157",
+   "name": "Prime Catcher"
+  },
+  {
+   "id": "sv05-999",
+   "localId": "999",
+   "name": "Missing Card"
+  }
+ ]
 }

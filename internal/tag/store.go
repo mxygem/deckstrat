@@ -83,6 +83,10 @@ func (s *Store) Save(path string) error {
 	if err := f.Close(); err != nil {
 		return err
 	}
+	// CreateTemp makes the file 0600; the store is meant to be committed.
+	if err := os.Chmod(f.Name(), 0o644); err != nil {
+		return err
+	}
 	return os.Rename(f.Name(), path)
 }
 
