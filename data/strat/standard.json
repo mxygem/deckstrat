@@ -1,0 +1,30 @@
+{
+  "format": "standard",
+  "note": "Hand-set role counts and staples until tournament co-occurrence data exists (needs a Limitless API key). Staples are card names, checked against the legal pool when a deck is built; rotated ones are skipped. Counts roughly follow the three real TCG Live lists in testdata/decks.",
+  "lines": {
+    "Basic": [4],
+    "Stage1": [4, 3],
+    "Stage2": [4, 2, 3]
+  },
+  "engine_lines": {
+    "Basic": [1],
+    "Stage1": [2, 2],
+    "Stage2": [2, 1, 2]
+  },
+  "engines": ["Pidgeot ex", "Dudunsparce", "Fezandipiti ex", "Bibarel"],
+  "roles": [
+    {"role": "pokemon-search", "count": 7, "staples": ["Ultra Ball", "Buddy-Buddy Poffin", "Nest Ball", "Poké Pad"]},
+    {"role": "evolution-accel", "count": 4, "when": "stage2", "staples": ["Rare Candy"]},
+    {"role": "draw", "count": 8, "staples": ["Lillie's Determination", "Iono", "Dawn", "Hilda", "Professor's Research", "Judge"]},
+    {"role": "energy-accel", "count": 4, "when": "needs:energy-attached", "staples": []},
+    {"role": "trainer-search", "count": 1, "staples": ["Ciphermaniac's Codebreaking", "Arven"]},
+    {"role": "gust", "count": 2, "staples": ["Boss's Orders", "Counter Catcher"]},
+    {"role": "switching", "count": 2, "staples": ["Switch", "Escape Rope", "Energy Switch"]},
+    {"role": "recovery", "count": 2, "staples": ["Night Stretcher", "Super Rod", "Sacred Ash"]},
+    {"role": "stadium", "count": 2, "staples": ["Area Zero Underdepths", "Battle Cage", "Risky Ruins"]},
+    {"role": "tools", "count": 1, "staples": ["Handheld Fan", "Air Balloon"]},
+    {"role": "ace-spec", "count": 1, "staples": ["Prime Catcher", "Unfair Stamp", "Hero's Cape", "Maximum Belt"]},
+    {"role": "disruption", "count": 1, "staples": ["Judge", "Iono", "Special Red Card"]}
+  ],
+  "energy": {"min": 7, "max": 10}
+}

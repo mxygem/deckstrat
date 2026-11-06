@@ -9,6 +9,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"slices"
 	"strconv"
 	"strings"
 	"testing"
@@ -30,6 +31,8 @@ func fakeServer(t *testing.T) (*httptest.Server, *[]string) {
 			serveFile(w, r, "search_charizard_ex.json")
 		case len(parts) == 2 && parts[0] == "cards":
 			serveFile(w, r, filepath.Join("cards", parts[1]+".json"))
+		case len(parts) == 2 && parts[0] == "series":
+			serveFile(w, r, filepath.Join("series", parts[1]+".json"))
 		case len(parts) == 1 && parts[0] == "sets":
 			serveSetsByCode(t, w, strings.TrimPrefix(r.URL.Query().Get("abbreviation.official"), "eq:"))
 		case len(parts) == 2 && parts[0] == "sets":
@@ -333,5 +336,21 @@ func TestGetByCodeUsesName(t *testing.T) {
 	card, err := c.GetByCode(ctx, "OBF", "125", "Iono")
 	if err != nil || card.ID != "sv03-125" {
 		t.Errorf("got %v, %v", card, err)
+	}
+}
+
+func TestListing(t *testing.T) {
+	c, _ := newTestClient(t)
+	ctx := context.Background()
+	sets, err := c.SeriesSets(ctx, "sv")
+	if err != nil || !slices.Equal(sets, []string{"sv05", "sve"}) {
+		t.Fatalf("SeriesSets = %v, %v", sets, err)
+	}
+	cards, err := c.SetCards(ctx, "sv05")
+	if err != nil || !slices.Equal(cards, []string{"sv05-157", "sv05-999"}) {
+		t.Fatalf("SetCards = %v, %v", cards, err)
+	}
+	if _, err := c.SeriesSets(ctx, "nope"); !IsNotFound(err) {
+		t.Errorf("unknown series should be not found, got %v", err)
 	}
 }

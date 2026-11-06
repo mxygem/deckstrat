@@ -2,8 +2,9 @@
 
 deckstrat turns one card into a tested, rated, tournament-ready deck.
 
-Today it can look up cards and prices, and check a TCG Live decklist against
-Standard, Expanded or Gym Leader Challenge with a reason for every problem.
+Today it can look up cards and prices, check a TCG Live decklist against
+Standard, Expanded or Gym Leader Challenge with a reason for every problem,
+and build a first deck around a starter Pokémon.
 
 ## Setup
 
@@ -64,6 +65,49 @@ with a set code are kept as written; lines without one get a printing from
 the catalog. Both kinds import into TCG Live and the Limitless deck
 builder (checked 2026-11-05 with a 60-card Standard list).
 
+### Building from a starter
+
+```sh
+go run ./cmd/strat "Dragapult ex TWM 130"
+```
+
+`strat` prints the starter's needs, every pick with the reason it is
+there, Pokémon worth testing as partners, the format check and a TCG Live
+export. It is v1 of the strat engine in PLAN.md:
+
+- Picks come from card **tags**: needs and provides terms from a fixed
+  vocabulary (`internal/tag/vocab.json`). A Stage 2 needs evolution
+  acceleration, so Rare Candy goes in; Phantom Dive costs Fire and
+  Psychic, so Fire and Psychic Energy and acceleration go in.
+- Role counts and staples are hand-set in `data/strat/standard.json`
+  until tournament co-occurrence data exists. Staples are checked against
+  the legal pool, so a rotated card is skipped with a note.
+- Only Pokémon starters are supported, and one engine Pokémon line is
+  added from the config's list. Tech Pokémon are left to you; the
+  partner list is where to start.
+
+### Tags
+
+```sh
+go run ./cmd/tag pool                      # build today's legal pool (cached)
+go run ./cmd/tag run                       # tag the pool with rules into data/tags.json
+go run ./cmd/tag run --llm --limit 20      # also tag with Claude (one Message Batch)
+go run ./cmd/tag show "Ultra Ball MEG 131" # a card's tags and why
+go run ./cmd/tag eval                      # score against data/eval/tags.json
+```
+
+Tags come from two taggers. The rules tagger reads stats and text
+patterns: free, and every tag quotes what matched. The Claude tagger sends
+each card with a cached vocabulary prompt and a JSON schema, through the
+Message Batches API at half price; it needs `ANTHROPIC_API_KEY` or an `ant
+auth login` profile. Claude tags are kept on retagging, human tags win
+over both, and entries marked `reviewed` are never changed. Tags attach to
+the functional card, so reprints share them.
+
+`data/eval/tags.json` is the hand-checked eval set. It has 15 seed cards;
+the plan is about 200, and the rules were tuned on the seed cards, so add
+unseen ones before trusting the scores.
+
 ## Layout
 
 | Path                      | What it holds                                         |
@@ -76,6 +120,9 @@ builder (checked 2026-11-05 with a 60-card Standard list).
 | `internal/deck`           | TCG Live decklist parsing, resolution and export      |
 | `internal/config`         | Config loading                                        |
 | `internal/httpcache`      | On-disk HTTP cache                                    |
+| `internal/pool`           | A format's legal cards, one printing per card         |
+| `internal/tag`            | Tag vocabulary, rules and Claude taggers, eval        |
+| `internal/strat`          | The strat engine: starter to deck                     |
 
 Formats are data. A rotation or ban is an edit to
 `internal/format/formats/*.json`, not a code change.
